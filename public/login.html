@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .garis_verikal {
+        border-left: 1px white solid;
+        height: 22px;
+        width: 0px;
+      }
+       .garis {
+        border: 1px #F2F2F2 solid;
+        height: 1px;
+        width: 100%;
+      }
+     
+    </style>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>JobStreet - Let's find your jobs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="style/main.css" rel="stylesheet" />
+  </head>
+
+  
+    <!-- navbar -->
+     <nav class="navbar navbar-custom navbar-expand-lg bg-info text-light">
+  <div class="container">
+    <a class="navbar-brand font-weight-bolder " href="index.html" style="font-size: 27px; font-family: poppins, sans-serif; color: rgb(18, 51, 88);">JobStreet</a>
+    <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon text-black"></span>
+    </button>
+    <div class="collapse navbar-collapse d-md-flex justify-content-md-between " id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item ">
+          <a class="nav-link text-white" aria-current="page" href="index.html">Find Jobs</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-white" href="riview.html">Company Reviews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active" href="salaries.html">Find Salaries</a>
+        </li>
+          
+      </ul>
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="post.html">Post your resume</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link font-weight-bold text-primary" href="login.html" style="padding: 5px; background-color: white; border-radius: 7px; margin-right: 10px;">Sign In</a>
+        </li>
+        
+         <div class="garis_verikal d-none d-md-block"></div>
+          <li class="nav-item">
+            <a class="nav-link text-white" style="font-size: 15px;" href="#"
+              >Empeloyer / Post Job</a
+            >
+          </li>
+      </ul>
+      
+   
+     
+    
+    </div>
+  </div>
+</nav>
+      <div class="login">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="card">
+              <div id="card-content">
+                <div id="card-title">
+                 <h2>LOGIN</h2>
+                </div>
+                </div>
+                <form method="" class="form">
+                    <label for="user-email" style="padding-top: 14px;">&nbsp; Email</label>
+                    <input id="user-email" placeholder="Enter your email" class="form-content" type="Email" name="Email" autocomplete="on" required/>
+                    <div class="form-border"></div>
+
+                    <label for="user-password" style="padding-top: 22px;">&nbsp; Password</label>
+                    <input id="user-password" placeholder="Enter your password" class="form-content" type="Password" name="Password" required/>
+                    <div class="form-border"></div>
+
+                    <input id="submit-btn" type="submit" name="submit" value="LOGIN"/>
+                    <a href="register.html" id="signup">don't have an account yet?</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--  Bootstrap core JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/vendor/jquery/jquery.slim.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .garis_verikal {
+        border-left: 1px white solid;
+        height: 22px;
+        width: 0px;
+      }
+      .garis {
+        border: 1px #F2F2F2 solid;
+        height: 1px;
+        width: 100%;
+      }
+     
+    </style>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    
+
+    <title>JobStreet - Let's find your jobs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="style/main.css" rel="stylesheet" />
+  </head>
+
+  
+    <!-- navbar -->
+       <nav class="navbar navbar-custom navbar-expand-lg bg-info text-light d-block d-md-none">
+  <div class="container">
+    <a class="navbar-brand font-weight-bolder " href="index.html" style="font-size: 27px; font-family: poppins, sans-serif; color: rgb(18, 51, 88);">JobStreet</a>
+     
+    <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon text-black"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse d-md-flex justify-content-md-between " id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item ">
+          <a class="nav-link text-white" aria-current="page" href="index.html">Find Jobs</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-white" href="riview.html">Company Reviews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active" href="salaries.html">Find Salaries</a>
+        </li>
+          
+      </ul>
+      <div class="garis mb-1 mt-1"></div>
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item">
+          <a class="nav-link text-white active" href="post.html">Messages</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link text-white active" href="jobs.html">My Reviews</a>
+        </li>
+          <div class="garis mb-1 mt-1"></div>
+         <li class="nav-item">
+          <a class="nav-link text-white active" href="profile.html">Profile</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link text-white active" href="jobs.html">My Jobs</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link text-white active" href="settings.html">Settings</a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link text-white" style="font-size: 15px;" href="#"
+              >Empeloyer / Post Job</a
+            >
+          </li>
+         <div class="garis_verikal  d-none d-md-block"></div>
+      <li class="nav-item">
+          <a class="nav-link font-weight-bold text-primary" href="" style="padding: 5px; background-color: white; border-radius: 7px;">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+   <nav class="navbar navbar-custom navbar-expand-lg bg-info text-light d-none d-md-block">
+  <div class="container">
+    <a class="navbar-brand font-weight-bolder " href="index.html" style="font-size: 27px; font-family: poppins, sans-serif; color: rgb(18, 51, 88);">JobStreet</a>
+     
+    <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon text-black"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse d-md-flex justify-content-md-between " id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item ">
+          <a class="nav-link text-white" aria-current="page" href="index.html">Find Jobs</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-white" href="riview.html">Company Reviews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active" href="salaries.html">Find Salaries</a>
+        </li>
+          
+      </ul>
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item active pr-3" >
+          <a class="nav-link" aria-current="page" href="post.html" style="font-size: 20px;">
+            <i class="bi bi-chat-left-text-fill text-white" ></i>
+          </a>
+        </li>
+        <li class="nav-item pr-3">
+          <a class="nav-link" href="jobs.html">
+            <i class="bi bi-bookmark-star-fill text-white" style=" font-size: 20px;"></i>
+          </a>
+        </li>
+        <li class="dropdown pr-3">
+       <a class=" nav-link  bi bi-person-fill text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 23px; " >
+       </a>
+         <ul class="dropdown-menu" >
+            <li><a class="dropdown-item font-weight-bold" href="#">Verify your account</a></li>
+            <li><a class="dropdown-item " href="#">zakiakbar143@gmail.com</a></li>
+            <li><a class="dropdown-item" href="profile.html"> <i class="bi bi-file-earmark-text-fill"  style= "padding-right: 10px;"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="jobs.html"><i class="bi bi-heart-fill" style= "padding-right: 10px;"></i> My jobs</a></li>
+            <li><a class="dropdown-item" href="settings.html" ><i class="bi bi-gear-fill" style= "padding-right: 10px;"></i> Settings</a></li>
+            <div class="garis"></div>
+            <li><a class="dropdown-item text-center  font-weight-bold" href="#" style="color: blue;">Sign Out</a></li>
+
+         </ul>
+        </li>
+         <div class="garis_verikal  d-none d-md-block"></div>
+          <li class="nav-item">
+            <a class="nav-link text-white" style="font-size: 15px;" href="#"
+              >Empeloyer / Post Job</a
+            >
+          </li>
+      
+      </ul>
+      
+   
+     
+    
+    </div>
+  </div>
+</nav>
+
+    <!-- body -->
+    <div class="post-content">
+        <div class="container d-flex justify-content-between" >
+                <div class="col-md-4" >
+            <div class="row rounded-3" >
+                <h4 class="font-weight-bold">Pesan</h4>
+            </div>
+            <div class="row">
+                <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-3 btn-block" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: none;">
+                Kotak Masuk
+                </button>
+              <ul class="dropdown-menu">
+            <li><a class="dropdown-item active" href="post.html">Kotak Masuk</a></li>
+            <li><a class="dropdown-item" href="arsip.html">Arsip</a></li>
+            <li><a class="dropdown-item" href="#">Spam</a></li>
+          </ul>
+         </div>
+            </div>
+         </div>
+          <div class="col-md-8 pesan" style="margin-left: 10px;">
+            <div class="row rounded-3 d-flex justify-content-center text-center">
+                <img src="/images/messages.png" alt="" style="width: 250px;">
+                <h4 class="text">Selamat Datang di Pesan</h4>
+                <div class="col-md-5 col-12">
+                    Saat perusahaan mengkontak anda
+                    anda akan melihat pesan di sini
+                </div>
+              
+                <div class="col-md-12 col-12 d-flex justify-content-center">
+                     <a href="#" class="btn btn-primary font-weight-bold mt-4 find rounded-3 w-75 btn-block">Cari Lowongan</a>
+                </div>
+                 <div class="col-md-6 col-12 d-flex justify-content-center">
+                     <a href="#" class="btn btn-outline-primary font-weight-bold mt-4 post rounded-3 w-75 btn-block">Unggah foto CV Profesional kamu</a>
+                </div>
+            </div>
+         </div>
+         </div>
+        </div>
+    <!-- footer -->
+        <div class="footer justify-content-center">
+        <div class="container">
+        <div class="row justify-content-center">
+        <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">Saleries</a></li>
+              <li><a href="#">Countries</a></li>
+              <li><a href="#">Tentang Indeed</a></li>
+              <li><a href="#">Pusat Bantuan</a></li>
+            </ul>
+            </div>
+            <div class="footer-col">
+            <h4>Get Help</h4>
+            <ul>
+              <li><a href="#">Pusat Privasi</a></li>
+              <li><a href="#">Cookie</a></li>
+              <li><a href="#">Privasi</a></li>
+              <li><a href="#">Ketentuan</a></li>
+            </ul>
+            </div>
+            <div class="footer-col">
+            <h4>Follow us</h4>
+            <div class="social-links">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-twitter"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+         <div class="row">
+          <div class="col-12 text-center">
+            <p class="mb-0 mt-3  text-light">2022 Copyright Store. All Right Reserve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--  Bootstrap core JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/vendor/jquery/jquery.slim.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+.header {
+  padding-top: 45px;
+  h1 {
+    font-family: "poppins", sans-serif;
+    display: block;
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .riview-subtitle {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #595959;
+    font-weight: 400;
+  }
+  .search-title {
+    color: #2d2d2d;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+    font-size: 16px;
+    line-height: 1.5rem;
+  }
+  .form-control {
+    justify-content: space-between;
+    position: relative;
+    z-index: 0;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+  }
+  .submit {
+    margin: 0;
+    font-weight: 400;
+  }
+}
+.content {
+  h2 {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  .brand-title {
+    font-weight: bold;
+    color: black;
+  }
+  .vs {
+    font-weight: bold;
+    color: black;
+  }
+  .button {
+    color: black;
+  }
+  .kartu {
+    &:hover {
+      border: 1px solid #4444f1;
+    }
+  }
+}
+.dashboard-content {
+  .nav-pills {
+    .nav-link {
+      font-weight: normal;
+      font-size: 21px;
+      color: #9191a9;
+      border-radius: 0;
+
+      &.active {
+        font-weight: 500;
+        font-size: 21px;
+
+        color: #0c0d36;
+        border-bottom: 2px solid #0c0d36;
+        background: none;
+      }
+    }
+  }
+}

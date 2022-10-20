@@ -1,0 +1,82 @@
+.profile {
+  margin-top: 30px;
+  .container {
+    .row {
+      .account {
+        h2 {
+          font-weight: 600;
+        }
+        h6 {
+          color: #595959;
+        }
+      }
+      a {
+        &:hover {
+          background-color: #dedede;
+        }
+        color: black;
+        background-color: #efefef;
+        border: none;
+        margin-bottom: 30px;
+
+        .account-name {
+          margin-bottom: 7px;
+        }
+        .phone_number {
+          margin-bottom: 7px;
+        }
+        .user-location {
+          margin-bottom: 7px;
+        }
+      }
+      .upload {
+        .title {
+          h4 {
+            font-weight: bold;
+          }
+          .subtitle {
+            color: #595959;
+          }
+        }
+      }
+    }
+  }
+}
+
+.profile-details {
+  margin-top: 30px;
+  .container {
+    .row {
+      .contact {
+        i {
+          font-size: 25px;
+          color: black;
+        }
+        h3 {
+          font-weight: 600;
+          margin-top: 20px;
+        }
+      }
+      .form {
+        .email-user {
+          margin-bottom: 15px;
+          .email {
+            font-weight: bold;
+          }
+        }
+        .phone-user {
+          margin-bottom: 15px;
+          .phone {
+            font-weight: bold;
+          }
+        }
+        .address-user {
+          margin-bottom: 15px;
+          .address {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

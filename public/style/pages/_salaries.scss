@@ -1,0 +1,161 @@
+.header-salaries {
+    background-color: #0d2d5e;
+    padding: 0;
+    margin-bottom: 45px;
+    .container {
+        h2 {
+            padding-top: 50px;
+            font-weight: bold;
+        }
+        .subtitle {
+            margin-bottom: 30px;
+        }
+    }
+    .cari {
+        margin-bottom: 40px;
+
+        .row {
+            background-color: #fff;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            border-top: 8px solid #6c86fb;
+
+            .title-cari {
+                font-weight: bold;
+            }
+
+            .tombol {
+                margin-top: 24px;
+            }
+        }
+    }
+}
+
+.popular-search {
+    background-color: #ededed;
+    padding: 30px;
+    .container {
+        .row {
+            h4 {
+                font-weight: bold;
+            }
+            .text {
+                color: black;
+            }
+        }
+    }
+}
+
+.paying {
+    margin-bottom: 40px;
+    .container {
+        .row {
+            h3 {
+                font-weight: bold;
+            }
+        }
+        button {
+            &:hover {
+                color: white;
+            }
+            &:focus {
+                color: white;
+            }
+            color: black;
+            font-weight: bold;
+            border: 1px solid grey;
+            margin-bottom: 20px;
+        }
+
+        .jobs-content {
+            .card {
+                &:hover {
+                    border: 1px solid #4444f1;
+                }
+                .brand-title {
+                    font-weight: bold;
+                    color: black;
+                }
+                .price-subtitle {
+                    font-weight: bold;
+                }
+                .button {
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+.jobs {
+    .container {
+        .row {
+            h3 {
+                font-weight: bold;
+                margin-bottom: 18px;
+            }
+        }
+        .card {
+            margin-bottom: 20px;
+            &:hover {
+                box-shadow: 0 1rem 2rem rgba($blue, 0.175);
+                border: 1px solid blue;
+            }
+            .row {
+                .jobs-title {
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    color: black;
+                }
+                .jobs-price {
+                    font-weight: bold;
+                }
+                .grow {
+                    font-size: 14px;
+                    padding: 4px;
+                    background-color: #e0ffe4;
+                    color: black;
+                }
+                .oppening {
+                    font-size: 14px;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+.company {
+    .container {
+        .row {
+            h3 {
+                font-weight: bold;
+                margin-top: 30px;
+            }
+        }
+        button {
+            &:hover {
+                color: white;
+            }
+            &:focus {
+                color: white;
+            }
+            color: black;
+            font-weight: bold;
+            border: 1px solid grey;
+            margin-bottom: 20px;
+        }
+        .card {
+            &:hover {
+                border: 1px solid #4444f1;
+            }
+            .company-title {
+                font-weight: bold;
+                color: black;
+            }
+            .text {
+                color: black;
+            }
+        }
+    }
+}

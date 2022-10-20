@@ -1,0 +1,19 @@
+// Import Bootstrap 4 Library
+@import "../vendor/bootstrap/scss/bootstrap.scss";
+
+@import "pages/home";
+@import "pages/riview";
+@import "pages/salaries";
+@import "pages/post";
+@import "pages/auth";
+@import "pages/profile";
+@import "pages/settings";
+@import "pages/jobs";
+@import "pages/compare";
+@import "pages/popup";
+@import "pages/progress";
+
+@import "global";
+@import "footer";
+@import "fonts";
+@import "navbar";

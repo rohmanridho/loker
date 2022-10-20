@@ -1,0 +1,43 @@
+.compare {
+    @include media-breakpoint-up(md) {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    h5 {
+        font-weight: 500;
+        font-size: 19px;
+        line-height: 10px;
+        color: #0c0d36;
+    }
+    .jobs {
+        font-size: 17px;
+        color: #595959;
+    }
+
+    .dashboard-title {
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 36px;
+        color: #0c0d36;
+    }
+    .dashboard-subtitle {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 14px;
+        color: #9191a9;
+    }
+
+    .product-title {
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 25px;
+        color: #c5c5c5;
+    }
+    .product-subtitle {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 30px;
+        color: #0c0d36;
+        margin-bottom: 20px;
+    }
+}
