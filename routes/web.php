@@ -6,12 +6,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CompareController;
-use App\Http\Controllers\SalariesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SalariesController;
 use App\Http\Controllers\SettingsController;
 
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Employer\CompanyController as EmployerCompany;
@@ -34,6 +35,7 @@ Route::group(
     ],
     function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
+        Route::resource('categories', CategoryController::class);
         Route::resource('companies', CompanyController::class);
         Route::resource('industry', IndustryController::class);
         Route::resource('province', ProvinceController::class);

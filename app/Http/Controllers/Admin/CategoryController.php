@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Company;
-use App\Models\Industry;
-use App\Models\Province;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\Admin\CompanyRequest;
+use App\Http\Requests\Admin\CategoryRequest;
 
-class CompanyController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,38 +19,36 @@ class CompanyController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Company::with(['user', 'industry', 'province']);
+            $query = Category::all();
 
             return DataTables::of($query)
-                ->addColumn('action', function ($company) {
+                ->addColumn('action', function ($category) {
                     return '
-                        <div class= "btn-group">
-                            <div class= "dropdown">
-                                <button class= "btn btn-primary dropdown-toggle mr-1 mb-1" type= "button" data-toggle="dropdown">
+                    <div class= "btn-group">
+                        <div class= "dropdown">
+                            <button class= "btn btn-primary dropdown-toggle mr-1 mb-1"
+                                    type= "button"
+                                    data-toggle= "dropdown">
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
-                                    <a href="' . route('companies.edit', $company->id) . '" class="dropdown-item">
-                                        Edit</a>
-                                    <form action="' . route('companies.destroy', $company->id) . '" method= "POST">
-                                    ' . method_field('delete')
-                                    . csrf_field() . '
+                                    <a href="' . route('categories.edit', $category->id) . '" class="dropdown-item">
+                                    Edit</a>
+                                    <form action= "' . route('categories.destroy', $category->id) . '" method= "POST">
+                                        ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class= "dropdown-item text-danger">
-                                            Delete
+                                        Delete
                                         </button>
                                     </form>
                                 </div>
-                            </div>
                         </div>
-                    ';
+                    </div>
+                ';
                 })
-                ->editColumn('photo', function ($company) {
-                    return $company->photo ? '<img src="' . Storage::url($company->photo) . '" style="max-height:80px;"/>' : '';
-                })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.admin.company.index');
+        return view('pages.admin.category.index');
     }
 
     /**
@@ -63,7 +58,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.category.create');
     }
 
     /**
@@ -72,9 +67,13 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CompanyRequest $request)
+    public function store(CategoryRequest $request)
     {
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
         
+        Category::create($data);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -96,7 +95,10 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('pages.admin.category.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -106,9 +108,14 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        
+        $category = Category::find($id);
+        $category->update($data);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -119,6 +126,8 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }

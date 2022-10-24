@@ -1,29 +1,27 @@
 @extends('layouts.admin')
 
-@section('title', 'Companies - Admin Dashboard')
+@section('title', 'Categories - Admin Dashboard')
 
 @section('content')
 		<div class="section-content section-dashboard-home" data-aos="fade-up">
 				<div class="container-fluid">
 						<div class="dashboard-heading">
-								<h2 class="dashboard-title">Company</h2>
-								<p class="dashboard-subtitle">List of Companies</p>
+								<h2 class="dashboard-title">Category</h2>
+								<p class="dashboard-subtitle">List of Categories</p>
 						</div>
 						<div class="dashboard-content">
 								<div class="row">
 										<div class="col-md-12">
 												<div class="card">
 														<div class="card-body">
-																<a href="{{ route('companies.index') }}" class="btn btn-primary mb-3">+ Create New Company</a>
+																<a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">+ Create New Category</a>
 																<div class="table-responsive">
 																		<table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
 																				<thead>
 																						<tr>
 																								<th>ID</th>
 																								<th>Name</th>
-																								<th>Photo</th>
-																								<th>Industry</th>
-																								<th>Province</th>
+																								<th>Slug</th>
 																								<th>Action</th>
 																						</tr>
 																				</thead>
@@ -47,7 +45,6 @@
 						ordering: true,
 						ajax: {
 								url: '{!! url()->current() !!}',
-
 						},
 						columnDefs: [{
 								searchable: false,
@@ -66,16 +63,8 @@
 										name: 'name'
 								},
 								{
-										data: 'photo',
-										name: 'photo'
-								},
-								{
-										data: 'industry',
-										name: 'industry'
-								},
-								{
-										data: 'province',
-										name: 'province'
+										data: 'slug',
+										name: 'slug'
 								},
 								{
 										data: 'action',
