@@ -5,12 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompareController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalariesController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\IndustryController;
+use App\Http\Controllers\Admin\ProvinceController;
+use App\Http\Controllers\Employer\CompanyController as EmployerCompany;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +27,72 @@ use App\Http\Controllers\Admin\GalleryController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::group(
+    [
+        'prefix' => 'admin',
+        // 'middleware' => 'CheckRole:admin'
+    ],
+    function () {
+        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
+        Route::resource('companies', CompanyController::class);
+        Route::resource('industry', IndustryController::class);
+        Route::resource('province', ProvinceController::class);
+        Route::resource('gallery', GalleryController::class);
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'employer',
+        // 'middleware' => 'CheckRole:employer'
+    ],
+    function () {
+        Route::get('/', [App\Http\Controllers\Employer\DashboardController::class, 'index'])->name('employer-dashboard');
+
+        Route::get('company', [EmployerCompany::class, 'index'])->name('company-dashboard');
+        Route::get('/company/create', [EmployerCompany::class, 'create'])->name('company-create');
+        Route::post('/company', [EmployerCompany::class, 'store'])->name('company-store');
+        Route::get('/company/{id}', [EmployerCompany::class, 'edit'])->name('company-edit');
+        Route::post('/company/{id}', [EmployerCompany::class, 'update'])->name('company-update');
+        
+    }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
@@ -43,18 +110,4 @@ Route::get('/jobs-company/add-jobs', [CompanyController::class, 'create'])->name
 
 Route::get('/compare', [CompareController::class, 'index'])->name('compare');
 
-Route::prefix('admin')
-    // ->namespace('Admin')
-    ->middleware(['auth', 'admin'])
-    ->group(function() {
-        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
-        ->name('admin-dashboard');
-        Route::resource ('gallery', GalleryController::class);
-
-        
-    });
-
-
 Auth::routes();
-
-

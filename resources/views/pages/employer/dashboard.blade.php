@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.employer')
 
 @section('title')
 		JobStreet - Let's find your jobs
@@ -16,16 +16,16 @@
 										<div class="col-md-4">
 												<div class="card mb-2">
 														<div class="card-body">
-																<div class="dashboard-card-title">Industries</div>
-																<div class="dashboard-card-subtitle">{{ $industries }}</div>
+																<div class="dashboard-card-title">Customer</div>
+																<div class="dashboard-card-subtitle">124</div>
 														</div>
 												</div>
 										</div>
 										<div class="col-md-4">
 												<div class="card mb-2">
 														<div class="card-body">
-																<div class="dashboard-card-title">Provinces</div>
-																<div class="dashboard-card-subtitle">{{ $provinces }}</div>
+																<div class="dashboard-card-title">Revenue</div>
+																<div class="dashboard-card-subtitle">$999</div>
 														</div>
 												</div>
 										</div>
@@ -38,6 +38,7 @@
 												</div>
 										</div>
 								</div>
+
 						</div>
 				</div>
 		</div>

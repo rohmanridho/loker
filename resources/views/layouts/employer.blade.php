@@ -24,19 +24,10 @@
 										<img src="/images/admin.png" alt="" class="my-4" style="max-width: 100px" />
 								</div>
 								<div class="list-group list-group-flush">
-										<a href="{{ route('admin-dashboard') }}"
-												class="list-group-item list-group-item-action {{ request()->is('admin') ? 'active' : '' }} ">Dashboard</a>
-										<a href="{{ route('companies.index') }}"
-												class="list-group-item list-group-item-action {{ request()->is('admin/company*') ? 'active' : '' }}">Companies</a>
-										<a href="{{ route('industry.index') }}"
-												class="list-group-item list-group-item-action {{ request()->is('admin/industry*') ? 'active' : '' }}">Industries</a>
-										<a href="{{ route('province.index') }}"
-												class="list-group-item list-group-item-action {{ request()->is('admin/province*') ? 'active' : '' }}">Province</a>
-										<a href="{{ route('gallery.index') }}"
-												class="list-group-item list-group-item-action {{ request()->is('admin/gallery*') ? 'active' : '' }}">Galleries</a>
-										<a href="" class="list-group-item list-group-item-action">Career</a>
-										<a href="{{ route('privasi-settings') }}"
-												class="list-group-item list-group-item-action  {{ request()->is('admin/user*') ? 'active' : '' }}">Industry</a>
+										<a href="{{ route('employer-dashboard') }}"
+												class="list-group-item list-group-item-action {{ request()->is('employer') ? 'active' : '' }} ">Dashboard</a>
+										<a href="{{ route('company-dashboard') }}"
+												class="list-group-item list-group-item-action  {{ request()->is('employer/company*') ? 'active' : '' }}">Company</a>
 										<a href="{{ route('home') }}" class="list-group-item list-group-item-action">Back</a>
 								</div>
 						</div>
