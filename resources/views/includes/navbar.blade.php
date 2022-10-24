@@ -81,7 +81,7 @@
         width: 100%;
       "></div>
 										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('admin-dashboard') }}"
+												<a class="nav-link text-white active" href="{{ route('employer-dashboard') }}"
 														class="dropdown-item">Dashboard</a>
 										</li>
 										<li class="nav-item">
@@ -147,7 +147,7 @@
 												<ul class="dropdown-menu">
 														<li><a class="dropdown-item font-weight-bold" href="#">Verify your account</a></li>
 														<li><a class="dropdown-item " href="#">{{ Auth::user()->email }}</a></li>
-														<li><a class="dropdown-item " href="{{ route('admin-dashboard') }}" class="dropdown-item"><i
+														<li><a class="dropdown-item " href="{{ route('employer-dashboard') }}" class="dropdown-item"><i
 																				class="bi bi-grid-1x2-fill" style="padding-right: 10px;"></i> Dashboard</a></li>
 														<li><a class="dropdown-item" href="{{ route('profile') }}"> <i class="bi bi-file-earmark-text-fill"
 																				style="padding-right: 10px;"></i> Profile</a></li>

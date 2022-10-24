@@ -70,12 +70,12 @@
 										name: 'photo'
 								},
 								{
-										data: 'industry',
-										name: 'industry'
+										data: 'industry.name',
+										name: 'industry.name'
 								},
 								{
-										data: 'province',
-										name: 'province'
+										data: 'province.name',
+										name: 'province.name'
 								},
 								{
 										data: 'action',
