@@ -14,7 +14,7 @@
 										<div class="col-md-12">
 												<div class="card">
 														<div class="card-body">
-																<a href="{{ route('companies.index') }}" class="btn btn-primary mb-3">+ Create New Company</a>
+																<a href="{{ route('companies.create') }}" class="btn btn-primary mb-3">+ Create New Company</a>
 																<div class="table-responsive">
 																		<table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
 																				<thead>
