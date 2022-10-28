@@ -26,7 +26,7 @@
 								<div class="list-group list-group-flush">
 										<a href="{{ route('employer-dashboard') }}"
 												class="list-group-item list-group-item-action {{ request()->is('employer') ? 'active' : '' }} ">Dashboard</a>
-										<a href="{{ route('company-dashboard') }}"
+										<a href="{{ route('company.index') }}"
 												class="list-group-item list-group-item-action  {{ request()->is('employer/company*') ? 'active' : '' }}">Company</a>
 										<a href="{{ route('home') }}" class="list-group-item list-group-item-action">Back</a>
 								</div>

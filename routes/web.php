@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalariesController;
 use App\Http\Controllers\SettingsController;
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -40,6 +41,7 @@ Route::group(
         Route::resource('industry', IndustryController::class);
         Route::resource('province', ProvinceController::class);
         Route::resource('gallery', GalleryController::class);
+        Route::resource('users', UserController::class);
     }
 );
 
@@ -50,13 +52,7 @@ Route::group(
     ],
     function () {
         Route::get('/', [App\Http\Controllers\Employer\DashboardController::class, 'index'])->name('employer-dashboard');
-
-        Route::get('company', [EmployerCompany::class, 'index'])->name('company-dashboard');
-        Route::get('/company/create', [EmployerCompany::class, 'create'])->name('company-create');
-        Route::post('/company', [EmployerCompany::class, 'store'])->name('company-store');
-        Route::get('/company/{id}', [EmployerCompany::class, 'edit'])->name('company-edit');
-        Route::post('/company/{id}', [EmployerCompany::class, 'update'])->name('company-update');
-        
+        Route::resource('company', EmployerCompany::class);
     }
 );
 

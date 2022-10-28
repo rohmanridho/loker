@@ -28,7 +28,7 @@ class CompanyRequest extends FormRequest
             'photo' => 'required|image',
             'users_id' => 'required|exists:users,id',
             'industries_id' => 'required|exists:industries,id',
-            'provinces_id' => 'required|exists:province,id',
+            'provinces_id' => 'required|exists:provinces,id',
             'description' => 'required'
         ];
     }
