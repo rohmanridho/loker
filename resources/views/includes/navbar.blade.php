@@ -1,185 +1,122 @@
-@guest
-		<nav class="navbar navbar-custom navbar-expand-lg bg-info text-light">
-				<div class="container">
-						<a class="navbar-brand font-weight-bolder " href="{{ route('home') }}"
-								style="font-size: 27px; font-family: poppins, sans-serif; color: rgb(18, 51, 88);">JobStreet</a>
-						<button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-								aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon text-black"></span>
-						</button>
-						<div class="collapse navbar-collapse d-md-flex justify-content-md-between " id="navbarNav">
-								<ul class="navbar-nav align-items-center">
-										<li class="nav-item ">
-												<a class="nav-link text-white" aria-current="page" href="{{ route('home') }}">Find Jobs</a>
-										</li>
-										<li class="nav-item ">
-												<a class="nav-link text-white" href="{{ route('reviews') }}">Company Reviews</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('salaries') }}">Find Salaries</a>
-										</li>
+<nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="{{ asset('images/needed.png') }}" style="height: 60px;">
+        </a>
 
-								</ul>
-								<ul class="navbar-nav align-items-center">
-										<li class="nav-item">
-												<a class="nav-link text-white" href="{{ route('profile') }}">Post your resume</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link font-weight-bold text-primary" href="{{ route('login') }}"
-														style="padding: 5px; background-color: white; border-radius: 7px; margin-right: 10px;">Sign In</a>
-										</li>
+        <div class="d-flex d-lg-none mr-auto align-items-center">
+            <a href="login.html" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
+                    class="bi bi-person-fill"></i> &nbsp;Login</a>
+            <div style="width: 20px; height: 20px; background-color: transparent"></div>
+            <span style="cursor: pointer;" onclick="navbarResponsive()">
+                <i class="fas fa-bars bar"></i>
+            </span>
+        </div>
 
-										<div class="garis_verikal d-none d-md-block"></div>
-										<li class="nav-item">
-												<a class="nav-link text-white" style="font-size: 15px;" href="#">Empeloyer / Post Job</a>
-										</li>
-								</ul>
-						</div>
-				</div>
-		</nav>
-@endguest
-@auth
-		<nav class="navbar navbar-custom navbar-expand-lg bg-info text-light d-block d-md-none">
-				<div class="container">
-						<a class="navbar-brand font-weight-bolder " href="{{ route('home') }}"
-								style="font-size: 27px; font-family: poppins, sans-serif; color: rgb(18, 51, 88);">JobStreet</a>
+        <ul class="nav flex-column nav-top" id="navbarNav">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Find Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a href="companies.html" class="nav-link">Company reviews</a>
+            </li>
+            <li class="nav-item">
+                <a href="salaries.html" class="nav-link">Find salaries</a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">Employers</a>
+            </li>
+            <li style="height: 15px; background-color: #eee; border: none;"></li>
+            <li class="nav-item">
+                <a href="profile.html" class="nav-link">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="favorite.html" class="nav-link">Favorite</a>
+            </li>
+            <li style="height: 15px; background-color: #eee; border: none;"></li>
+            <li class="nav-item">
+                <a href="account-settings.html" class="nav-link">Account settings</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact-settings.html" class="nav-link">Contact settings</a>
+            </li>
+            <li class="nav-item">
+                <a href="privacy-settings.html" class="nav-link">Privacy settings</a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">Logout</a>
+            </li>
+        </ul>
 
-						<button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-								aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon text-black"></span>
-						</button>
+        <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Find jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="companies.html">Company reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="salaries.html">Find salaries</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav d-flex align-items-center">
+                @guest
+                <li class="nav-item">
+                    <a class="nav-link fw-bold enter" href="{{ route('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                </li>
+                @endguest
 
-						<div class="collapse navbar-collapse d-md-flex justify-content-md-between " id="navbarNav">
-								<ul class="navbar-nav align-items-center">
-										<li class="nav-item ">
-												<a class="nav-link text-white" aria-current="page" href="{{ route('home') }}">Find Jobs</a>
-										</li>
-										<li class="nav-item ">
-												<a class="nav-link text-white" href="{{ route('reviews') }}">Company Reviews</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('salaries') }}">Find Salaries</a>
-										</li>
-
-								</ul>
-								<div class="garis mb-1 mt-1"
-										style="
-        border: 1px #F2F2F2 solid;
-        height: 1px;
-        width: 100%;
-      ">
-								</div>
-								<ul class="navbar-nav align-items-center">
-
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('jobs') }}">My Reviews</a>
-										</li>
-										<div class="garis mb-1 mt-1"
-												style="
-        border: 1px #F2F2F2 solid;
-        height: 1px;
-        width: 100%;
-      "></div>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('employer-dashboard') }}"
-														class="dropdown-item">Dashboard</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('profile') }}">Profile</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('jobs') }}">My Jobs</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="settings.html">Settings</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white" style="font-size: 15px;" href="#">Empeloyer / Post Job</a>
-										</li>
-										<div class="garis_verikal  d-none d-md-block"></div>
-										<li class="nav-item">
-												<a href="{{ route('logout') }}"
-														onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"
-														{{ __('Logout') }} class="nav-link text-center font-weight-bold text-primary"
-														style="padding: 5px; background-color: white; border-radius: 7px;">Sign Out</a>
-												<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-														@csrf
-										</li>
-								</ul>
-						</div>
-				</div>
-		</nav>
-		<nav class="navbar navbar-custom navbar-expand-lg bg-info text-light d-none d-md-block">
-				<div class="container">
-						<a class="navbar-brand font-weight-bolder " href="{{ route('home') }}"
-								style="font-size: 27px; font-family: poppins, sans-serif; color: rgb(18, 51, 88);">JobStreet</a>
-
-						<button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-								aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon text-black"></span>
-						</button>
-
-						<div class="collapse navbar-collapse d-md-flex justify-content-md-between " id="navbarNav">
-								<ul class="navbar-nav align-items-center">
-										<li class="nav-item ">
-												<a class="nav-link text-white" aria-current="page" href="{{ route('home') }}">Find Jobs</a>
-										</li>
-										<li class="nav-item ">
-												<a class="nav-link text-white" href="{{ route('reviews') }}">Company Reviews</a>
-										</li>
-										<li class="nav-item">
-												<a class="nav-link text-white active" href="{{ route('salaries') }}">Find Salaries</a>
-										</li>
-
-								</ul>
-								<ul class="navbar-nav align-items-center">
-
-										<li class="nav-item pr-3">
-												<a class="nav-link" href="{{ route('jobs') }}">
-														<i class="bi bi-bookmark-star-fill text-white" style=" font-size: 20px;"></i>
-												</a>
-										</li>
-										<li class="dropdown pr-3">
-												<a class=" nav-link  bi bi-person-fill text-white" href="#" role="button" data-bs-toggle="dropdown"
-														aria-expanded="false" style="font-size: 23px; ">
-												</a>
-												<ul class="dropdown-menu">
-														<li><a class="dropdown-item font-weight-bold" href="#">Verify your account</a></li>
-														<li><a class="dropdown-item " href="#">{{ Auth::user()->email }}</a></li>
-														<li><a class="dropdown-item " href="{{ route('employer-dashboard') }}" class="dropdown-item"><i
-																				class="bi bi-grid-1x2-fill" style="padding-right: 10px;"></i> Dashboard</a></li>
-														<li><a class="dropdown-item" href="{{ route('profile') }}"> <i class="bi bi-file-earmark-text-fill"
-																				style="padding-right: 10px;"></i> Profile</a></li>
-														<li><a class="dropdown-item" href="{{ route('jobs') }}"><i class="bi bi-heart-fill"
-																				style="padding-right: 10px;"></i> My jobs</a></li>
-														<li><a class="dropdown-item" href="{{ route('account-settings') }}"><i class="bi bi-gear-fill"
-																				style="padding-right: 10px;"></i> Settings</a></li>
-														<div class="dropdown-divider"></div>
-														<a href="{{ route('logout') }}"
-																onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"
-																{{ __('Logout') }} class="dropdown-item text-center">Sign Out</a>
-														<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-																@csrf
-														</form>
-
-												</ul>
-										</li>
-										<div class="garis_verikal  d-none d-md-block"
-												style="border: 1px white solid;
-        height: 22px;
-        width: 0px"></div>
-										<li class="nav-item">
-												<a class="nav-link text-white" style="font-size: 15px;" href="#">Empeloyer / Post Job</a>
-										</li>
-
-								</ul>
-
-
-
-
-						</div>
-				</div>
-		</nav>
-@endauth
+                @auth
+                <li class="nav-item">
+                    <a href="saved.html" class="nav-link bookmark-icon">
+                        <i class="bi bi-bookmarks-fill"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="" class="nav-link profile-icon" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span></li>
+                        @if (Auth::user()->roles_id == 1)
+                            <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i class="bi bi-person-lines-fill"></i>
+                                &nbsp;
+                                Dashboard</a></li>
+                        @endif
+                        @if (Auth::user()->roles_id == 2)
+                            <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i class="bi bi-person-lines-fill"></i>
+                                &nbsp;
+                                Dashboard</a></li>
+                        @endif
+                        <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
+                                &nbsp;
+                                Profile</a></li>
+                        <li><a class="dropdown-item py-2" href="favorite.html"><i class="bi bi-heart-fill"></i> &nbsp;
+                                Favorite</a></li>
+                        <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
+                                &nbsp;
+                                Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="text-center"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <div class="vertical-line" style="height: 25px; width: .25px; background-color: #1e3a9b50;"></div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Employers / Post Jobs</a>
+                </li>
+                @endauth
+            </ul>
+        </div>
+    </div>
+</nav>

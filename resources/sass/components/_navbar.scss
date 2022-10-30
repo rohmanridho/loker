@@ -1,0 +1,111 @@
+$dark-blue: #1e3a9b;
+
+.navbar-custom {
+    position: relative;
+    padding: 0 20px;
+    box-shadow: 0 2px 2px #1e399b15;
+
+    .button-darkblue {
+        background-color: #0a53be;
+
+        &:hover {
+            background-color: $dark-blue;
+        }
+    }
+
+    .navbar-nav:not(.nav-top) {
+        .nav-item {
+            padding-right: 10px;
+            padding-left: 10px;
+            position: relative;
+
+            .nav-link {
+                font-size: 14px;
+                color: #555;
+                padding: 25px 0 24px 0;
+
+                &.enter {
+                    color: #0a53be;
+
+                    &:hover {
+                        color: $dark-blue;
+                    }
+                }
+
+                &.profile-icon {
+                    padding: 18px 10px 17px 10px;
+
+                    i {
+                        font-size: 24px;
+                    }
+
+                    &:hover {
+                        padding-bottom: 15px;
+                    }
+                }
+
+                &.bookmark-icon {
+                    padding: 22px 10px 20.5px 10px;
+
+                    i {
+                        font-size: 19px;
+                    }
+
+                    &:hover {
+                        padding-bottom: 18.5px;
+                    }
+                }
+
+                &.active,
+                &:hover {
+                    color: #222;
+                    padding-bottom: 22px;
+                    border-bottom: 2px solid #1e3a9b;
+                }
+            }
+        }
+    }
+
+    .bar {
+        font-size: 24px;
+        color: #1e3a9b;
+    }
+
+    .nav-top {
+        display: none;
+    }
+
+    @media (max-width: 992px) {
+        .nav-top.responsive {
+            display: block;
+            background-color: #f8f9fa;
+            position: absolute;
+            top: 72px;
+            right: 0;
+            left: 0;
+            z-index: 999;
+
+            li {
+                padding-bottom: 7px;
+                padding-top: 3px;
+                padding-left: 20px;
+                border-bottom: 0.5px solid #eee;
+
+                a {
+                    color: #333;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 576px) {
+        padding: 0;
+
+        .nav-top.responsive {
+            li {
+                padding-left: 0;
+            }
+        }
+    }
+}

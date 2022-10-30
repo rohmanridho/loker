@@ -1,0 +1,86 @@
+.navbar-custom {
+  position: relative;
+  padding: 0 20px;
+  box-shadow: 0 2px 2px rgba(30, 57, 155, 0.0823529412);
+}
+.navbar-custom .button-darkblue {
+  background-color: #0a53be;
+}
+.navbar-custom .button-darkblue:hover {
+  background-color: #1e3a9b;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item {
+  padding-right: 10px;
+  padding-left: 10px;
+  position: relative;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link {
+  font-size: 14px;
+  color: #555;
+  padding: 25px 0 24px 0;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.enter {
+  color: #0a53be;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.enter:hover {
+  color: #1e3a9b;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.profile-icon {
+  padding: 18px 10px 17px 10px;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.profile-icon i {
+  font-size: 24px;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.profile-icon:hover {
+  padding-bottom: 15px;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.bookmark-icon {
+  padding: 22px 10px 20.5px 10px;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.bookmark-icon i {
+  font-size: 19px;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.bookmark-icon:hover {
+  padding-bottom: 18.5px;
+}
+.navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link.active, .navbar-custom .navbar-nav:not(.nav-top) .nav-item .nav-link:hover {
+  color: #222;
+  padding-bottom: 22px;
+  border-bottom: 2px solid #1e3a9b;
+}
+.navbar-custom .bar {
+  font-size: 24px;
+  color: #1e3a9b;
+}
+.navbar-custom .nav-top {
+  display: none;
+}
+@media (max-width: 992px) {
+  .navbar-custom .nav-top.responsive {
+    display: block;
+    background-color: #f8f9fa;
+    position: absolute;
+    top: 72px;
+    right: 0;
+    left: 0;
+    z-index: 999;
+  }
+  .navbar-custom .nav-top.responsive li {
+    padding-bottom: 7px;
+    padding-top: 3px;
+    padding-left: 20px;
+    border-bottom: 0.5px solid #eee;
+  }
+  .navbar-custom .nav-top.responsive li a {
+    color: #333;
+    font-weight: 600;
+  }
+}
+@media (max-width: 576px) {
+  .navbar-custom {
+    padding: 0;
+  }
+  .navbar-custom .nav-top.responsive li {
+    padding-left: 0;
+  }
+}

@@ -10,13 +10,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalariesController;
 use App\Http\Controllers\SettingsController;
 
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\ProvinceController;
-use App\Http\Controllers\Employer\CompanyController as EmployerCompany;
+use App\Http\Controllers\Employer\JobController as EmployerJobController;
+use App\Http\Controllers\Employer\CompanyController as EmployerCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,12 @@ use App\Http\Controllers\Employer\CompanyController as EmployerCompany;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::group(
     [
         'prefix' => 'admin',
-        // 'middleware' => 'CheckRole:admin'
+        'middleware' => 'CheckRole:admin'
     ],
     function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
@@ -42,17 +46,19 @@ Route::group(
         Route::resource('province', ProvinceController::class);
         Route::resource('gallery', GalleryController::class);
         Route::resource('users', UserController::class);
+        Route::resource('jobs', JobController::class);
     }
 );
 
 Route::group(
     [
         'prefix' => 'employer',
-        // 'middleware' => 'CheckRole:employer'
+        'middleware' => 'CheckRole:employer'
     ],
     function () {
         Route::get('/', [App\Http\Controllers\Employer\DashboardController::class, 'index'])->name('employer-dashboard');
-        Route::resource('company', EmployerCompany::class);
+        Route::resource('company', EmployerCompanyController::class);
+        Route::resource('job', EmployerJobController::class);
     }
 );
 
@@ -92,7 +98,7 @@ Route::group(
 
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
 Route::get('/salaries', [SalariesController::class, 'index'])->name('salaries');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');

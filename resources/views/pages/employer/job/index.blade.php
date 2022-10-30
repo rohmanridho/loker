@@ -1,28 +1,28 @@
-@extends('layouts.admin')
+@extends('layouts.employer')
 
-@section('title', 'Companies - Admin Dashboard')
+@section('title', 'Jobs - Employer Dashboard')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Company</h2>
-      <p class="dashboard-subtitle">List of Companies</p>
+      <h2 class="dashboard-title">Job</h2>
+      <p class="dashboard-subtitle">List of Jobs</p>
     </div>
     <div class="dashboard-content">
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
+              <a href="{{ route('job.create') }}" class="btn btn-primary mb-3">+ Create New Job</a>
               <div class="table-responsive">
                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Photo</th>
-                      <th>Industry</th>
-                      <th>Province</th>
+                      <th>Company</th>
+                      <th>Category</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -46,7 +46,6 @@
 						ordering: true,
 						ajax: {
 								url: '{!! url()->current() !!}',
-
 						},
 						columnDefs: [{
 								searchable: false,
@@ -65,16 +64,12 @@
 										name: 'name'
 								},
 								{
-										data: 'photo',
-										name: 'photo'
+										data: 'company.name',
+										name: 'company.name'
 								},
 								{
-										data: 'industry.name',
-										name: 'industry.name'
-								},
-								{
-										data: 'province.name',
-										name: 'province.name'
+										data: 'category.name',
+										name: 'category.name'
 								},
 								{
 										data: 'action',

@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gallery;
+use App\Models\Job;
+use App\Models\Industry;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-  
+    public function index() {
+        $jobs = Job::with(['company.province', 'category'])->take(8)->inRandomOrder()->get();
+        $industries = Industry::take(4)->get();
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $galleries = Gallery::all();
         return view('pages.home', [
-            'galleries' => $galleries
+            'jobs' => $jobs,
+            'industries' => $industries
         ]);
     }
 }

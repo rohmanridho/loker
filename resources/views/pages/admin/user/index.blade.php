@@ -1,13 +1,13 @@
 @extends ('layouts.admin')
 
-@section('title', 'Provinces - Admin Dashboard')
+@section('title', 'Users - Admin Dashboard')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Province</h2>
-            <p class="dashboard-subtitle">List of Provinces</p>
+            <h2 class="dashboard-title">User</h2>
+            <p class="dashboard-subtitle">List of Users</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -18,7 +18,7 @@
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Roles_id</th>

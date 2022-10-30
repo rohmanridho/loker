@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Employer;
 
-use App\Models\Industry;
+use App\Models\Job;
+use App\Models\Company;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admin\JobRequest;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\Admin\IndustryRequest;
 
-class IndustryController extends Controller
+class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +22,12 @@ class IndustryController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Industry::all();
+            $query = Job::with(['company', 'category'])->whereHas('company', function($product) {
+                $product->where('users_id', Auth::user()->id);
+            });
 
             return DataTables::of($query)
-                ->addColumn('action', function ($industry) {
+                ->addColumn('action', function ($job) {
                     return '
                     <div class= "btn-group">
                         <div class= "dropdown">
@@ -33,9 +37,11 @@ class IndustryController extends Controller
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
-                                    <a href="' . route('industry.edit', $industry->id) . '" class="dropdown-item">
+                                    <a href="' . route('job.show', $job->id) . '" class="dropdown-item">
+                                    Preview</a>
+                                    <a href="' . route('job.edit', $job->id) . '" class="dropdown-item">
                                     Edit</a>
-                                    <form action= "' . route('industry.destroy', $industry->id) . '" method= "POST">
+                                    <form action= "' . route('job.destroy', $job->id) . '" method= "POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class= "dropdown-item text-danger">
                                         Delete
@@ -46,13 +52,10 @@ class IndustryController extends Controller
                     </div>
                 ';
                 })
-                ->editColumn('photo', function ($industry) {
-                    return $industry->photo ? '<img src="' . Storage::url($industry->photo) . '" style="height: 64px; aspect-ratio: 4/3; border-radius: 4px; object-fit: cover;"/>' : '';
-                })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.admin.industry.index');
+        return view('pages.employer.job.index');
     }
 
     /**
@@ -62,7 +65,12 @@ class IndustryController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.industry.create');
+        $companies = Company::where('users_id', Auth::user()->id)->get();
+        $categories = Category::all();
+        return view('pages.employer.job.create', [
+            'companies' => $companies,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -71,14 +79,13 @@ class IndustryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(IndustryRequest $request)
+    public function store(JobRequest $request)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/industry', 'public');
 
-        Industry::create($data);
-        return redirect()->route('industry.index');
+        Job::create($data);
+        return redirect()->route('job.index');
     }
 
     /**
@@ -100,10 +107,7 @@ class IndustryController extends Controller
      */
     public function edit($id)
     {
-        $industry = Industry::find($id);
-        return view('pages.admin.industry.edit', [
-            'industry' => $industry
-        ]);
+        //
     }
 
     /**
@@ -113,15 +117,9 @@ class IndustryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IndustryRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/industry', 'public');
-
-        $industry = Industry::find($id);
-        $industry->update($data);
-        return redirect()->route('industry.index');
+        //
     }
 
     /**
@@ -132,8 +130,6 @@ class IndustryController extends Controller
      */
     public function destroy($id)
     {
-        $industry = Industry::find($id);
-        $industry->delete();
-        return redirect()->route('industry.index');
+        //
     }
 }

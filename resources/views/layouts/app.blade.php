@@ -26,7 +26,7 @@
 		{{-- Footer --}}
 		@include('includes.footer')
 		{{-- Script --}}
-    
+
 		@stack('prepend-script')
 		@include('includes.script')
 		@stack('addon-script')

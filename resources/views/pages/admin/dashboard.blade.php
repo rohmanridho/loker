@@ -14,7 +14,31 @@
 						<div class="dashboard-content">
 								<div class="row">
 										<div class="col-md-4">
-												<div class="card mb-2">
+												<div class="card mb-4">
+														<div class="card-body">
+																<div class="dashboard-card-title">Users</div>
+																<div class="dashboard-card-subtitle">{{ $users }}</div>
+														</div>
+												</div>
+										</div>
+										<div class="col-md-4">
+												<div class="card mb-4">
+														<div class="card-body">
+																<div class="dashboard-card-title">Companies</div>
+																<div class="dashboard-card-subtitle">{{ $companies }}</div>
+														</div>
+												</div>
+										</div>
+										<div class="col-md-4">
+												<div class="card mb-4">
+														<div class="card-body">
+																<div class="dashboard-card-title">Jobs</div>
+																<div class="dashboard-card-subtitle">{{ $jobs }}</div>
+														</div>
+												</div>
+										</div>
+										<div class="col-md-4">
+												<div class="card mb-4">
 														<div class="card-body">
 																<div class="dashboard-card-title">Industries</div>
 																<div class="dashboard-card-subtitle">{{ $industries }}</div>
@@ -22,18 +46,18 @@
 												</div>
 										</div>
 										<div class="col-md-4">
-												<div class="card mb-2">
+												<div class="card mb-4">
 														<div class="card-body">
-																<div class="dashboard-card-title">Provinces</div>
-																<div class="dashboard-card-subtitle">{{ $provinces }}</div>
+																<div class="dashboard-card-title">Categories</div>
+																<div class="dashboard-card-subtitle">{{ $categories }}</div>
 														</div>
 												</div>
 										</div>
 										<div class="col-md-4">
-												<div class="card mb-2">
+												<div class="card mb-4">
 														<div class="card-body">
-																<div class="dashboard-card-title">Users</div>
-																<div class="dashboard-card-subtitle">{{ $users }}</div>
+																<div class="dashboard-card-title">Provinces</div>
+																<div class="dashboard-card-subtitle">{{ $provinces }}</div>
 														</div>
 												</div>
 										</div>

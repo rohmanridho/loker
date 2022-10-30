@@ -47,7 +47,7 @@ class ProvinceController extends Controller
                 ';
                 })
                 ->editColumn('photo', function ($province) {
-                    return $province->photo ? '<img src="' . Storage::url($province->photo) . '" style="max-height:80px;"/>' : '';
+                    return $province->photo ? '<img src="' . Storage::url($province->photo) . '" style="height: 64px; aspect-ratio: 4/3; border-radius: 4px; object-fit: cover;"/>' : '';
                 })
                 ->rawColumns(['action', 'photo'])
                 ->make();
