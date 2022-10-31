@@ -1,0 +1,75 @@
+.page-job-details {
+  .header {
+    background-color: #fff;
+    z-index: 998;
+
+    h1 {
+      font-size: 1.5rem;
+      color: #111;
+      font-weight: 700;
+      line-height: 1.125;
+    }
+
+    .company {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+    }
+  }
+
+  .job-details {
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #222;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+
+      i {
+        font-size: 1.125rem;
+        visibility: visible;
+        color: #666;
+      }
+    }
+
+    i {
+      font-size: 1.125rem;
+      visibility: hidden;
+    }
+
+    p {
+      display: inline-block;
+      font-size: 15px;
+      padding: 4px 12px 5px 12px;
+      border-radius: 6px;
+      color: #666;
+      background-color: #aaaaaa15;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+  }
+
+  .job-description {
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #222;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    p {
+      font-size: 15px;
+      color: #555;
+    }
+  }
+}

@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Employer\JobController as EmployerJobController;
 use App\Http\Controllers\Employer\CompanyController as EmployerCompanyController;
+use App\Http\Controllers\JobDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ use App\Http\Controllers\Employer\CompanyController as EmployerCompanyController
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/job/detail/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
 
 Route::group(
     [
