@@ -52,7 +52,7 @@ JobStreet - Let's find your jobs
                       <a href="{{ route('job-detail', $job->slug) }}">{{ $job->name }}</a>
                     </div>
                     <div class="company-name mb-2">
-                      <a href="company-profile.html">{{ $job->company->name }}</a>
+                      <a href="{{ route('company-detail', $job->company->slug) }}">{{ $job->company->name }}</a>
                     </div>
                     <div class="company-address mb-2">
                       <i class="bi bi-geo-alt"></i> {{ $job->company->province->name }}

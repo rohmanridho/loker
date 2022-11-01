@@ -5,4 +5,5 @@
 	<link href="{{ url('/style/main.css') }}" rel="stylesheet" />
 	<link rel="stylesheet" href="{{ asset('style/navbar.css') }}" />
 	<link rel="stylesheet" href="{{ asset('style/page-home.css') }}" />
+	<link rel="stylesheet" href="{{ asset('style/page-detail.css') }}" />
     <script src="https://kit.fontawesome.com/40c495c7a8.js" crossorigin="anonymous"></script>

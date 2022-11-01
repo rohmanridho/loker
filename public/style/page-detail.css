@@ -1,0 +1,95 @@
+.page-job-detail .header {
+  background-color: #fff;
+  z-index: 998;
+}
+.page-job-detail .header h1 {
+  font-size: 1.5rem;
+  color: #111;
+  font-weight: 700;
+  line-height: 1.125;
+}
+.page-job-detail .header .company {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+}
+.page-job-detail .job-details h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+}
+.page-job-detail .job-details h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+.page-job-detail .job-details h3 i {
+  font-size: 1.125rem;
+  visibility: visible;
+  color: #666;
+}
+.page-job-detail .job-details i {
+  font-size: 1.125rem;
+  visibility: hidden;
+}
+.page-job-detail .job-details p {
+  display: inline-block;
+  font-size: 15px;
+  padding: 4px 12px 5px 12px;
+  border-radius: 6px;
+  color: #666;
+  background-color: rgba(170, 170, 170, 0.0823529412);
+  font-weight: 600;
+  margin-right: 8px;
+}
+.page-job-detail .job-description h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+}
+.page-job-detail .job-description h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+.page-job-detail .job-description p {
+  font-size: 15px;
+  color: #555;
+}
+
+.page-company-detail .header {
+  background-color: #fff;
+  border-bottom: 0.5px solid rgba(9, 20, 61, 0.1450980392);
+  z-index: 998;
+}
+.page-company-detail .header img {
+  width: 64px;
+  height: 64px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-company-detail .header h1 {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.page-company-detail h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #333;
+}
+.page-company-detail .company-description .about {
+  text-indent: 5%;
+  line-height: 1.5;
+  font-size: 1rem;
+  color: #555;
+}
+.page-company-detail .company-description .box {
+  border: 0.5px solid #ccc;
+  border-radius: 8px;
+}
+.page-company-detail .company-description .box .subtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #444;
+}

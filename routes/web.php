@@ -11,15 +11,17 @@ use App\Http\Controllers\SalariesController;
 use App\Http\Controllers\SettingsController;
 
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\JobDetailController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\CompanyDetailController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\ProvinceController;
+use App\Http\Controllers\CompanyController as JobCompanyController;
 use App\Http\Controllers\Employer\JobController as EmployerJobController;
 use App\Http\Controllers\Employer\CompanyController as EmployerCompanyController;
-use App\Http\Controllers\JobDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,8 @@ use App\Http\Controllers\JobDetailController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/job/detail/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
+Route::get('/job/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
+Route::get('/company/{slug}', [CompanyDetailController::class, 'index'])->name('company-detail');
 
 Route::group(
     [
@@ -110,9 +113,6 @@ Route::get('/profile/update-profile', [ProfileController::class, 'update'])->nam
 
 Route::get('/settings', [SettingsController::class, 'update'])->name('account-settings');
 Route::get('/privacy', [SettingsController::class, 'index'])->name('privasi-settings');
-
-Route::get('/jobs-company', [CompanyController::class, 'index'])->name('company');
-Route::get('/jobs-company/add-jobs', [CompanyController::class, 'create'])->name('add-jobs');
 
 Route::get('/compare', [CompareController::class, 'index'])->name('compare');
 

@@ -1,12 +1,12 @@
 {{-- @php
     dd($job)
 @endphp --}}
-@extends('layouts.app');
+@extends('layouts.app')
 
-@section('title', 'Job Detail');
+@section('title', 'Job Detail')
 
 @section('content')
-<section class="page-job-details mt-3 mt-md-4">
+<section class="page-job-detail mt-3 mt-md-4">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-10">

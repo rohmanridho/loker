@@ -30,7 +30,7 @@
 						</div>
 						<div class="row">
 								<div class="col-12 text-center">
-										<p class="mb-0 mt-3  text-light">2022 Copyright Store. All Right Reserve.</p>
+										<p class="mb-0 mt-3  text-light">Created by Eve~</p>
 								</div>
 						</div>
 				</div>

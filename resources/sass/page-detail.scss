@@ -1,4 +1,4 @@
-.page-job-details {
+.page-job-detail {
   .header {
     background-color: #fff;
     z-index: 998;
@@ -70,6 +70,51 @@
     p {
       font-size: 15px;
       color: #555;
+    }
+  }
+}
+
+.page-company-detail {
+  .header {
+    background-color: #fff;
+    border-bottom: .5px solid #09143d25;
+    z-index: 998;
+
+    img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .company-description {
+    .about {
+      text-indent: 5%;
+      line-height: 1.5;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .box {
+      border: .5px solid #ccc;
+      border-radius: 8px;
+
+      .subtitle {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: #444;
+      }
     }
   }
 }
