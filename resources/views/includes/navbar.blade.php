@@ -72,7 +72,7 @@
 
                 @auth
                 <li class="nav-item">
-                    <a href="saved.html" class="nav-link bookmark-icon">
+                    <a href="{{ route('save') }}" class="nav-link bookmark-icon">
                         <i class="bi bi-bookmarks-fill"></i>
                     </a>
                 </li>
@@ -95,8 +95,8 @@
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Profile</a></li>
-                        <li><a class="dropdown-item py-2" href="favorite.html"><i class="bi bi-heart-fill"></i> &nbsp;
-                                Favorite</a></li>
+                        <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i> &nbsp;
+                                Follow</a></li>
                         <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
                                 &nbsp;
                                 Settings</a></li>

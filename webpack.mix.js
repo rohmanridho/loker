@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/page-home.scss', 'public/style')
     .sass('resources/sass/page-detail.scss', 'public/style')
+    .sass('resources/sass/page-save.scss', 'public/style')
     .sourceMaps();

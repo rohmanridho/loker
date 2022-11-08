@@ -1,0 +1,69 @@
+.page-save .line-bottom {
+  border-bottom: 1px solid #aaa;
+  padding: 0;
+}
+.page-save .line-bottom .save, .page-save .line-bottom .follow {
+  display: inline-block;
+  padding: 12px 0 13px 0;
+  margin-right: 32px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #777;
+  font-size: 1.35rem;
+}
+.page-save .line-bottom .save.active, .page-save .line-bottom .follow.active {
+  border-bottom: 2px solid #1e2a9b;
+  color: #333;
+}
+.page-save .save-section tr, .page-save .follow-section tr {
+  transition: 0.1s;
+}
+.page-save .save-section tr td.image, .page-save .follow-section tr td.image {
+  width: 70px;
+}
+.page-save .save-section tr td.image img, .page-save .follow-section tr td.image img {
+  width: 60px;
+  height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-save .save-section tr td.description, .page-save .follow-section tr td.description {
+  width: 75%;
+}
+.page-save .save-section tr td.description .job-name, .page-save .save-section tr td.description .company-name, .page-save .follow-section tr td.description .job-name, .page-save .follow-section tr td.description .company-name {
+  font-weight: bold;
+  color: #333333;
+  line-height: 1.5;
+}
+.page-save .save-section tr td.description .company, .page-save .save-section tr td.description .industries, .page-save .follow-section tr td.description .company, .page-save .follow-section tr td.description .industries {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.25;
+}
+.page-save .save-section tr td.button, .page-save .follow-section tr td.button {
+  vertical-align: middle;
+}
+.page-save .save-section tr td.button button, .page-save .follow-section tr td.button button {
+  font-size: 14px;
+}
+.page-save .save-section tr:hover, .page-save .follow-section tr:hover {
+  background-color: rgba(30, 42, 155, 0.062745098);
+}
+
+@media (min-width: 577px) {
+  .page-save .line-bottom .save, .page-save .line-bottom .follow {
+    padding: 14px 0 15px 0;
+    font-size: 1.5rem;
+  }
+  .save-section tr td.image, .follow-section tr td.image {
+    width: 78px;
+  }
+  .save-section tr td.image img, .follow-section tr td.image img {
+    width: 64px;
+    height: 64px;
+  }
+  .save-section tr td.button button, .follow-section tr td.button button {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}

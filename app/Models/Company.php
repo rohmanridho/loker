@@ -21,6 +21,10 @@ class Company extends Model
         return $this->hasOne(User::class,'id', 'users_id');
     }
 
+    public function jobs() {
+        return $this->hasMany(Job::class, 'companies_id', 'id');
+    }
+
     public function industry()
     {
         return $this->belongsTo(Industry::class, 'industries_id', 'id');

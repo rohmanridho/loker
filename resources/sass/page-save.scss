@@ -1,0 +1,102 @@
+.page-save {
+  .line-bottom {
+    border-bottom: 1px solid #aaa;
+    padding: 0;
+
+    .save, .follow {
+      display: inline-block;
+      padding: 12px 0 13px 0;
+      margin-right: 32px;
+      text-decoration: none;
+      font-weight: 500;
+      color: #777;
+      font-size: 1.35rem;
+
+      &.active {
+        border-bottom: 2px solid #1e2a9b;
+        color: #333;
+      }
+    }
+
+    
+  }
+
+  .save-section, .follow-section {
+    tr {
+      transition: .1s;
+      
+      td {
+        &.image {
+          width: 70px;
+
+          img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+          }
+        }
+
+        &.description {
+          width: 75%;
+
+          .job-name, .company-name {
+            font-weight: bold;
+            color: #333333;
+            line-height: 1.5;
+          }
+          .company, .industries {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.25;
+          }
+        }
+
+        &.button {
+          vertical-align: middle;
+
+          button {
+            font-size: 14px;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: #1e2a9b10;
+        
+      }
+    }
+  }
+}
+
+@media (min-width: 577px) {
+  .page-save {
+    .line-bottom {
+      .save, .follow {
+        padding: 14px 0 15px 0;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .save-section, .follow-section {
+    tr {
+      td {
+        &.image {
+          width: 78px;
+
+          img {
+            width: 64px;
+            height: 64px;
+          }
+        }
+
+        &.button {
+          button {
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

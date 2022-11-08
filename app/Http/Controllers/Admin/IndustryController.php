@@ -68,7 +68,7 @@ class IndustryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\IndustryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(IndustryRequest $request)
@@ -109,7 +109,7 @@ class IndustryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\IndustryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

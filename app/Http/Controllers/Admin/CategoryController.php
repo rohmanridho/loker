@@ -64,14 +64,14 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        
+
         Category::create($data);
         return redirect()->route('categories.index');
     }
@@ -104,7 +104,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CategoryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -112,7 +112,7 @@ class CategoryController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        
+
         $category = Category::find($id);
         $category->update($data);
         return redirect()->route('categories.index');

@@ -117,9 +117,15 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(JobRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+
+        $job = Job::find($id);
+        $job->update($data);
+
+        return redirect()->route('job.index');
     }
 
     /**
@@ -130,6 +136,9 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Job::find($id);
+        $job->delete();
+
+        return redirect()->route('job.index');
     }
 }

@@ -46,7 +46,6 @@
 						ordering: true,
 						ajax: {
 								url: '{!! url()->current() !!}',
-
 						},
 						columnDefs: [{
 								searchable: false,

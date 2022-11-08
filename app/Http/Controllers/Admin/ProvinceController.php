@@ -68,7 +68,7 @@ class ProvinceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ProvinceRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProvinceRequest $request)
@@ -109,7 +109,7 @@ class ProvinceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ProvinceRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
