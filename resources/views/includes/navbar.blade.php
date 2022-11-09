@@ -4,7 +4,7 @@
             <img src="{{ asset('images/needed.png') }}" style="height: 60px;">
         </a>
 
-        <div class="d-flex d-lg-none mr-auto align-items-center">
+        <div class="d-flex d-lg-none align-items-center">
             <a href="login.html" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
                     class="bi bi-person-fill"></i> &nbsp;Login</a>
             <div style="width: 20px; height: 20px; background-color: transparent"></div>
