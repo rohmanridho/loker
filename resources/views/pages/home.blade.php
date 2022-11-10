@@ -8,6 +8,7 @@ JobStreet - Let's find your jobs
 @section('content')
 <section class="page-home mt-4 mt-lg-5">
     <div class="container">
+        <form action=""></form>
         <form action="{{ route('job-search') }}" method="GET">
             <div class="row d-flex justify-content-center mb-4">
                 <div class="col-12 col-md-8 mb-3">

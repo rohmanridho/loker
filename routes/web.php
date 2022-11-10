@@ -39,23 +39,23 @@ use App\Http\Controllers\JobController as ControllersJobController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/job/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
-Route::post('/job/{id}', [JobDetailController::class, 'save'])->name('job-save');
+Route::get('/job', [ControllersJobController::class, 'index'])->name('job-search');
 
 Route::get('/company/{slug}', [CompanyDetailController::class, 'index'])->name('company-detail');
-Route::post('/company/{id}', [CompanyDetailController::class, 'follow'])->name('company-follow');
 
-Route::get('/job', [ControllersJobController::class, 'index'])->name('job-search');
+Route::get('/job/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/follow', [FollowController::class, 'index'])->name('follow');
+    Route::post('/company/{id}', [CompanyDetailController::class, 'follow'])->name('company-follow');
     Route::delete('/follow/{id}', [FollowController::class, 'destroy'])->name('follow-destroy');
 
     Route::get('/save', [SaveController::class, 'index'])->name('save');
+    Route::post('/job/{id}', [JobDetailController::class, 'save'])->name('job-save');
     Route::delete('/save/{id}', [SaveController::class, 'destroy'])->name('save-destroy');
+
+    Route::post('/job-apply/{id}', [JobDetailController::class, 'apply'])->name('job-apply');
 });
-
-
 
 Route::group(
     [

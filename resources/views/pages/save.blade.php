@@ -38,7 +38,7 @@
                                 </td>
                             </tr>
                             @empty
-                            tolol
+                            <a href="{{ url('/job') }}">Find Job</a>
                             @endforelse
                         </table>
                     </div>

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class SaveController extends Controller
 {
     public function index() {
-        $saves= Save::with(['user', 'job.company.province'])->where('users_id', Auth::user()->id)->get();
+        $saves= Save::with(['user', 'job.company.province'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
         // dd($saves);
         return view('pages.save', [

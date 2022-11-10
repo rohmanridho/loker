@@ -10,7 +10,7 @@ class JobController extends Controller
     public function index(Request $request) {
         // $request->has('search')
         if(request('search')) {
-            $jobs = Job::where('name', 'LIKE', '%' . $request->search . '%')->get();
+            $jobs = Job::with('company.province')->where('name', 'LIKE', '%' . $request->search . '%')->get();
         } else {
             $jobs = Job::all();
         }
