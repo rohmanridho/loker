@@ -27,7 +27,7 @@
                                         $save->job->company->province->name }}</div>
                                 </td>
                                 <td class="button">
-<form></form>
+                                    <form></form>
                                     <form action="{{ route('save-destroy', $save->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
@@ -38,7 +38,7 @@
                                 </td>
                             </tr>
                             @empty
-                            tolol
+                            <a href="{{ url('/job') }}">Find Job</a>
                             @endforelse
                         </table>
                     </div>

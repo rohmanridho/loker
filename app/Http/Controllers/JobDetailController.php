@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Save;
+use App\Models\Apply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +22,19 @@ class JobDetailController extends Controller
             'jobs_id' => $id,
             'users_id' => Auth::user()->id
         ];
-        
+
         Save::create($data);
+        // dd($result);
+        return redirect()->route('save');
+    }
+
+    public function apply(Request $request, $id) {
+        $data = [
+            'jobs_id' => $id,
+            'users_id' => Auth::user()->id
+        ];
+
+        Apply::create($data);
         // dd($result);
         return redirect()->route('save');
     }
