@@ -4,7 +4,7 @@
 
 @section('content')
 <section class="page-save mt-2 mt-md-4">
-    <div class="container">
+    <div class="container-fluid container-md">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="line-bottom mb-3">

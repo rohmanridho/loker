@@ -2,42 +2,6 @@ $primary-blue: #0a53be;
 $dark-blue: #1e3a9b;
 
 .page-home {
-  form {
-    .form-control {
-        font-size: 14px;
-        border: 1px solid #222;
-        color: #333;
-        padding: 9px 12px 10px 12px;
-
-        &:focus {
-        border-color: $dark-blue;
-        box-shadow: 0 10px 20px #1e399b15;
-        }
-    }
-
-    button {
-        font-size: 14px;
-        padding-top: 9px;
-        padding-bottom: 10px;
-
-        &.button-darkblue {
-        background-color: $primary-blue;
-
-        &:hover {
-            background-color: $dark-blue;
-        }
-        }
-    }
-  }
-
-  a {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
   .nav-tabs {
     border: 0;
 
@@ -146,13 +110,23 @@ $dark-blue: #1e3a9b;
 
   .companies {
     .wrapper {
+        color: #555;
       text-decoration: none;
       border: 1px solid #eee;
       padding: 20px 0 17px 0;
       border-radius: 8px;
 
       &:hover {
-        border: 1px solid $dark-blue;
+        border: 1px solid #1e3a9b50;
+        color: #333;
+      }
+
+      .content {
+        .company-image {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+        }
       }
     }
   }

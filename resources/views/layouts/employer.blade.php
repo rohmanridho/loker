@@ -47,8 +47,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <!-- Desktop Menu -->
               <ul class="navbar-nav d-none d-lg-flex ml-auto ">
-                <li class="nav-item dropdown">
-                  <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
+                <li class="nav-item">
+                  <span class="nav-link d-flex align-items-center mr-3">
+                    <div class="d-flex rounded-circle mr-2" style="width: 40px; height: 40px; background: #0000ff10;">
+                      <span class="m-auto fw-bold" style="font-size: 24px;">{{
+                        strtoupper(Auth::user()->name)[0] }}</span></div>
+                    <span>Hi, {{ Auth::user()->name }}</span>
+                  </span>
+                  {{-- <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
                     <img src="/images/icon-user.png" alt="" class="rounded-circle profile-picture"
                       style="right: 25px" />
                     Hi, {{ Auth::user()->name }}
@@ -60,7 +66,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                       @csrf
                     </form>
-                  </div>
+                  </div> --}}
                 </li>
               </ul>
 

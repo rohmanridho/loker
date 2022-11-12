@@ -107,7 +107,12 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $job = Job::with(['company', 'category'])->find($id);
+        $categories = Category::all();
+        return view('pages.employer.job.edit', [
+            'job' => $job,
+            'categories' => $categories
+        ]);
     }
 
     /**

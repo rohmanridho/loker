@@ -11,12 +11,15 @@ class JobController extends Controller
         // $request->has('search')
         if(request('search')) {
             $jobs = Job::with('company.province')->where('name', 'LIKE', '%' . $request->search . '%')->get();
+            $job_count = Job::where('name', 'LIKE', '%' . $request->search . '%')->count();
         } else {
             $jobs = Job::all();
+            $job_count = Job::count();
         }
 
         return view('pages.job', [
-            'jobs' => $jobs
+            'jobs' => $jobs,
+            'job_count' => $job_count
         ]);
     }
 }

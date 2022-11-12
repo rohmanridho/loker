@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
-            <img src="{{ asset('images/needed.png') }}" style="height: 60px;">
+            <div class="fs-3 fw-bold" style="color: #1e3a9b">Needed</div>
+            {{-- <img src="{{ asset('images/needed.png') }}" style="height: 60px;"> --}}
         </a>
 
         <div class="d-flex d-lg-none align-items-center">
@@ -15,7 +16,7 @@
 
         <ul class="nav flex-column nav-top" id="navbarNav">
             <li class="nav-item">
-                <a href="/" class="nav-link">Find Jobs</a>
+                <a href="{{ route('home') }}}}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
                 <a href="companies.html" class="nav-link">Company reviews</a>
@@ -51,10 +52,10 @@
         <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Find jobs</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="companies.html">Company reviews</a>
+                    <a class="nav-link {{ request()->is('job*') ? 'active' : '' }}" href="{{ route('job-search') }}">Find Jobs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="salaries.html">Find salaries</a>
@@ -62,12 +63,15 @@
             </ul>
             <ul class="navbar-nav d-flex align-items-center">
                 @guest
+                @if (request()->is('login') || request()->is('register'))
+                @else
                 <li class="nav-item">
                     <a class="nav-link fw-bold enter" href="{{ route('login') }}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Register</a>
                 </li>
+                @endif
                 @endguest
 
                 @auth
@@ -83,19 +87,22 @@
                     <ul class="dropdown-menu">
                         <li><span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span></li>
                         @if (Auth::user()->roles_id == 1)
-                            <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i class="bi bi-person-lines-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i
+                                    class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Dashboard</a></li>
                         @endif
                         @if (Auth::user()->roles_id == 2)
-                            <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i class="bi bi-person-lines-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i
+                                    class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Dashboard</a></li>
                         @endif
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Profile</a></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i> &nbsp;
+                        <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
+                                &nbsp;
                                 Follow</a></li>
                         <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
                                 &nbsp;
@@ -104,7 +111,8 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="text-center"><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a></li>
+                         document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a>
+                        </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                     </ul>
