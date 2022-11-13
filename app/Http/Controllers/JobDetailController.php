@@ -36,6 +36,6 @@ class JobDetailController extends Controller
 
         Apply::create($data);
         // dd($result);
-        return redirect()->route('save');
+        return redirect()->route('apply');
     }
 }

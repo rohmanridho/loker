@@ -27,10 +27,12 @@
           <a href="{{ route('employer-dashboard') }}"
             class="list-group-item list-group-item-action {{ request()->is('employer') ? 'active' : '' }} ">Dashboard</a>
           <a href="{{ route('company.index') }}"
-            class="list-group-item list-group-item-action  {{ request()->is('employer/company*') ? 'active' : '' }}">Company</a>
+            class="list-group-item list-group-item-action  {{ request()->is('employer/company*') ? 'active' : '' }}">Perusahaan</a>
           <a href="{{ route('job.index') }}"
-            class="list-group-item list-group-item-action  {{ request()->is('employer/job*') ? 'active' : '' }}">Job</a>
-          <a href="{{ route('home') }}" class="list-group-item list-group-item-action">Back</a>
+            class="list-group-item list-group-item-action  {{ request()->is('employer/job*') ? 'active' : '' }}">Lowongan Pekerajaan</a>
+          <a href="{{ route('apply.index') }}"
+            class="list-group-item list-group-item-action  {{ request()->is('employer/apply*') ? 'active' : '' }}">Lamaran Pekerjaan</a>
+          <a href="{{ route('home') }}" class="list-group-item list-group-item-action">Home</a>
         </div>
       </div>
 

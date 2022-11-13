@@ -9,7 +9,7 @@ JobStreet - Let's find your jobs
 <section class="page-home mt-4 mt-lg-5">
     <div class="container">
         <form action=""></form>
-        <form action="{{ route('job-search') }}" method="GET">
+        <form action="{{ route('search-job') }}" method="GET">
             <div class="row d-flex justify-content-center mb-4">
                 <div class="col-12 col-md-7">
                     <div class="form-group job-search">
@@ -71,7 +71,7 @@ JobStreet - Let's find your jobs
                         </div>
                     </div>
                     <div class="col-12 col-md-5">
-                        <a href="{{ route('job-search') }}"
+                        <a href="{{ route('search-job') }}"
                             class="btn btn-light btn-block fw-semibold mb-4 looking-for-job">Lihat Lowongan Lebih
                             Banyak</a>
                     </div>
@@ -109,19 +109,19 @@ JobStreet - Let's find your jobs
         </div>
         <div class="row mb-5 companies">
             @foreach ($companies as $company)
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a href="{{ route('company-detail', $company->slug) }}" class="d-block wrapper mb-4">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="content text-center">
-                                <div class="w-100 d-flex justify-content-center mb-2">
-                                    <img src="{{ Storage::url($company->photo) }}"
-                                        alt="" class="d-block rounded company-image">
-                                </div>
-                                <span class="company-name">{{ $company->name }}</span>
+            <div class="col-6 col-md-4 col-lg-3">
+                <a href="{{ route('company-detail', $company->slug) }}" class="d-block wrapper mb-4">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="content text-center">
+                            <div class="w-100 d-flex justify-content-center mb-2">
+                                <img src="{{ Storage::url($company->photo) }}" alt=""
+                                    class="d-block rounded company-image">
                             </div>
+                            <span class="company-name">{{ $company->name }}</span>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
             @endforeach
         </div>
     </div>

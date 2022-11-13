@@ -52,7 +52,7 @@ class CompanyController extends Controller
                 ';
                 })
                 ->editColumn('photo', function ($company) {
-                    return $company->photo ? '<img src="' . Storage::url($company->photo) . '" style="max-height:80px;"/>' : '';
+                    return $company->photo ? '<img src="' . Storage::url($company->photo) . '" style="height: 64px; aspect-ratio: 1/1; border-radius: 4px; object-fit: cover;"/>' : '';
                 })
                 ->rawColumns(['action', 'photo'])
                 ->make();

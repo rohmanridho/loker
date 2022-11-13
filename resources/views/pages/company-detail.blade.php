@@ -18,7 +18,7 @@
                     <div class="col-3 col-lg-2">
                         <form></form>
                         @auth
-                        <form action="{{ route('company-follow', $company->id) }}" method="POST">
+                        <form action="{{ route('follow-company', $company->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
                                 Ikuti
@@ -56,7 +56,7 @@
                 <div class="row mb-5">
                     @forelse ($jobs as $job)
                     <div class="col-12 col-sm-6 col-md-3">
-                        <a href="{{ route('job-detail', $job->slug) }}" class="card">
+                        <a href="{{ route('job-detail', $job->slug) }}" class="card mb-3">
                             <div class="card-body">
                                 <div class="fw-semibold">
                                     {{ $job->name }}

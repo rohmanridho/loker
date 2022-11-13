@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section('title', 'Following')
+@section('title', 'Followed')
 
 @section('content')
 <section class="page-save mt-2 mt-md-4">
@@ -37,7 +37,15 @@
                                 </td>
                             </tr>
                             @empty
-
+                            <tr class="empty">
+                                <td colspan="3">
+                                    <div class="h-75 w-100 text-center">
+                                        <img src="{{ asset('images/no_data.png') }}" alt="" class="d-block mx-auto"
+                                            style="width: 40%;">
+                                        <span class="fw-semibold d-block mb-2">Belum Mengikuti Perusahaan</span>
+                                    </div>
+                                </td>
+                            </tr>
                             @endforelse
                         </table>
                     </div>
@@ -47,3 +55,11 @@
     </div>
 </section>
 @endsection
+
+@push('addon-style')
+<style>
+    .page-save .follow-section tr.empty:hover {
+        background-color: #ffffff !important;
+    }
+</style>
+@endpush

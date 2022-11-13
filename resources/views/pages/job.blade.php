@@ -5,7 +5,7 @@
 @section('content')
 <section class="page-job mt-5">
     <div class="container">
-        <form action="{{ route('job-search') }}" method="GET">
+        <form action="{{ route('search-job') }}" method="GET">
             <div class="row d-flex justify-content-center mb-4">
                 <div class="col-12 col-md-7">
                     <div class="form-group job-search">
@@ -35,10 +35,10 @@ echo $_REQUEST['search'];} @endphp">
                         </div>
                         <div class="col-7">
                             <div class="py-2 pr-2">
-                                <a href="{{ route('job-detail', $job->id) }}" class="fw-bold fs-4 d-block job-name ">{{
+                                <a href="{{ route('job-detail', $job->slug) }}" class="fw-bold fs-4 d-block job-name ">{{
                                     $job->name
                                     }}</a>
-                                <a href="{{ route('company-detail', $job->company->id) }}"
+                                <a href="{{ route('company-detail', $job->company->slug) }}"
                                     class="fw-semibold text-secondary d-block company-name ">{{ $job->company->name
                                     }}</a>
                                 <div class="" style="font-size: 13px">{{ $job->company->province->name }}</div>
@@ -49,9 +49,16 @@ echo $_REQUEST['search'];} @endphp">
                         <div class="col-3">
                             <div class="border-start h-100">
                                 <div class="p-4">
-                                    <button class="btn btn-primary btn-block">Apply</button>
                                     @auth
-                                    <form action="{{ route('job-save', $job->id) }}" method="POST" class="mt-1">
+                                    <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-1">
+                                        @csrf
+                                        <button type="submit" class="btn btn-block btn-primary">Apply</button>
+                                    </form>
+                                    @else
+                                    <a href="{{ route('login') }}" class="btn btn-block">Apply</a>
+                                    @endauth
+                                    @auth
+                                    <form action="{{ route('save-job', $job->id) }}" method="POST" class="">
                                         @csrf
                                         <button type="submit" class="btn btn-block">Save</button>
                                     </form>

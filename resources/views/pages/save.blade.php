@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section('title', 'Saving')
+@section('title', 'Saved')
 
 @section('content')
 <section class="page-save mt-2 mt-md-4">
@@ -38,7 +38,16 @@
                                 </td>
                             </tr>
                             @empty
-                            <a href="{{ url('/job') }}">Find Job</a>
+                            <tr class="empty">
+                                <td colspan="3">
+                                    <div class="h-75 w-100 text-center">
+                                        <img src="{{ asset('images/no_data.png') }}" alt="" class="d-block mx-auto"
+                                            style="width: 40%;">
+                                        <span class="fw-semibold d-block mb-2">Belum Menyimpan Lowongan Pekerjaan</span>
+                                        <a href="{{ route('search-job') }}" class="btn btn-primary">Cari Pekerjaan</a>
+                                    </div>
+                                </td>
+                            </tr>
                             @endforelse
                         </table>
                     </div>
@@ -48,3 +57,11 @@
     </div>
 </section>
 @endsection
+
+@push('addon-style')
+<style>
+    .page-save .save-section tr.empty:hover {
+        background-color: #ffffff !important;
+    }
+</style>
+@endpush

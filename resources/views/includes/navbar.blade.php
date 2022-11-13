@@ -1,14 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+<nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom py-2 py-sm-0">
+    <div class="container-fluid px-2 px-sm-0">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <div class="fs-3 fw-bold" style="color: #1e3a9b">Needed</div>
             {{-- <img src="{{ asset('images/needed.png') }}" style="height: 60px;"> --}}
         </a>
 
         <div class="d-flex d-lg-none align-items-center">
-            <a href="login.html" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
+            @guest
+            <a href="{{ route('login') }}" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
                     class="bi bi-person-fill"></i> &nbsp;Login</a>
             <div style="width: 20px; height: 20px; background-color: transparent"></div>
+            @endguest
             <span style="cursor: pointer;" onclick="navbarResponsive()">
                 <i class="fas fa-bars bar"></i>
             </span>
@@ -55,10 +57,11 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('job*') ? 'active' : '' }}" href="{{ route('job-search') }}">Find Jobs</a>
+                    <a class="nav-link {{ request()->is('job*') ? 'active' : '' }}"
+                        href="{{ route('search-job') }}">Find Jobs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="salaries.html">Find salaries</a>
+                    <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}" href="{{ route('apply') }}">Apply</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-flex align-items-center">
@@ -104,9 +107,9 @@
                         <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
                                 &nbsp;
                                 Follow</a></li>
-                        <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
+                        {{-- <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
                                 &nbsp;
-                                Settings</a></li>
+                                Settings</a></li> --}}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -121,7 +124,16 @@
                     <div class="vertical-line" style="height: 25px; width: .25px; background-color: #1e3a9b50;"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Employers / Post Jobs</a>
+                    <form></form>
+                    @if (Auth::user()->roles_id == 3)
+                    <form action="{{ route('change-role') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">Employers / Post Jobs</button>
+                    </form>
+                    @else
+                    <a class="nav-link" href="{{ route('employer-dashboard') }}">Employers / Post
+                        Jobs</a>
+                    @endif
                 </li>
                 @endauth
             </ul>

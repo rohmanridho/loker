@@ -23,8 +23,10 @@
                     @endif
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('job.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('job.update', $job->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -40,7 +42,7 @@
                                                 <option value="{{ $job->company_id }}" selected>{{ $job->company->name
                                                     }}</option>
                                                 @foreach ($companies as $company)
-                                                <option value="{{ $job->company->id }}">{{ $job->company->name }}
+                                                <option value="{{ $company->id }}">{{ $company->name }}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -93,13 +95,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="fdescription">Description</label>
-                                            <textarea name="description" id="editor">{!! $job->description !!}</textarea>
+                                            <textarea name="description"
+                                                id="editor">{!! $job->description !!}</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">Create</button>
+                                        <button type="submit" class="btn btn-success px-5">Update</button>
                                     </div>
                                 </div>
                             </form>
