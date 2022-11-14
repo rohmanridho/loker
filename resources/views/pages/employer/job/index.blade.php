@@ -6,24 +6,24 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Job</h2>
-      <p class="dashboard-subtitle">List of Jobs</p>
+      <h2 class="dashboard-title">Lowongan Pekerjaan</h2>
+      <p class="dashboard-subtitle">Daftar Lowongan Pekerjaan</p>
     </div>
     <div class="dashboard-content">
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
-              <a href="{{ route('job.create') }}" class="btn btn-primary mb-3">+ Create New Job</a>
+              <a href="{{ route('job.create') }}" class="btn btn-primary mb-3">+ Buat Lowongan Pekerjaan</a>
               <div class="table-responsive">
                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                   <thead>
                     <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Company</th>
-                      <th>Category</th>
-                      <th>Action</th>
+                      <th>#</th>
+                      <th>Lowongan</th>
+                      <th>Perusahaan</th>
+                      <th>Kategori</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody></tbody>

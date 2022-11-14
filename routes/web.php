@@ -25,9 +25,9 @@ use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CompanyController as JobCompanyController;
+use App\Http\Controllers\Employer\ApplyController as EmployerApplyController;
 use App\Http\Controllers\JobController as ControllersJobController;
 use App\Http\Controllers\Employer\JobController as EmployerJobController;
-use App\Http\Controllers\Employer\ApplyController as EmployerApplyController;
 use App\Http\Controllers\Employer\CompanyController as EmployerCompanyController;
 
 /*
@@ -91,7 +91,8 @@ Route::group(
         Route::get('/', [App\Http\Controllers\Employer\DashboardController::class, 'index'])->name('employer-dashboard');
         Route::resource('company', EmployerCompanyController::class);
         Route::resource('job', EmployerJobController::class);
-        Route::resource('apply', EmployerApplyController::class);
+        Route::get('apply', [EmployerApplyController::class, 'index'])->name('apply-index');
+        Route::match(['get', 'post'], 'update-apply/{id}', [EmployerApplyController::class, 'update'])->name('apply-update');
     }
 );
 

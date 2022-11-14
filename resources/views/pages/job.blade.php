@@ -20,9 +20,11 @@ echo $_REQUEST['search'];} @endphp">
 
     <div class="container">
         <div class="row">
-            <div class="col-12 offset-1 mb-2">
+            @if ($job_count > 0)
+            <div class="col-10 offset-1 mb-2">
                 <div class=""><span class="fw-semibold">{{ $job_count }}</span> lowongan pekerjaan tersedia</div>
             </div>
+            @endif
             @forelse ($jobs as $job)
             <div class="col-10 offset-1 mb-4">
                 <div class="border rounded">
@@ -35,7 +37,8 @@ echo $_REQUEST['search'];} @endphp">
                         </div>
                         <div class="col-7">
                             <div class="py-2 pr-2">
-                                <a href="{{ route('job-detail', $job->slug) }}" class="fw-bold fs-4 d-block job-name ">{{
+                                <a href="{{ route('job-detail', $job->slug) }}"
+                                    class="fw-bold fs-4 d-block job-name ">{{
                                     $job->name
                                     }}</a>
                                 <a href="{{ route('company-detail', $job->company->slug) }}"
@@ -50,20 +53,30 @@ echo $_REQUEST['search'];} @endphp">
                             <div class="border-start h-100">
                                 <div class="p-4">
                                     @auth
-                                    <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-1">
+                                    @php
+                                    $isNotOwner = $job->company->users_id !== Auth::user()->id;
+                                    @endphp
+                                    @if ($isNotOwner)
+                                    <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-2">
                                         @csrf
                                         <button type="submit" class="btn btn-block btn-primary">Apply</button>
                                     </form>
+                                    @endif
                                     @else
-                                    <a href="{{ route('login') }}" class="btn btn-block">Apply</a>
+                                    <a href="{{ route('login') }}" class="btn btn-block btn-primary">Apply</a>
                                     @endauth
                                     @auth
+                                    {{-- @php
+                                    $isNotSave = $job->simpan->users_id == Auth::user()->id;
+                                    // && $job->simpan->jobs_id == $job->id;
+                                    dd($isNotSave);
+                                    @endphp --}}
                                     <form action="{{ route('save-job', $job->id) }}" method="POST" class="">
                                         @csrf
-                                        <button type="submit" class="btn btn-block">Save</button>
+                                        <button type="submit" class="btn btn-block btn-outline-success">Save</button>
                                     </form>
                                     @else
-                                    <a href="{{ route('login') }}" class="btn btn-block">Save</a>
+                                    <a href="{{ route('login') }}" class="btn btn-block btn-outline-success">Save</a>
                                     @endauth
                                 </div>
                             </div>
@@ -72,9 +85,14 @@ echo $_REQUEST['search'];} @endphp">
                 </div>
             </div>
             @empty
-            tolol
+            <div class="col-10 offset-1">
+                <div class="text-center text-secondary" style="font-size: 32px;">Data tidak ditemukan</div>
+            </div>
             @endforelse
+            @if ($job_count < 3) <div style="min-height: 60vh">
         </div>
+        @endif
+    </div>
     </div>
 </section>
 

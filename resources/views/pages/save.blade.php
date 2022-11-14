@@ -22,7 +22,7 @@
                                         class="rounded-circle">
                                 </td>
                                 <td class="description">
-                                    <div class="job-name">{{ $save->job->name }}</div>
+                                    <a href="{{ route('job-detail', $save->job->slug) }}" class="job-name">{{ $save->job->name }}</a>
                                     <div class="company">{{ $save->job->company->name }} - {{
                                         $save->job->company->province->name }}</div>
                                 </td>

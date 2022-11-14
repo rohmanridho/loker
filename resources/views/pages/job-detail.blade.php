@@ -16,14 +16,43 @@
                     <div class="col-3 col-lg-2">
                         <form></form>
                         @auth
+                        @php
+                        $isNotOwner = $job->company->users_id !== Auth::user()->id;
+                        @endphp
+                        @if ($isNotOwner)
+                        @if ($applyCount == 0)
+                        <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-2">
+                            @csrf
+                            <button type="submit" class="btn btn-block btn-primary">Apply</button>
+                        </form>
+                        @else
+                            @csrf
+                            <a href="{{ route('apply') }}" class="btn btn-block btn-primary mb-2">Reviewed</a>
+                        @endif
+                        @endif
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-block btn-primary mb-2">Apply</a>
+                        @endauth
+                        @auth
+                        @if ($saveCount == 0)
                         <form action="{{ route('save-job', $job->id) }}" method="POST">
                             @csrf
-                            <button class="btn btn-primary btn-block fw-semibold w-100">
-                                Simpan
+                            <button class="btn btn-outline-success btn-block fw-light w-100">
+                                Save
                             </button>
                         </form>
                         @else
-                        <a class="btn btn-block btn-primary fw-semibold w-100" href="{{ route('login') }}">Save</a>
+                        <form action="{{ route('save-destroy', $save->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-success btn-block fw-light w-100">
+                                Saved
+                            </button>
+                        </form>
+                        @endif
+                        @else
+                        <a class="btn btn-block btn-outline-success fw-semibold w-100"
+                            href="{{ route('login') }}">Save</a>
                         @endauth
                     </div>
                 </div>

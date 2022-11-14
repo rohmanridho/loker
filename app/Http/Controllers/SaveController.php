@@ -22,6 +22,6 @@ class SaveController extends Controller
         $save = Save::find($id);
         $save->delete();
 
-        return redirect()->route('save');
+        return redirect()->back();
     }
 }
