@@ -16,7 +16,7 @@
                     <div class="col-3 col-lg-2">
                         <form></form>
                         @auth
-                        <form action="{{ route('job-save', $job->id) }}" method="POST">
+                        <form action="{{ route('save-job', $job->id) }}" method="POST">
                             @csrf
                             <button class="btn btn-primary btn-block fw-semibold w-100">
                                 Simpan

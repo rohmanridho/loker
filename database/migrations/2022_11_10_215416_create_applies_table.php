@@ -18,6 +18,7 @@ class CreateAppliesTable extends Migration
 
             $table->foreignId('jobs_id')->constrained();
             $table->foreignId('users_id')->constrained();
+            $table->string('status')->default('ditinjau'); //diterima, ditolak
 
             $table->timestamps();
         });

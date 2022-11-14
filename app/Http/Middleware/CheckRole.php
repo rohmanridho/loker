@@ -25,7 +25,7 @@ class CheckRole
         if(!in_array(auth()->user()->roles_id, $roles[$role])){
             return abort(403);
         }
-        
+
         return $next($request);
     }
 }

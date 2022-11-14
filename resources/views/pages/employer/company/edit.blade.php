@@ -6,8 +6,8 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Industry</h2>
-      <p class="dashboard-subtitle">Edit Industry</p>
+      <h2 class="dashboard-title">Company</h2>
+      <p class="dashboard-subtitle">Edit Company</p>
     </div>
     <div class="dashboard-content">
       <div class="row">

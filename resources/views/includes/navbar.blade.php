@@ -1,13 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <img src="{{ asset('images/needed.png') }}" style="height: 60px;">
+<nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom py-2 py-sm-0">
+    <div class="container-fluid px-2 px-sm-0">
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <div class="fs-3 fw-bold" style="color: #1e3a9b">Needed</div>
+            {{-- <img src="{{ asset('images/needed.png') }}" style="height: 60px;"> --}}
         </a>
 
         <div class="d-flex d-lg-none align-items-center">
-            <a href="login.html" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
+            @guest
+            <a href="{{ route('login') }}" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
                     class="bi bi-person-fill"></i> &nbsp;Login</a>
             <div style="width: 20px; height: 20px; background-color: transparent"></div>
+            @endguest
             <span style="cursor: pointer;" onclick="navbarResponsive()">
                 <i class="fas fa-bars bar"></i>
             </span>
@@ -15,7 +18,7 @@
 
         <ul class="nav flex-column nav-top" id="navbarNav">
             <li class="nav-item">
-                <a href="/" class="nav-link">Find Jobs</a>
+                <a href="{{ route('home') }}}}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
                 <a href="companies.html" class="nav-link">Company reviews</a>
@@ -51,23 +54,27 @@
         <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Find jobs</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="companies.html">Company reviews</a>
+                    <a class="nav-link {{ request()->is('job*') ? 'active' : '' }}"
+                        href="{{ route('search-job') }}">Find Jobs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="salaries.html">Find salaries</a>
+                    <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}" href="{{ route('apply') }}">Apply</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-flex align-items-center">
                 @guest
+                @if (request()->is('login') || request()->is('register'))
+                @else
                 <li class="nav-item">
                     <a class="nav-link fw-bold enter" href="{{ route('login') }}">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Register</a>
                 </li>
+                @endif
                 @endguest
 
                 @auth
@@ -83,28 +90,32 @@
                     <ul class="dropdown-menu">
                         <li><span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span></li>
                         @if (Auth::user()->roles_id == 1)
-                            <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i class="bi bi-person-lines-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i
+                                    class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Dashboard</a></li>
                         @endif
                         @if (Auth::user()->roles_id == 2)
-                            <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i class="bi bi-person-lines-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i
+                                    class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Dashboard</a></li>
                         @endif
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Profile</a></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i> &nbsp;
-                                Follow</a></li>
-                        <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
                                 &nbsp;
-                                Settings</a></li>
+                                Follow</a></li>
+                        {{-- <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
+                                &nbsp;
+                                Settings</a></li> --}}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li class="text-center"><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a></li>
+                         document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a>
+                        </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                     </ul>
@@ -113,7 +124,16 @@
                     <div class="vertical-line" style="height: 25px; width: .25px; background-color: #1e3a9b50;"></div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Employers / Post Jobs</a>
+                    <form></form>
+                    @if (Auth::user()->roles_id == 3)
+                    <form action="{{ route('change-role') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">Employers / Post Jobs</button>
+                    </form>
+                    @else
+                    <a class="nav-link" href="{{ route('employer-dashboard') }}">Employers / Post
+                        Jobs</a>
+                    @endif
                 </li>
                 @endauth
             </ul>
