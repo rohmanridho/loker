@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Company;
+use App\Models\Save;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,5 +24,10 @@ class Job extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'categories_id', 'id');
+    }
+
+    public function simpan()
+    {
+        return $this->hasOne(Save::class, 'jobs_id', 'id');
     }
 }

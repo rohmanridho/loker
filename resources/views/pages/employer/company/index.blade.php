@@ -6,25 +6,25 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
 	<div class="container-fluid">
 		<div class="dashboard-heading">
-			<h2 class="dashboard-title">Company</h2>
-			<p class="dashboard-subtitle">List of Companies</p>
+			<h2 class="dashboard-title">Perusahaan</h2>
+			<p class="dashboard-subtitle">Daftar Perusahaan</p>
 		</div>
 		<div class="dashboard-content">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-body">
-							<a href="{{ route('company.create') }}" class="btn btn-primary mb-3">+ Create New Company</a>
+							<a href="{{ route('company.create') }}" class="btn btn-primary mb-3">+ Buat Perusahaan</a>
 							<div class="table-responsive">
 								<table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
 									<thead>
 										<tr>
-											<th>No</th>
-											<th>Name</th>
-											<th>Photo</th>
-											<th>Industry</th>
-											<th>Province</th>
-											<th>Action</th>
+											<th>#</th>
+											<th>Perusahaan</th>
+											<th>Logo</th>
+											<th>Industri</th>
+											<th>Provinsi</th>
+											<th>Aksi</th>
 										</tr>
 									</thead>
 									<tbody></tbody>

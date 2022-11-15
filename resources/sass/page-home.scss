@@ -189,3 +189,24 @@ $dark-blue: #1e3a9b;
     }
   }
 }
+
+footer {
+  font-size: 0.875rem;
+
+  .nav-item {
+    margin: 0 10px;
+
+    .nav-link {
+      text-decoration: none;
+      color: #444;
+      margin-right: 20px;
+      font-size: 0.875rem;
+      margin: 0;
+
+      &:hover {
+        text-decoration: underline;
+        color: #222;
+      }
+    }
+  }
+}

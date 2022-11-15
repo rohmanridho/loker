@@ -24,7 +24,7 @@ class UserController extends Controller
           return '
               <form action= "' . route('province.destroy', $user->id) . '" method= "POST">
                   ' . method_field('delete') . csrf_field() . '
-                  <button type="submit" class="btn btn-danger">
+                  <button type="submit" class="btn btn-outline-danger">
                       Delete
                   </button>
               </form>

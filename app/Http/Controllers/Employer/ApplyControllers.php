@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Employer;
 
-use App\Models\Job;
+use App\Models\Apply;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
-class JobController extends Controller
+class ApplyControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,24 +17,25 @@ class JobController extends Controller
      */
     public function index()
     {
+        $apply = Apply::all();
         if (request()->ajax()) {
-            $query = Job::with(['company', 'category']);
+            // $query = Apply::with(['job', 'user']);
+            $query = Apply::with(['job.company', 'user'])->whereHas('job', function($job) {
+                $job->with(['company'])->whereHas('company', function($company) {
+                    $company->where('users_id', Auth::user()->id);
+                });
+            });
 
             return DataTables::of($query)
-                ->addColumn('action', function ($job) {
+                ->addColumn('action', function ($apply) {
                     return '
-              <form action= "' . route('jobs.destroy', $job->id) . '" method= "POST">
-                  ' . method_field('delete') . csrf_field() . '
-                  <button type="submit" class="btn btn-outline-danger">
-                      Delete
-                  </button>
-              </form>
-            ';
+                    <a href="' . route('apply.edit', $apply->id) . '" class="dropdown-item">Tinjau</a>
+                ';
                 })
                 ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.admin.job.index');
+        return view('pages.employer.apply.index');
     }
 
     /**
@@ -76,7 +78,10 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $apply = Apply::find($id);
+        return view('pages.employer.apply.edit', [
+            'apply' => $apply
+        ]);
     }
 
     /**
@@ -88,7 +93,12 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $apply = Apply::find($id);
+        $apply->status = $request['status'];
+
+        $apply->save();
+
+        return redirect()->route('apply.index');
     }
 
     /**
@@ -99,9 +109,6 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        $job = Job::find($id);
-        $job->delete();
-
-        return redirect()->route('jobs.index');
+        //
     }
 }

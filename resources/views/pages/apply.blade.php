@@ -28,20 +28,25 @@
                         </td>
                         <td class="button">
                             <form></form>
-                            <form action="{{ route('apply-destroy', $apply->id) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-primary btn-block w-100">
-                                    Cancel
-                                </button>
-                            </form>
+                            @if ($apply->status == 'ditinjau')
+                                <form action="{{ route('apply-destroy', $apply->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger btn-block w-50">
+                                        Batal
+                                    </button>
+                                </form>
+                            @elseif ($apply->status == 'diterima')
+                                <p class="text-success">Selamat bekerja!</p>
+                            @endif
                         </td>
                     </tr>
                     @empty
                     <tr>
                         <td colspan="4">
                             <div class="h-75 w-100 text-center">
-                                <img src="{{ asset('images/no_data.png') }}" alt="" class="d-block mx-auto" style="width: 40%;">
+                                <img src="{{ asset('images/no_data.png') }}" alt="" class="d-block mx-auto"
+                                    style="width: 40%;">
                                 <span class="fw-semibold d-block mb-2">Belum Melamar Pekerjaan</span>
                                 <a href="{{ route('search-job') }}" class="btn btn-primary">Cari Pekerjaan</a>
                             </div>
@@ -50,6 +55,7 @@
                     @endforelse
                 </table>
             </div>
+            {{ $applies->links() }}
         </div>
     </div>
 </section>

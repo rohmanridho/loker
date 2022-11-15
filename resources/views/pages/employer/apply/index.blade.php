@@ -1,4 +1,4 @@
-@extends('layouts.employer')
+@extends('layouts.employer-apply')
 
 @section('title', 'Apply - Employer Dashboard')
 
@@ -6,29 +6,52 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Applicant</h2>
-            <p class="dashboard-subtitle">List of Applicant</p>
+            <h2 class="dashboard-title">Pelamar Pekerjaan</h2>
+            <p class="dashboard-subtitle">Daftar Pelamar Pekerjaan</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                            <div class="table-responsive mt-4">
+                                <table class="table table-hover scroll-horizontal-vertical w-100">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Applicant</th>
-                                            <th>Job</th>
-                                            <th>Company</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Pelamar</th>
+                                            <th scope="col">Lowongan</th>
+                                            <th scope="col">Perusahaan</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+                                        @forelse ($applies as $apply)
+                                        <tr>
+                                            <th scope="row">{{ $apply->id }}</th>
+                                            <td>{{ $apply->user->name }}</td>
+                                            <td>{{ $apply->job->name }}</td>
+                                            <td>{{ $apply->job->company->name }}</td>
+                                            <td>{{ $apply->status }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-modal-{{ $apply->id }}"
+                                                    data-bs-whatever="@getbootstrap">Edit</button>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="4">
+                                                <p>Tidak ada yang melamar pekerjaan</p>
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
                                 </table>
+
                             </div>
+                            <div class="d-flex justify-content-end">{{ $applies->links() }}</div>
                         </div>
                     </div>
                 </div>
@@ -37,64 +60,3 @@
     </div>
 </div>
 @endsection
-
-@push('script')
-<script>
-    var t = $('#crudTable').DataTable({
-						processing: true,
-						serverSide: true,
-						ordering: true,
-						ajax: {
-								url: '{!! url()->current() !!}',
-
-						},
-						columnDefs: [{
-								searchable: false,
-								orderable: false,
-								targets: 0,
-						}, ],
-						order: [
-								[1, 'asc']
-						],
-						columns: [{
-										data: 'id',
-										name: 'id'
-								},
-								{
-										data: 'user.name',
-										name: 'user.name'
-								},
-								{
-										data: 'job.name',
-										name: 'job.name'
-								},
-								{
-										data: 'job.company.name',
-										name: 'job.company.name'
-								},
-								{
-										data: 'status',
-										name: 'status'
-								},
-								{
-										data: 'action',
-										name: 'action',
-										orderable: false,
-										searcable: false,
-										width: '15%'
-
-								},
-						],
-				});
-				t.on('order.dt search.dt', function() {
-						let i = 1;
-
-						t.cells(null, 0, {
-								search: 'applied',
-								order: 'applied'
-						}).every(function(cell) {
-								this.data(i++);
-						});
-				}).draw();
-</script>
-@endpush
