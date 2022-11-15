@@ -39,7 +39,7 @@
                                         <div class="form-group">
                                             <label for="fcompany">Company</label>
                                             <select name="companies_id" id="fcompany" class="form-control">
-                                                <option value="{{ $job->company_id }}" selected>{{ $job->company->name
+                                                <option value="{{ $job->companies_id }}" selected>{{ $job->company->name
                                                     }}</option>
                                                 @foreach ($companies as $company)
                                                 <option value="{{ $company->id }}">{{ $company->name }}

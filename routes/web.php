@@ -49,52 +49,61 @@ Route::get('/company/{slug}', [CompanyDetailController::class, 'index'])->name('
 
 Route::get('/job/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::post('/change-role', [App\Http\Controllers\Employer\DashboardController::class, 'changerole'])->name('change-role');
-
-    Route::get('/follow', [FollowController::class, 'index'])->name('follow');
-    Route::post('/follow-company/{id}', [CompanyDetailController::class, 'follow'])->name('follow-company');
-    Route::delete('/delete-follow/{id}', [FollowController::class, 'destroy'])->name('follow-destroy');
-
-    Route::get('/save', [SaveController::class, 'index'])->name('save');
-    Route::post('/save-job/{id}', [JobDetailController::class, 'save'])->name('save-job');
-    Route::delete('/delete-save/{id}', [SaveController::class, 'destroy'])->name('save-destroy');
-
-    Route::get('/apply', [ApplyController::class, 'index'])->name('apply');
-    Route::post('/apply-job/{id}', [JobDetailController::class, 'apply'])->name('apply-job');
-    Route::delete('/delete-apply/{id}', [ApplyController::class, 'destroy'])->name('apply-destroy');
-});
-
 Route::group(
     [
-        'prefix' => 'admin',
-        // 'middleware' => 'CheckRole:admin'
+        'middleware' => 'auth'
     ],
     function () {
-        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
-        Route::resource('categories', CategoryController::class);
-        Route::resource('companies', CompanyController::class);
-        Route::resource('industry', IndustryController::class);
-        Route::resource('province', ProvinceController::class);
-        Route::resource('gallery', GalleryController::class);
-        Route::resource('users', UserController::class);
-        Route::resource('jobs', JobController::class);
+        Route::post('/change-role', [App\Http\Controllers\Employer\DashboardController::class, 'changerole'])->name('change-role');
+
+        Route::get('/follow', [FollowController::class, 'index'])->name('follow');
+        Route::post('/follow-company/{id}', [CompanyDetailController::class, 'follow'])->name('follow-company');
+        Route::delete('/delete-follow/{id}', [FollowController::class, 'destroy'])->name('follow-destroy');
+
+        Route::get('/save', [SaveController::class, 'index'])->name('save');
+        Route::post('/save-job/{id}', [JobDetailController::class, 'save'])->name('save-job');
+        Route::delete('/delete-save/{id}', [SaveController::class, 'destroy'])->name('save-destroy');
+
+        Route::get('/apply', [ApplyController::class, 'index'])->name('apply');
+        Route::post('/apply-job/{id}', [JobDetailController::class, 'apply'])->name('apply-job');
+        Route::delete('/delete-apply/{id}', [ApplyController::class, 'destroy'])->name('apply-destroy');
+
+
+
+        Route::group(
+            [
+                'prefix' => 'admin',
+                // 'middleware' => 'CheckRole:admin'
+            ],
+            function () {
+                Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
+                Route::resource('categories', CategoryController::class);
+                Route::resource('companies', CompanyController::class);
+                Route::resource('industry', IndustryController::class);
+                Route::resource('province', ProvinceController::class);
+                Route::resource('gallery', GalleryController::class);
+                Route::resource('users', UserController::class);
+                Route::resource('jobs', JobController::class);
+            }
+        );
+
+        Route::group(
+            [
+                'prefix' => 'employer',
+                'middleware' => 'CheckRole:employer'
+            ],
+            function () {
+                Route::get('/', [App\Http\Controllers\Employer\DashboardController::class, 'index'])->name('employer-dashboard');
+                Route::resource('company', EmployerCompanyController::class);
+                Route::resource('job', EmployerJobController::class);
+                Route::get('apply', [EmployerApplyController::class, 'index'])->name('apply-index');
+                Route::match(['get', 'post'], 'update-apply/{id}', [EmployerApplyController::class, 'update'])->name('apply-update');
+            }
+        );
     }
 );
 
-Route::group(
-    [
-        'prefix' => 'employer',
-        'middleware' => 'CheckRole:employer'
-    ],
-    function () {
-        Route::get('/', [App\Http\Controllers\Employer\DashboardController::class, 'index'])->name('employer-dashboard');
-        Route::resource('company', EmployerCompanyController::class);
-        Route::resource('job', EmployerJobController::class);
-        Route::get('apply', [EmployerApplyController::class, 'index'])->name('apply-index');
-        Route::match(['get', 'post'], 'update-apply/{id}', [EmployerApplyController::class, 'update'])->name('apply-update');
-    }
-);
+
 
 
 

@@ -57,6 +57,7 @@
             </div>
             {{ $applies->links() }}
         </div>
+
     </div>
 </section>
 @endsection

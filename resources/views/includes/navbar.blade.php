@@ -93,13 +93,13 @@
                         <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i
                                     class="bi bi-person-lines-fill"></i>
                                 &nbsp;
-                                Dashboard</a></li>
+                                Admin Dashboard</a></li>
                         @endif
                         @if (Auth::user()->roles_id == 2)
                         <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i
                                     class="bi bi-person-lines-fill"></i>
                                 &nbsp;
-                                Dashboard</a></li>
+                                Employer Dashboard</a></li>
                         @endif
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
                                 &nbsp;
@@ -131,7 +131,7 @@
                         <button type="submit" class="btn">Employers / Post Jobs</button>
                     </form>
                     @else
-                    <a class="nav-link" href="{{ route('employer-dashboard') }}">Employers / Post
+                    <a class="nav-link" href="{{ route('job.index') }}">Employers / Post
                         Jobs</a>
                     @endif
                 </li>

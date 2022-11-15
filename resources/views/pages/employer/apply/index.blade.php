@@ -42,7 +42,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="4">
+                                            <td colspan="6">
                                                 <p>Tidak ada yang melamar pekerjaan</p>
                                             </td>
                                         </tr>

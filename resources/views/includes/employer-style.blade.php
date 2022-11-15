@@ -1,3 +1,8 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link href="/style/main.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -44,15 +49,16 @@
     }
 
     .page-dashboard .list-group-item {
+        padding: 0.75rem 1.25rem;
         border: 0;
         font-size: 16px;
         color: #c5c5c5;
     }
 
     .page-dashboard .list-group-item.active {
-        background: linear-gradient(270deg, rgba(0, 0, 255, 0.3) 2%, rgba(255, 255, 255, 0) 100%);
-        border-right: 4px solid #0000ff;
-        color: #0c0d36;
+        background: linear-gradient(270deg, rgba(255, 113, 88, .32) 2%, rgba(255, 255, 255, 0) 100%);
+        border-right: 4px solid #ff7158;
+        color: #320800;
     }
 
     @media (min-width: 768px) {

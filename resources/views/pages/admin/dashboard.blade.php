@@ -1,15 +1,13 @@
 @extends('layouts.admin')
 
-@section('title')
-		JobStreet - Let's find your jobs
-@endsection
+@section('title', 'Admin Dashboard')
 
 @section('content')
 		<div class="section-content section-dashboard-home" data-aos="fade-up">
 				<div class="container-fluid">
 						<div class="dashboard-heading">
 								<h2 class="dashboard-title">Admin Dashboard</h2>
-								<p class="dashboard-subtitle">This is JobStreet Administrator panel</p>
+								<p class="dashboard-subtitle">This is an admin dashboard</p>
 						</div>
 						<div class="dashboard-content">
 								<div class="row">
