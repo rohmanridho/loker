@@ -105,6 +105,7 @@ Route::group(
 
 
 
+Auth::routes();
 
 
 
@@ -142,8 +143,8 @@ Route::group(
 
 
 
-Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
-Route::get('/salaries', [SalariesController::class, 'index'])->name('salaries');
+// Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+// Route::get('/salaries', [SalariesController::class, 'index'])->name('salaries');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
@@ -153,5 +154,3 @@ Route::get('/settings', [SettingsController::class, 'update'])->name('account-se
 Route::get('/privacy', [SettingsController::class, 'index'])->name('privasi-settings');
 
 Route::get('/compare', [CompareController::class, 'index'])->name('compare');
-
-Auth::routes();
