@@ -27,11 +27,12 @@ class LoginController extends Controller
     {
         if ($user->roles_id == 1) {
             return redirect()->route('admin-dashboard');
-        } else if ($user->roles_id == 2 ) {
+        } else if ($user->roles_id == 2) {
             return redirect()->route('employer-dashboard');
         }
 
-        return redirect()->route('home');
+        return redirect()->back();
+        // return redirect()->route('home');
     }
 
     /**

@@ -1,0 +1,134 @@
+.page-settings {
+  #settings-section {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  #sidebar-wrapper {
+    border-right: 1px solid #55555520;
+    min-height: 100vh;
+    // margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+    background-color: #f5f5fb;
+
+      .sidebar-heading {
+          padding: 3rem 0;
+          font-size: 2.5rem;
+          font-weight: 700;
+      }
+
+      .list-group {
+          width: 320px;
+
+        .list-group-item {
+          border: 0;
+          display: block;
+          padding: 15px;
+          font-weight: 500;
+          font-size: 1.25rem;
+          margin-bottom: 5px;
+          background-color: #f5f5fb;
+
+          i {
+            font-size: 1.25rem;
+          }
+
+          &.active,
+          &:hover {
+            background: linear-gradient(
+                -270deg,
+                #0a53be30 5%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            border-left: 5px solid #0a53be;
+            color: #1e2a9b;
+            padding-left: 10px;
+          }
+        }
+      }
+
+      
+    }
+
+    // #wrapper  {
+    //     &.toggled {
+    //         #sidebar-wrapper {
+    //             margin-left: 0;
+    //         }
+    //     }
+    // }
+
+  .settings-section {
+    .heading {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    label {
+      color: #444;
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-size: 14px;
+    }
+
+    .form-control {
+      padding: 7px 11px 8px 11px;
+      color: #555;
+      font-size: 15px;
+
+      &:focus, 
+      &:hover {
+        border-color: #0a53be;
+        box-shadow: 0 2px 3px #1e399b20, 0 -2px 3px #1e399b20,
+          2px 0 3px #1e399b20, -2px 0 3px #1e399b20;
+      }
+    }
+
+    .profile-picture-edit {
+      position: relative;
+      display: inline-block;
+
+      .profile-picture {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .button-edit {
+        background-color: #eee;
+        border: 0;
+        padding: 4px 7px 3px 7px;
+        border-radius: 2px;
+        font-size: 14px;
+        position: absolute;
+        right: -12px;
+        top: 7px;
+        color: #333;
+        font-weight: 500;
+
+        i {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .privacy-section {
+      section {
+        border-bottom: 1px solid #0a53be30;
+
+        article {
+          h2 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #555;
+          }
+          p {
+            font-size: 15px;
+            color: #777;
+          }
+        }
+      }
+    }
+  }
+}

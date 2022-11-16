@@ -8,8 +8,8 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="line-bottom mb-3">
-                    <a href="{{ route('save') }}" class="save">Save</a>
-                    <a href="{{ route('follow') }}" class="follow active">Follow</a>
+                    <a href="{{ route('follow') }}" class="follow active">Followed</a>
+                    <a href="{{ route('save') }}" class="save">Saved</a>
                 </div>
 
                 <div class="row follow-section">
@@ -30,7 +30,7 @@
                                     <form action="{{ route('follow-destroy', $follow->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-primary btn-block w-100">
+                                        <button type="submit" class="btn btn-ouline-danger btn-block w-100">
                                             Hapus
                                         </button>
                                     </form>

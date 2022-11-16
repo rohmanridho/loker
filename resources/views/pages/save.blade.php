@@ -8,8 +8,8 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="line-bottom mb-3">
-                    <a href="{{ route('save') }}" class="save active">Save</a>
-                    <a href="{{ route('follow') }}" class="follow">Follow</a>
+                    <a href="{{ route('follow') }}" class="follow">Followed</a>
+                    <a href="{{ route('save') }}" class="save active">Saved</a>
                 </div>
 
                 <div class="row save-section">
@@ -22,7 +22,8 @@
                                         class="rounded-circle">
                                 </td>
                                 <td class="description">
-                                    <a href="{{ route('job-detail', $save->job->slug) }}" class="job-name">{{ $save->job->name }}</a>
+                                    <a href="{{ route('job-detail', $save->job->slug) }}" class="job-name">{{
+                                        $save->job->name }}</a>
                                     <div class="company">{{ $save->job->company->name }} - {{
                                         $save->job->company->province->name }}</div>
                                 </td>
@@ -31,7 +32,7 @@
                                     <form action="{{ route('save-destroy', $save->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-primary btn-block w-100">
+                                        <button type="submit" class="btn btn-outline-danger btn-block w-100">
                                             Hapus
                                         </button>
                                     </form>
@@ -52,8 +53,11 @@
                         </table>
                     </div>
                 </div>
+                @if ($save_count < 3) <div style="min-height: 50vh">
             </div>
+            @endif
         </div>
+    </div>
     </div>
 </section>
 @endsection

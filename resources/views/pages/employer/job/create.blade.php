@@ -55,7 +55,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="fsalary">Salary</label>
-                                            <input type="number" id="fsalary" name="salary" class="form-control" required>
+                                            <input type="number" id="fsalary" name="salary" class="form-control"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -89,7 +90,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">Create</button>
+                                        <button type="submit" class="btn btn-primary px-5 mr-2">Create</button>
+                                        <button type="button" class="btn btn-outline-danger px-5"
+                                            onclick="history.back()">Cancel</button>
                                     </div>
                                 </div>
                             </form>

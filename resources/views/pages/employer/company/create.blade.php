@@ -68,7 +68,8 @@
 								</div>
 								<div class="row">
 									<div class="col text-right">
-										<button type="submit" class="btn btn-success px-5">Create</button>
+										<button type="submit" class="btn btn-primary px-5 mr-2">Create</button>
+										<button type="button" class="btn btn-outline-danger px-5" onclick="history.back()">Cancel</button>
 									</div>
 								</div>
 							</form>

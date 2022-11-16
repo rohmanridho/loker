@@ -61,7 +61,8 @@
                         href="{{ route('search-job') }}">Find Jobs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}" href="{{ route('apply') }}">Apply</a>
+                    <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}"
+                        href="{{ route('apply') }}">Apply</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-flex align-items-center">
@@ -83,33 +84,22 @@
                         <i class="bi bi-bookmarks-fill"></i>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown-center">
                     <a href="" class="nav-link profile-icon" role="button" data-bs-toggle="dropdown">
                         <i class="bi bi-person-fill"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span></li>
-                        @if (Auth::user()->roles_id == 1)
-                        <li><a class="dropdown-item py-2" href="{{ route('admin-dashboard') }}"><i
-                                    class="bi bi-person-lines-fill"></i>
-                                &nbsp;
-                                Admin Dashboard</a></li>
-                        @endif
-                        @if (Auth::user()->roles_id == 2)
-                        <li><a class="dropdown-item py-2" href="{{ route('employer-dashboard') }}"><i
-                                    class="bi bi-person-lines-fill"></i>
-                                &nbsp;
-                                Employer Dashboard</a></li>
-                        @endif
                         <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Profile</a></li>
                         <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
                                 &nbsp;
                                 Follow</a></li>
-                        {{-- <li><a class="dropdown-item py-2" href="account-settings.html"><i class="bi bi-gear-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('account-settings') }}"><i
+                                    class="bi bi-gear-fill"></i>
                                 &nbsp;
-                                Settings</a></li> --}}
+                                Settings</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -131,8 +121,13 @@
                         <button type="submit" class="btn">Employers / Post Jobs</button>
                     </form>
                     @else
+                    @if (Auth::user()->roles_id == 2)
                     <a class="nav-link" href="{{ route('job.index') }}">Employers / Post
                         Jobs</a>
+                    @endif
+                    @if (Auth::user()->roles_id == 1)
+                    <a class="nav-link" href="{{ route('admin-dashboard') }}">Admin Dashboard</a>
+                    @endif
                     @endif
                 </li>
                 @endauth

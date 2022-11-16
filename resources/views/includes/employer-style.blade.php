@@ -11,7 +11,7 @@
     }
 
     .page-dashboard #page-content-wrapper {
-        background: #f5f5fb;
+        background: #fff0f0;
         min-width: 100vw;
     }
 

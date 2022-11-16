@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/style/page-settings.css": "/style/page-settings.css",
     "/style/page-save.css": "/style/page-save.css",
     "/style/page-detail.css": "/style/page-detail.css",
     "/style/page-home.css": "/style/page-home.css"

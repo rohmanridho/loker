@@ -13,19 +13,27 @@ class JobDetailController extends Controller
     public function index(Request $request, $slug)
     {
         $job = Job::with(['company.province', 'category'])->where('slug', $slug)->first();
-        $saveCount = Save::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->count();
-        $save = Save::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->first();
+        if (Auth::check()) {
+            $saveCount = Save::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->count();
+            $save = Save::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->first();
 
-        $applyCount = Apply::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->count();
-        $apply = Apply::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->first();
+            $applyCount = Apply::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->count();
+            $apply = Apply::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->first();
 
-        return view('pages.job-detail', [
-            'job' => $job,
-            'saveCount' => $saveCount,
-            'save' => $save,
-            'applyCount' => $applyCount,
-            'apply' => $apply
-        ]);
+            $data = [
+                'job' => $job,
+                'saveCount' => $saveCount,
+                'save' => $save,
+                'applyCount' => $applyCount,
+                'apply' => $apply
+            ];
+        } else {
+            $data = [
+                'job' => $job,
+            ];
+        }
+
+        return view('pages.job-detail', $data);
     }
 
     public function save(Request $request, $id)

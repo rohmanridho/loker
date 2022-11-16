@@ -53,15 +53,16 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <!-- Desktop Menu -->
                             <ul class="navbar-nav d-none d-lg-flex ml-auto">
-                                <li class="nav-item">
-                                    <span class="nav-link d-flex align-items-center mr-3">
+                                <li class="nav-item dropdown">
+                                    <span class="nav-link d-flex align-items-center mr-3" class="nav-link"
+                                        id="navbarDropdown" role="button" data-toggle="dropdown">
                                         <div class="d-flex rounded-circle mr-2"
                                             style="width: 40px; height: 40px; background: #0000ff10;"><span
                                                 class="m-auto fw-bold" style="font-size: 24px;">{{
                                                 strtoupper(Auth::user()->name)[0] }}</span></div>
                                         <span>Hi, {{ Auth::user()->name }}</span>
                                     </span>
-                                    {{-- <div class="dropdown-menu">
+                                    <div class="dropdown-menu">
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" {{ __('Logout') }}
                                             class="dropdown-item text-center">Sign Out</a>
@@ -69,7 +70,7 @@
                                             class="d-none">
                                             @csrf
                                         </form>
-                                    </div> --}}
+                                    </div>
                                 </li>
                             </ul>
 
