@@ -16,8 +16,8 @@ class CreateSavesTable extends Migration
         Schema::create('saves', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('jobs_id')->constrained();
-            $table->foreignId('users_id')->constrained();
+            $table->foreignId('jobs_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('users_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->timestamps();
         });

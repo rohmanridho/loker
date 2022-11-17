@@ -17,16 +17,16 @@ class CreateJobsTable extends Migration
             $table->id();
 
             $table->string('name');
-            $table->foreignId('companies_id')->constrained();
-            $table->foreignId('categories_id')->constrained();
             $table->string('slug');
+            $table->foreignId('categories_id')->nullable()->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignId('companies_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('type')->nullable();
             $table->integer('salary')->nullable();
             $table->string('schedule')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
 
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 

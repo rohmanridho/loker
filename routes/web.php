@@ -51,7 +51,7 @@ Route::group(
     ],
     function () {
         Route::get('/account-settings', [SettingController::class, 'account'])->name('account-settings');
-        
+
         Route::post('/change-role', [App\Http\Controllers\Employer\DashboardController::class, 'changerole'])->name('change-role');
 
         Route::get('/follow', [FollowController::class, 'index'])->name('follow');
@@ -145,7 +145,6 @@ Auth::routes();
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::get('/profile/update-profile', [ProfileController::class, 'update'])->name('update-profile');
 
 // Route::get('/settings', [SettingsController::class, 'update'])->name('account-settings');
 Route::get('/privacy', [SettingsController::class, 'index'])->name('privasi-settings');

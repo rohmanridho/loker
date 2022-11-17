@@ -11,6 +11,12 @@
                     class="bi bi-person-fill"></i> &nbsp;Login</a>
             <div style="width: 20px; height: 20px; background-color: transparent"></div>
             @endguest
+            @auth
+            <a href="{{ route('save') }}" class="nav-link bookmark-icon">
+                <i class="bi bi-bookmarks-fill" style="font-size: 22px; color: #1e3a9b;"></i>
+            </a>
+            <div style="width: 20px; height: 20px; background-color: transparent"></div>
+            @endauth
             <span style="cursor: pointer;" onclick="navbarResponsive()">
                 <i class="fas fa-bars bar"></i>
             </span>
@@ -19,9 +25,6 @@
         <ul class="nav flex-column nav-top" id="navbarNav">
             <li class="nav-item">
                 <a href="{{ route('home') }}}}" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="companies.html" class="nav-link">Company reviews</a>
             </li>
             <li class="nav-item">
                 <a href="salaries.html" class="nav-link">Find salaries</a>
@@ -34,7 +37,10 @@
                 <a href="profile.html" class="nav-link">Profile</a>
             </li>
             <li class="nav-item">
-                <a href="favorite.html" class="nav-link">Favorite</a>
+                <a href="{{ route('follow') }}" class="nav-link">Followed</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('save') }}" class="nav-link">Saved</a>
             </li>
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
@@ -60,10 +66,12 @@
                     <a class="nav-link {{ request()->is('job*') ? 'active' : '' }}"
                         href="{{ route('search-job') }}">Find Jobs</a>
                 </li>
+                @auth
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}"
                         href="{{ route('apply') }}">Apply</a>
                 </li>
+                @endauth
             </ul>
             <ul class="navbar-nav d-flex align-items-center">
                 @guest

@@ -86,7 +86,7 @@ echo $_REQUEST['search'];} @endphp">
             </div>
             @empty
             <div class="col-10 offset-1">
-                <div class="text-center text-secondary" style="font-size: 32px;">Data tidak ditemukan</div>
+                <div class="text-center text-secondary" style="font-size: 32px;">Tidak ditemukan</div>
             </div>
             @endforelse
             @if ($job_count < 3) <div style="min-height: 60vh">

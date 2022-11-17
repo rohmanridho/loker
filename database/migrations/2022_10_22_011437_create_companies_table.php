@@ -17,15 +17,15 @@ class CreateCompaniesTable extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('photo')->nullable();
             $table->string('slug');
+            $table->string('photo')->nullable();
             $table->foreignId('users_id')->constrained();
             $table->foreignId('industries_id')->constrained();
             $table->foreignId('provinces_id')->constrained();
             $table->text('description');
-            
+
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 
