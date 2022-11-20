@@ -18,8 +18,8 @@
               <p class="alert alert-success" id="message"">{{ session('success') }}</p>
                             @endif
                             <button type=" button" class="btn btn-primary mb-3" data-bs-toggle="modal"
-                data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create new
-                category</button>
+                data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create New
+                Category</button>
               <div class="table-responsive">
                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                   <thead>

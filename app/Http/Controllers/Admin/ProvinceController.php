@@ -19,6 +19,7 @@ class ProvinceController extends Controller
      */
     public function index()
     {
+        $provinces = Province::all();
         if (request()->ajax()) {
             $query = Province::all();
 
@@ -33,14 +34,9 @@ class ProvinceController extends Controller
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
-                                    <a href="' . route('province.edit', $province->id) . '" class="dropdown-item">
-                                    Edit</a>
-                                    <form action= "' . route('province.destroy', $province->id) . '" method= "POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class= "dropdown-item text-danger">
-                                        Delete
-                                        </button>
-                                    </form>
+                                    <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#edit-modal-'. $province->id . '" data-bs-whatever="@getbootstrap">Edit</button>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm('. $province->id .')">Delete</button>
                                 </div>
                         </div>
                     </div>
@@ -49,7 +45,9 @@ class ProvinceController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.admin.province.index');
+        return view('pages.admin.province.index', [
+            'provinces' => $provinces
+        ]);
     }
 
     /**
@@ -59,7 +57,7 @@ class ProvinceController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.province.create');
+        // return view('pages.admin.province.create');
     }
 
     /**
@@ -75,7 +73,7 @@ class ProvinceController extends Controller
         // $data['photo'] = $request->file('photo')->store('assets/province', 'public');
 
         Province::create($data);
-        return redirect()->route('province.index');
+        return redirect()->back();
     }
 
     /**
@@ -97,10 +95,10 @@ class ProvinceController extends Controller
      */
     public function edit($id)
     {
-        $province = Province::find($id);
-        return view('pages.admin.province.edit', [
-            'province' => $province
-        ]);
+        // $province = Province::find($id);
+        // return view('pages.admin.province.edit', [
+        //     'province' => $province
+        // ]);
     }
 
     /**
