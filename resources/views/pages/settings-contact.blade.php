@@ -13,20 +13,26 @@
                 <hr>
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-7">
-                        <form action="">
+                        <form action="{{ route('settings-update', 'contact-settings') }}" method="POST">
+                            @csrf
                             <div class="form-group mb-2">
-                                <label for="first_name">First Name</label>
-                                <input type="text" id="first_name" class="form-control" value="Jisoo">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" class="form-control" value="{{ $user->address }}">
                             </div>
                             <div class="form-group mb-2">
-                                <label for="last_name">Last Name</label>
-                                <input type="text" id="last_name" class="form-control" value="Rabbit">
+                                <label for="fcity">City</label>
+                                <input type="text" id="fcity" name="city" class="form-control" value="{{ $user->city }}">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="fzipcode">Zip Code</label>
+                                <input type="text" id="fzipcode" name="zip_code" class="form-control" value="{{ $user->zip_code }}">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="phone">Phone</label>
-                                <input type="text" id="phone" class="form-control" value="87819413129">
+                                <input type="text" id="phone" name="phone_number" class="form-control"
+                                    value="{{ $user->phone_number }}">
                             </div>
-                            <button class="btn btn-success fw-semibold">Save</button>
+                            <button type="submit" class="btn btn-primary fw-semibold">Save</button>
                         </form>
                     </div>
                 </div>

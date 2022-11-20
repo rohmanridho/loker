@@ -35,8 +35,8 @@ class ProvinceController extends Controller
                                 </button>
                                 <div class= "dropdown-menu">
                                     <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                data-bs-target="#edit-modal-'. $province->id . '" data-bs-whatever="@getbootstrap">Edit</button>
-                                    <button class="dropdown-item text-danger" onclick="deleteConfirm('. $province->id .')">Delete</button>
+                                data-bs-target="#edit-modal-' . $province->id . '" data-bs-whatever="@getbootstrap">Edit</button>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $province->id . ',\'' . $province->name . '\')">Delete</button>
                                 </div>
                         </div>
                     </div>

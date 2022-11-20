@@ -22,7 +22,7 @@ class JobController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Job::with(['company', 'category'])->whereHas('company', function($product) {
+            $query = Job::with(['company', 'category'])->whereHas('company', function ($product) {
                 $product->where('users_id', Auth::user()->id);
             });
 
@@ -31,7 +31,7 @@ class JobController extends Controller
                     return '
                     <div class= "btn-group">
                         <div class= "dropdown">
-                            <button class= "btn btn-outline-primary"
+                            <button class= "btn btn-primary"
                                     type= "button"
                                     role="button"
                                     data-bs-toggle="dropdown">
@@ -42,12 +42,7 @@ class JobController extends Controller
                                     Preview</a>
                                     <a href="' . route('job.edit', $job->id) . '" class="dropdown-item">
                                     Edit</a>
-                                    <form action= "' . route('job.destroy', $job->id) . '" method= "POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class= "dropdown-item text-danger">
-                                        Delete
-                                        </button>
-                                    </form>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $job->id . ',\'' . $job->name . '\')">Delete</button>
                                 </div>
                         </div>
                     </div>

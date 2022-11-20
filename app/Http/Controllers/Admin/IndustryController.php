@@ -35,12 +35,7 @@ class IndustryController extends Controller
                                 <div class= "dropdown-menu">
                                     <a href="' . route('industry.edit', $industry->id) . '" class="dropdown-item">
                                     Edit</a>
-                                    <form action= "' . route('industry.destroy', $industry->id) . '" method= "POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class= "dropdown-item text-danger">
-                                        Delete
-                                        </button>
-                                    </form>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $industry->id . ',\'' . $industry->name . '\')">Delete</button>
                                 </div>
                         </div>
                     </div>

@@ -6,11 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <script src="https://kit.fontawesome.com/40c495c7a8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     @include('includes.style')
     <link rel="stylesheet" href="{{ asset('style/page-settings.css') }}" />
     @stack('style')
+    <style>
+        a.list-group-item {
+            text-decoration: none;
+        }
+
+        #toast-container>.toast-success {
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==") !important;
+            background-color: #51a351;
+        }
+
+        /* #toast-container .toast-success {
+            
+        } */
+    </style>
 </head>
 
 <body>
@@ -25,14 +38,19 @@
                     Settings
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="" class="list-group-item {{ request()->is('account-settings') ? 'active' : '' }}"><i
+                    <a href="{{ route('account-settings') }}"
+                        class="list-group-item {{ request()->is('account-settings') ? 'active' : '' }}"><i
                             class="bi bi-person-fill"></i>
                         &nbsp;Account
                         settings</a>
-                    <a href="contact-settings.html" class="list-group-item"><i class="bi bi-person-lines-fill"></i>
+                    <a href="{{ route('contact-settings') }}"
+                        class="list-group-item {{ request()->is('contact-settings') ? 'active' : '' }}"><i
+                            class="bi bi-person-lines-fill"></i>
                         &nbsp;Contact
                         information</a>
-                    <a href="privacy-settings.html" class="list-group-item"><i class="bi bi-shield-lock-fill"></i>
+                    <a href="{{ route('privacy-settings') }}"
+                        class="list-group-item {{ request()->is('privacy-settings') ? 'active' : '' }}"><i
+                            class="bi bi-shield-lock-fill"></i>
                         &nbsp;Privacy settings</a>
                 </div>
             </div>
@@ -42,9 +60,13 @@
         </div>
     </section>
 
-    {{-- <script type="module" src="js/main.js"></script> --}}
     @include('includes.script')
     @stack('script')
+    @if (Session::has('success'))
+    <script>
+        toastr.success("{{ Session::get('success') }}", {"iconClass": 'toast-success'});
+    </script>
+    @endif
 </body>
 
 </html>

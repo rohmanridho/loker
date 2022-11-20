@@ -142,11 +142,11 @@
 
 @push('script')
 <script>
-    const deleteConfirm = (id) => {
+    const deleteConfirm = (id,name) => {
         console.log(id);
         Swal.fire({
             title: 'Tenane?',
-            text: "Menghapus privinsi id "+ id +"",
+            text: "Menghapus privinsi "+ name +"",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

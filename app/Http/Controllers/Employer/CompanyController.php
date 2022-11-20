@@ -30,7 +30,7 @@ class CompanyController extends Controller
                     return '
                     <div class= "btn-group">
                         <div class= "dropdown">
-                            <button class= "btn btn-outline-primary"
+                            <button class= "btn btn-primary"
                                     type= "button"
                                     data-toggle="dropdown">
                                     Actions
@@ -40,12 +40,7 @@ class CompanyController extends Controller
                                     Preview</a>
                                     <a href="' . route('company.edit', $company->id) . '" class="dropdown-item">
                                     Edit</a>
-                                    <form action= "' . route('company.destroy', $company->id) . '" method= "POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class= "dropdown-item text-danger">
-                                        Delete
-                                        </button>
-                                    </form>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $company->id . ',\'' . $company->name . '\')">Delete</button>
                                 </div>
                         </div>
                     </div>

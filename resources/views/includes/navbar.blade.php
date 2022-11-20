@@ -27,14 +27,14 @@
                 <a href="{{ route('home') }}}}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="salaries.html" class="nav-link">Find salaries</a>
+                <a href="{{ route('search-job') }}" class="nav-link">Find Jobs</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Employers</a>
+                <a href="{{ route('apply') }}" class="nav-link">Apply</a>
             </li>
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
-                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="{{ route('profile', Auth::user()->name) }}" class="nav-link">Profile</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('follow') }}" class="nav-link">Followed</a>
@@ -44,13 +44,13 @@
             </li>
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
-                <a href="account-settings.html" class="nav-link">Account settings</a>
+                <a href="{{ route("account-settings") }}" class="nav-link">Account settings</a>
             </li>
             <li class="nav-item">
-                <a href="contact-settings.html" class="nav-link">Contact settings</a>
+                <a href="{{ route("contact-settings") }}" class="nav-link">Contact settings</a>
             </li>
             <li class="nav-item">
-                <a href="privacy-settings.html" class="nav-link">Privacy settings</a>
+                <a href="{{ route("privacy-settings") }}" class="nav-link">Privacy settings</a>
             </li>
             <li class="nav-item">
                 <a href="" class="nav-link">Logout</a>
@@ -98,7 +98,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span></li>
-                        <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person-lines-fill"></i>
+                        <li><a class="dropdown-item py-2" href="{{ route('profile', Auth::user()->name) }}"><i class="bi bi-person-lines-fill"></i>
                                 &nbsp;
                                 Profile</a></li>
                         <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
@@ -115,7 +115,7 @@
                          document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
+                            @csrf
                         </form>
                     </ul>
                 </li>
@@ -125,10 +125,12 @@
                 <li class="nav-item">
                     <form></form>
                     @if (Auth::user()->roles_id == 3)
-                    <form action="{{ route('change-role') }}" method="POST">
+                    {{-- <form action="{{ route('change-role') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn">Employers / Post Jobs</button>
-                    </form>
+                    </form> --}}
+                    <button type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#change-role" data-bs-whatever="@getbootstrap">Employers / Post Jobs</button>
                     @else
                     @if (Auth::user()->roles_id == 2)
                     <a class="nav-link" href="{{ route('job.index') }}">Employers / Post

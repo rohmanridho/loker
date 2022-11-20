@@ -22,12 +22,7 @@ class JobController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($job) {
                     return '
-              <form action= "' . route('jobs.destroy', $job->id) . '" method= "POST">
-                  ' . method_field('delete') . csrf_field() . '
-                  <button type="submit" class="btn btn-outline-danger">
-                      Delete
-                  </button>
-              </form>
+              <button class="btn btn-outline-danger" onclick="deleteConfirm(' . $job->id . ',\'' . $job->name . '\')">Delete</button>
             ';
                 })
                 ->rawColumns(['action'])

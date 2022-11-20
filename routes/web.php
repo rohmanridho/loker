@@ -50,7 +50,12 @@ Route::group(
         'middleware' => 'auth'
     ],
     function () {
+        Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile');
+        
         Route::get('/account-settings', [SettingController::class, 'account'])->name('account-settings');
+        Route::get('/contact-settings', [SettingController::class, 'contact'])->name('contact-settings');
+        Route::get('/privacy-settings', [SettingController::class, 'privacy'])->name('privacy-settings');
+        Route::post('/settings/{redirect}', [SettingController::class, 'update'])->name('settings-update');
 
         Route::post('/change-role', [App\Http\Controllers\Employer\DashboardController::class, 'changerole'])->name('change-role');
 
@@ -144,8 +149,6 @@ Auth::routes();
 
 
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
-
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 // Route::get('/settings', [SettingsController::class, 'update'])->name('account-settings');
 Route::get('/privacy', [SettingsController::class, 'index'])->name('privasi-settings');

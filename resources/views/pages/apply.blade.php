@@ -37,7 +37,7 @@
                                     </button>
                                 </form>
                             @elseif ($apply->status == 'diterima')
-                                <p class="text-success">Selamat bekerja!</p>
+                                <button class="btn btn-outline-primary" onclick="congratulation()">Pesan</button>
                             @endif
                         </td>
                     </tr>
@@ -61,3 +61,22 @@
     </div>
 </section>
 @endsection
+
+@push('addon-script')
+    <script>
+    $('.congratulation').on('click', function(){
+        const status = $(this).data('id');
+        alert(id);
+    })
+
+    const congratulation = () => {
+        Swal.fire(
+            'Selamat',
+            'Silakan datang ke perusahaan untuk interview',
+            'success'
+        )
+    }
+
+console.log('hello world');
+</script>
+@endpush

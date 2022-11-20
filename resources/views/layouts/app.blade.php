@@ -22,6 +22,32 @@
     {{-- content --}}
     @yield('content')
 
+    <div class="modal fade" id="change-role" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Employer</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('change-role') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="fw-semibold">Apakah anda yakin?</div>
+                        <p class="">Dengan menjadi employer anda dapat melakukan hal-hal berikut ini:</p>
+                        <ul style="list-style: initial">
+                            <li>membuat perusahaan,</li>
+                            <li>membuat lowongan pekerjaan.</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Keluar</button>
+                        <button type="submit" class="btn btn-primary">Yakin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <hr style="background-color: #333;">
 
     {{-- footer --}}

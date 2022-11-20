@@ -94,3 +94,44 @@
 				}).draw();
 		</script>
 @endpush
+
+@push('script')
+<script>
+    const deleteConfirm = (id,name) => {
+        console.log(id);
+        Swal.fire({
+            title: 'Tenane?',
+            text: "Menghapus industri "+ name +"",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let url = '{{ route('province.destroy', ":id") }}'
+                url = url.replace(':id', id)
+                
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        '_method': 'DELETE',
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    success: function(){
+                        Swal.fire(
+                            'Deleted!',
+                            'Data berhasil dihapus.',
+                            'success'
+                        )
+                    }
+                });
+            // window.location = "/admin/categories/delete/"+ data +"";
+            }
+        })
+    }
+
+    console.log('menjadi orang sukses');
+</script>
+@endpush

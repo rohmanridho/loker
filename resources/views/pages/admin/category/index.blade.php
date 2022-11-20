@@ -17,7 +17,7 @@
               @if (session()->has('success'))
               <p class="alert alert-success" id="message"">{{ session('success') }}</p>
                             @endif
-                            <button type=" button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
                 data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create New
                 Category</button>
               <div class="table-responsive">
@@ -98,11 +98,11 @@
 
 @push('script')
 <script>
-  const deleteConfirm = (data) => {
-        console.log(data);
+  const deleteConfirm = (id,name) => {
+        console.log(id);
         Swal.fire({
             title: 'Tenane?',
-            text: "Menghapus kategori "+ data +"",
+            text: "Menghapus kategori "+ name +"",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -111,7 +111,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 let url = '{{ route('categories.destroy', ":id") }}'
-                url = url.replace(':id', data)
+                url = url.replace(':id', id)
                 
                 $.ajax({
                     type: 'POST',

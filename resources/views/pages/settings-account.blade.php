@@ -12,7 +12,7 @@
                     </div>
                     <hr>
                     <div class="row justify-content-between">
-                        <div class="col-12 col-md-4 order-md-2 mb-3">
+                        {{-- <div class="col-12 col-md-4 order-md-2 mb-3">
                             <form action="">
                                 <label class="d-block">Profile picture</label>
                                 <input type="file" class="d-none" id="profile-picture">
@@ -27,22 +27,23 @@
                                     </button>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                         <div class="col-12 col-md-7 order-md-1">
-                            <form action="">
+                            <form action="{{ route('settings-update', 'account-settings') }}" method="POST">
+                                @csrf
                                 <div class="form-group mb-2">
-                                    <label for="fusername">Username</label>
-                                    <input type="text" id="fusername" class="form-control" value="sooyaaa">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="femail">Email</label>
-                                    <input type="email" id="femail" class="form-control" value="queenjisoo@gmail.com">
+                                    <label for="fname">Name</label>
+                                    <input type="text" id="fname" name="name" class="form-control" value="{{ $user->name }}">
                                 </div>
                                 <div class="form-group mb-3">
+                                    <label for="femail">Email</label>
+                                    <input type="email" id="femail" name="email" class="form-control" value="{{ $user->email }}">
+                                </div>
+                                {{-- <div class="form-group mb-3">
                                     <label for="fpassword">Password</label>
                                     <input type="password" id="fpassword" class="form-control" value="sooyaaa">
-                                </div>
-                                <button class="btn btn-primary fw-semibold">Update</button>
+                                </div> --}}
+                                <button type="submit" class="btn btn-primary fw-semibold">Save</button>
                             </form>
                         </div>
                     </div>

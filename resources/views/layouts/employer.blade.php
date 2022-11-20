@@ -81,7 +81,8 @@
                             <!-- Mobile Menu -->
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
-                                    <a href="{{ route('profile') }}" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
+                                    <a href="{{ route('profile', Auth::user()->name) }}" class="nav-link"> Hi, {{
+                                        Auth::user()->name }} </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();

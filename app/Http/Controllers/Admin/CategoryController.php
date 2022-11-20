@@ -34,8 +34,8 @@ class CategoryController extends Controller
                                 </button>
                                 <div class="dropdown-menu">
                                     <button type="button" class="dropdown-item" data-bs-toggle="modal"
-                                data-bs-target="#edit-modal-'. $category->id .'" data-bs-whatever="@getbootstrap">Edit</button>
-                                    <button class="dropdown-item text-danger" onclick="deleteConfirm('.$category->id.')">Delete</button>
+                                data-bs-target="#edit-modal-' . $category->id . '" data-bs-whatever="@getbootstrap">Edit</button>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $category->id . ',\'' . $category->name . '\')">Delete</button>
                                 </div>
                         </div>
                     </div>
