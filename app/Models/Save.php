@@ -10,7 +10,7 @@ class Save extends Model
     use HasFactory;
 
     protected $fillable = [
-        'jobs_id', 'users_id'
+        'users_id', 'jobs_id'
     ];
 
     public function job()

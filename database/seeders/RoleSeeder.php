@@ -18,6 +18,8 @@ class RoleSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         DB::table('roles')->truncate();
+        Schema::enableForeignKeyConstraints();
+
         $roles = [
             [
                 'name' => 'Admin'
@@ -26,13 +28,13 @@ class RoleSeeder extends Seeder
             ], [
                 'name' => 'Job seeker'
             ]
-            ];
+        ];
 
-            foreach($roles as $role) {
-                DB::table('roles')->insert([
-                    'name' => $role['name'],
-                    'created_at' => Carbon::now(),
-                ]);
-            }
+        foreach ($roles as $role) {
+            DB::table('roles')->insert([
+                'name' => $role['name'],
+                'created_at' => Carbon::now(),
+            ]);
+        }
     }
 }

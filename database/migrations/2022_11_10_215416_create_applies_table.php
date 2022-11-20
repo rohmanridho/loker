@@ -16,9 +16,10 @@ class CreateAppliesTable extends Migration
         Schema::create('applies', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('jobs_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('users_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('jobs_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('status')->default('ditinjau'); //diterima, ditolak
+            $table->text('message')->nullable();
 
             $table->timestamps();
         });

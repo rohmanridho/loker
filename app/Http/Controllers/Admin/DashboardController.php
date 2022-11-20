@@ -16,7 +16,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $users = User::count();
+        $users = User::where(['roles_id' => [2, 3]])->count();
         $companies = Company::count();
         $jobs = Job::count();
         $industries = Industry::count();

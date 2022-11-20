@@ -70,8 +70,8 @@
 										name: 'photo'
 								},
 								{
-										data: 'industry.name',
-										name: 'industry.name'
+										data: 'industries_id',
+										name: 'industries_id'
 								},
 								{
 										data: 'province.name',

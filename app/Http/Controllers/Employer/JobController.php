@@ -31,9 +31,10 @@ class JobController extends Controller
                     return '
                     <div class= "btn-group">
                         <div class= "dropdown">
-                            <button class= "btn btn-primary dropdown-toggle mr-1 mb-1"
+                            <button class= "btn btn-outline-primary"
                                     type= "button"
-                                    data-toggle= "dropdown">
+                                    role="button"
+                                    data-bs-toggle="dropdown">
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">

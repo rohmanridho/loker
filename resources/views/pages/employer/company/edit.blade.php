@@ -59,7 +59,7 @@
                                             <label for="fprovince">Province</label>
                                             <select name="provinces_id" id="fprovince" class="form-control">
                                                 <option value="{{ $company->provinces_id }}" selected>{{
-                                                    $company->province->name }}</option>
+                                                    $company->province->name }} (Tidak ganti)</option>
                                                 @foreach ($provinces as $province)
                                                 <option value="{{ $province->id }}">{{ $province->name }}</option>
                                                 @endforeach

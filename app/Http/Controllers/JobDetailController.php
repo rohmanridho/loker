@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class JobDetailController extends Controller
 {
-    public function index(Request $request, $slug)
+    public function index(Request $request, $company, $slug)
     {
         $job = Job::with(['company.province', 'category'])->where('slug', $slug)->first();
         if (Auth::check()) {

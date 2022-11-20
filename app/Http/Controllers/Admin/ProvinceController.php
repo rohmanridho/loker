@@ -26,10 +26,10 @@ class ProvinceController extends Controller
                 ->addColumn('action', function ($province) {
                     return '
                     <div class= "btn-group">
-                        <div class= "dropdown">
-                            <button class= "btn btn-primary dropdown-toggle mr-1 mb-1"
-                                    type= "button"
-                                    data-toggle= "dropdown">
+                        <div class="dropdown-center">
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    data-bs-toggle="dropdown">
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
@@ -46,10 +46,7 @@ class ProvinceController extends Controller
                     </div>
                 ';
                 })
-                ->editColumn('photo', function ($province) {
-                    return $province->photo ? '<img src="' . Storage::url($province->photo) . '" style="height: 64px; aspect-ratio: 4/3; border-radius: 4px; object-fit: cover;"/>' : '';
-                })
-                ->rawColumns(['action', 'photo'])
+                ->rawColumns(['action'])
                 ->make();
         }
         return view('pages.admin.province.index');
@@ -74,8 +71,8 @@ class ProvinceController extends Controller
     public function store(ProvinceRequest $request)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/province', 'public');
+        // $data['slug'] = Str::slug($request->name);
+        // $data['photo'] = $request->file('photo')->store('assets/province', 'public');
 
         Province::create($data);
         return redirect()->route('province.index');
@@ -116,8 +113,8 @@ class ProvinceController extends Controller
     public function update(ProvinceRequest $request, $id)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/province', 'public');
+        // $data['slug'] = Str::slug($request->name);
+        // $data['photo'] = $request->file('photo')->store('assets/province', 'public');
 
         $province = Province::find($id);
         $province->update($data);

@@ -41,9 +41,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/job', [ControllersJobController::class, 'index'])->name('search-job');
 
-Route::get('/company/{slug}', [CompanyDetailController::class, 'index'])->name('company-detail');
+Route::get('company/{slug}', [CompanyDetailController::class, 'index'])->name('company-detail');
 
-Route::get('/job/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
+Route::get('company/{company}/job/{slug}', [JobDetailController::class, 'index'])->name('job-detail');
 
 Route::group(
     [
@@ -68,22 +68,6 @@ Route::group(
 
 
 
-        Route::group(
-            [
-                'prefix' => 'admin',
-                // 'middleware' => 'CheckRole:admin'
-            ],
-            function () {
-                Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
-                Route::resource('categories', CategoryController::class);
-                Route::resource('companies', CompanyController::class);
-                Route::resource('industry', IndustryController::class);
-                Route::resource('province', ProvinceController::class);
-                Route::resource('gallery', GalleryController::class);
-                Route::resource('users', UserController::class);
-                Route::resource('jobs', JobController::class);
-            }
-        );
 
         Route::group(
             [
@@ -96,6 +80,23 @@ Route::group(
                 Route::resource('job', EmployerJobController::class);
                 Route::get('apply', [EmployerApplyController::class, 'index'])->name('apply-index');
                 Route::match(['get', 'post'], 'update-apply/{id}', [EmployerApplyController::class, 'update'])->name('apply-update');
+            }
+        );
+
+        Route::group(
+            [
+                'prefix' => 'admin',
+                'middleware' => 'CheckRole:admin'
+            ],
+            function () {
+                Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
+                Route::resource('categories', CategoryController::class);
+                Route::resource('companies', CompanyController::class);
+                Route::resource('industry', IndustryController::class);
+                Route::resource('province', ProvinceController::class);
+                Route::resource('gallery', GalleryController::class);
+                Route::resource('users', UserController::class);
+                Route::resource('jobs', JobController::class);
             }
         );
     }

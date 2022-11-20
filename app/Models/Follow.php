@@ -12,7 +12,7 @@ class Follow extends Model
     use HasFactory;
 
     protected $fillable = [
-        'companies_id', 'users_id'
+        'users_id', 'companies_id'
     ];
 
     protected $hidden = [];

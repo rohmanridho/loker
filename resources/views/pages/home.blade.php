@@ -14,7 +14,8 @@ JobStreet - Let's find your jobs
                 <div class="col-12 col-md-7">
                     <div class="form-group job-search">
                         <span class="bi bi-search job-serach-icon"></span>
-                        <input type="search" name="search" class="form-control" placeholder="Cari Pekerjaan">
+                        <input type="search" name="search" class="form-control"
+                            placeholder="Cari perusahaan atau pekerjaan">
                     </div>
                 </div>
             </div>
@@ -49,7 +50,7 @@ JobStreet - Let's find your jobs
                                             </a>
                                         </div>
                                         <div class="job-name">
-                                            <a href="{{ route('job-detail', $job->slug) }}">{{ $job->name }}</a>
+                                            <a href="{{ route('job-detail', ['company' => $job->company->slug, 'slug' => $job->slug]) }}">{{ $job->name }}</a>
                                         </div>
                                         <div class="company-name mb-2">
                                             <a href="{{ route('company-detail', $job->company->slug) }}">{{
@@ -62,7 +63,7 @@ JobStreet - Let's find your jobs
                                             IDR {{ number_format($job->salary) }}
                                         </div>
                                         <div class="time">
-                                            5 days ago
+                                            {{ $job->created_at->diffForHumans() }}
                                         </div>
                                     </div>
                                 </div>
@@ -83,16 +84,18 @@ JobStreet - Let's find your jobs
             <div class="container popular-searches mb-2">
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-10 d-flex justify-content-center flex-wrap searches">
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Admin</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Telemarketing</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Accounting</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Quality Control</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Fresh Graduate</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Marketing</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Manager</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;HRD</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;Bank</a>
-                        <a href="" class="category"><i class="bi bi-search"></i> &nbsp;IT</a>
+                        @foreach ($categories as $category)
+                        <form action="{{ route('search-job') }}" method="GET" id="search-job" class="d-none">
+                            <input type="search" name="search" value="{{ $category->name }}">
+                        </form>
+                        <a href="/job?search={{ $category->name }}" onclick="event.preventDefault();
+                                                     document.getElementById('search-job').submit();"
+                            class="category"><i class="bi bi-search"></i>
+                            &nbsp;{{ $category->name }}</a>
+                        @endforeach
+<a href="{{ route('search-job', ['search' => 'jisoo']) }}"
+    class="category"><i class="bi bi-search"></i>
+    &nbsp;jisoo</a>
                     </div>
                 </div>
             </div>

@@ -18,6 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         if (request()->ajax()) {
             $query = Category::all();
 
@@ -25,21 +26,16 @@ class CategoryController extends Controller
                 ->addColumn('action', function ($category) {
                     return '
                     <div class= "btn-group">
-                        <div class= "dropdown">
-                            <button class= "btn btn-primary dropdown-toggle mr-1 mb-1"
-                                    type= "button"
-                                    data-toggle= "dropdown">
+                        <div class= "dropdown-center">
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    data-bs-toggle="dropdown">
                                     Actions
                                 </button>
-                                <div class= "dropdown-menu">
-                                    <a href="' . route('categories.edit', $category->id) . '" class="dropdown-item">
-                                    Edit</a>
-                                    <form action= "' . route('categories.destroy', $category->id) . '" method= "POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class= "dropdown-item text-danger">
-                                        Delete
-                                        </button>
-                                    </form>
+                                <div class="dropdown-menu">
+                                    <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#edit-modal-'. $category->id .'" data-bs-whatever="@getbootstrap">Edit</button>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm('.$category->id.')">Delete</button>
                                 </div>
                         </div>
                     </div>
@@ -48,7 +44,9 @@ class CategoryController extends Controller
                 ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.admin.category.index');
+        return view('pages.admin.category.index', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -58,7 +56,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.category.create');
+        // return view('pages.admin.category.create');
     }
 
     /**
@@ -70,10 +68,12 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $data = $request->all();
+        // $data = $request['name'];
         $data['slug'] = Str::slug($request->name);
 
         Category::create($data);
-        return redirect()->route('categories.index');
+        $request->session()->flash('success', 'Successed');
+        return redirect()->back();
     }
 
     /**
@@ -95,10 +95,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('pages.admin.category.edit', [
-            'category' => $category
-        ]);
+        // $category = Category::find($id);
+        // return view('pages.admin.category.edit', [
+        //     'category' => $category
+        // ]);
     }
 
     /**
@@ -115,7 +115,8 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->update($data);
-        return redirect()->route('categories.index');
+        // return redirect()->route('categories.index');
+        return redirect()->back()->with('success', 'Update Successed');
     }
 
     /**
@@ -128,6 +129,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return redirect()->route('categories.index');
+        return redirect()->back();
     }
 }

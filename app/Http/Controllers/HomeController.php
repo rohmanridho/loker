@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Job;
 use App\Models\Company;
 use App\Models\Category;
@@ -21,7 +22,7 @@ class HomeController extends Controller
             'jobs' => $jobs,
             'companies' => $companies,
             'categories' => $categories,
-            'industries' => $industries
+            'industries' => $industries,
         ]);
     }
 }

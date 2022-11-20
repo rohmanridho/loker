@@ -2,11 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>@yield('title')</title>
+
+    {{-- styles --}}
     @include('includes.admin-style')
     @stack('style')
 </head>
@@ -58,7 +61,7 @@
                                         id="navbarDropdown" role="button" data-toggle="dropdown">
                                         <div class="d-flex rounded-circle mr-2"
                                             style="width: 40px; height: 40px; background: #0000ff10;"><span
-                                                class="m-auto fw-bold" style="font-size: 24px;">{{
+                                                class="m-auto" style="font-size: 24px;">{{
                                                 strtoupper(Auth::user()->name)[0] }}</span></div>
                                         <span>Hi, {{ Auth::user()->name }}</span>
                                     </span>
@@ -98,6 +101,9 @@
         </div>
     </div>
 
+    @yield('modal')
+
+    {{-- scripts --}}
     @include('includes.dashboard-script')
     @stack('script')
 </body>

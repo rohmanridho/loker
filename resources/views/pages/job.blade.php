@@ -37,7 +37,7 @@ echo $_REQUEST['search'];} @endphp">
                         </div>
                         <div class="col-7">
                             <div class="py-2 pr-2">
-                                <a href="{{ route('job-detail', $job->slug) }}"
+                                <a href="{{ route('job-detail', ['company' => $job->company->slug,'slug' => $job->slug]) }}"
                                     class="fw-bold fs-4 d-block job-name ">{{
                                     $job->name
                                     }}</a>

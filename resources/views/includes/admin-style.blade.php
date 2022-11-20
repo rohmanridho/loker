@@ -45,7 +45,7 @@
     }
 
     .page-dashboard .list-group-item {
-        /* padding: 0.75rem 1.25rem; */
+        padding: 0.75rem 1.25rem;
         border: 0;
         font-size: 16px;
         color: #c5c5c5;

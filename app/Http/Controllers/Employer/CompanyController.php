@@ -30,9 +30,9 @@ class CompanyController extends Controller
                     return '
                     <div class= "btn-group">
                         <div class= "dropdown">
-                            <button class= "btn btn-primary dropdown-toggle mr-1 mb-1"
+                            <button class= "btn btn-outline-primary"
                                     type= "button"
-                                    data-toggle= "dropdown">
+                                    data-toggle="dropdown">
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
@@ -67,8 +67,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $industries = Industry::all();
-        $provinces = Province::all();
+        $industries = Industry::orderBy('name')->get();
+        $provinces = Province::orderBy('name')->get();
         return view('pages.employer.company.create', [
             'industries' => $industries,
             'provinces' => $provinces
@@ -111,8 +111,8 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $company = Company::with(['industry', 'province'])->find($id);
-        $industries = Industry::all();
-        $provinces = Province::all();
+        $industries = Industry::orderBy('name')->get();
+        $provinces = Province::orderBy('name')->get();
         return view('pages.employer.company.edit', [
             'company' => $company,
             'industries' => $industries,

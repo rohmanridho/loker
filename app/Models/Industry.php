@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Industry extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    // use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name', 'photo', 'slug'

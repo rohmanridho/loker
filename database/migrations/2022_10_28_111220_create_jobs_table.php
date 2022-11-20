@@ -24,6 +24,8 @@ class CreateJobsTable extends Migration
             $table->integer('salary')->nullable();
             $table->string('schedule')->nullable();
             $table->text('description')->nullable();
+            $table->integer('slot')->nullable();
+            $table->string('status')->nullable();
 
             $table->timestamps();
             // $table->softDeletes();

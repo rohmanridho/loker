@@ -19,10 +19,10 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('photo')->nullable();
-            $table->foreignId('users_id')->constrained();
-            $table->foreignId('industries_id')->constrained();
-            $table->foreignId('provinces_id')->constrained();
-            $table->text('description');
+            $table->foreignId('users_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('industries_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('provinces_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
+            $table->text('description')->nullable();
 
             $table->timestamps();
             // $table->softDeletes();

@@ -10,6 +10,6 @@ class Province extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'photo', 'slug'
+        'name'
     ];
 }

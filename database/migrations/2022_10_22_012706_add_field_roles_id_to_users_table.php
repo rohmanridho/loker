@@ -14,7 +14,7 @@ class AddFieldRolesIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('roles_id')->default(3)->after('remember_token')->constrained();
+            $table->foreignId('roles_id')->default(3)->after('remember_token')->constrained()->cascadeOnUpdate()->restrictOnDelete();
         });
     }
 
