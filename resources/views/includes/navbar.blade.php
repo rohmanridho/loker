@@ -2,14 +2,16 @@
     <div class="container-fluid px-2 px-sm-0">
         <a class="navbar-brand" href="{{ route('home') }}">
             <div class="fs-3 fw-bold" style="color: #1e3a9b">Needed</div>
-            {{-- <img src="{{ asset('images/needed.png') }}" style="height: 60px;"> --}}
         </a>
 
         <div class="d-flex d-lg-none align-items-center">
             @guest
+            @if (request()->is('login') || request()->is('register'))
+            @else
             <a href="{{ route('login') }}" class="btn btn-primary button-darkblue btn-block fw-semibold"><i
                     class="bi bi-person-fill"></i> &nbsp;Login</a>
             <div style="width: 20px; height: 20px; background-color: transparent"></div>
+            @endif
             @endguest
             @auth
             <a href="{{ route('save') }}" class="nav-link bookmark-icon">
@@ -24,7 +26,7 @@
 
         <ul class="nav flex-column nav-top" id="navbarNav">
             <li class="nav-item">
-                <a href="{{ route('home') }}}}" class="nav-link">Home</a>
+                <a href="{{ route('home') }}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('search-job') }}" class="nav-link">Find Jobs</a>
@@ -32,6 +34,7 @@
             <li class="nav-item">
                 <a href="{{ route('apply') }}" class="nav-link">Apply</a>
             </li>
+            @auth
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
                 <a href="{{ route('profile', Auth::user()->name) }}" class="nav-link">Profile</a>
@@ -44,17 +47,22 @@
             </li>
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
-                <a href="{{ route("account-settings") }}" class="nav-link">Account settings</a>
+                <a href="{{ route('account-settings') }}" class="nav-link">Account settings</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route("contact-settings") }}" class="nav-link">Contact settings</a>
+                <a href="{{ route('contact-settings') }}" class="nav-link">Contact settings</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route("privacy-settings") }}" class="nav-link">Privacy settings</a>
+                <a href="{{ route('privacy-settings') }}" class="nav-link">Privacy settings</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Logout</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </li>
+            @endauth
         </ul>
 
         <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between">
@@ -97,22 +105,34 @@
                         <i class="bi bi-person-fill"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('profile', Auth::user()->name) }}"><i class="bi bi-person-lines-fill"></i>
+                        <li>
+                            <span class="dropdown-item fw-bold py-3">{{ Auth::user()->email }}</span>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2" href="{{ route('profile', Auth::user()->name) }}"><i
+                                    class="bi bi-person-lines-fill"></i>
                                 &nbsp;
-                                Profile</a></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
                                 &nbsp;
-                                Follow</a></li>
-                        <li><a class="dropdown-item py-2" href="{{ route('account-settings') }}"><i
+                                Follow</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2" href="{{ route('account-settings') }}"><i
                                     class="bi bi-gear-fill"></i>
                                 &nbsp;
-                                Settings</a></li>
+                                Settings</a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li class="text-center"><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();" class="dropdown-item fw-semibold">Logout</a>
+                        <li class="text-center">
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"
+                                class="dropdown-item fw-semibold">Logout</a>
                         </li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
@@ -125,12 +145,8 @@
                 <li class="nav-item">
                     <form></form>
                     @if (Auth::user()->roles_id == 3)
-                    {{-- <form action="{{ route('change-role') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn">Employers / Post Jobs</button>
-                    </form> --}}
-                    <button type="button" class="btn" data-bs-toggle="modal"
-                        data-bs-target="#change-role" data-bs-whatever="@getbootstrap">Employers / Post Jobs</button>
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#change-role"
+                        data-bs-whatever="@getbootstrap">Employers / Post Jobs</button>
                     @else
                     @if (Auth::user()->roles_id == 2)
                     <a class="nav-link" href="{{ route('job.index') }}">Employers / Post

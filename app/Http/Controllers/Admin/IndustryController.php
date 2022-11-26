@@ -70,7 +70,7 @@ class IndustryController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/industry', 'public');
+        $data['photo'] = $request->file('photo')->store('industry', 'public');
 
         Industry::create($data);
         return redirect()->route('industry.index');
@@ -112,10 +112,17 @@ class IndustryController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/industry', 'public');
-
+        if($request->has('photo')) {
+            $data['photo'] = $request->file('photo')->store('industry', 'public');
+        }
         $industry = Industry::find($id);
         $industry->update($data);
+
+        // $industry = Industry::find($id);
+        // $industry->name = $request->name;
+        // $industry->slug = Str::slug($request->name);
+        // $industry->photo = $request->photo;
+        // $industry->save();
         return redirect()->route('industry.index');
     }
 

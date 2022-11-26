@@ -1,6 +1,6 @@
 @extends('layouts.setting')
 
-@section('title', 'Privacy settings')
+@section('title', 'Privacy settings | Needed')
 
 @section('content')
 <div class="settings-section" id="settings-section">

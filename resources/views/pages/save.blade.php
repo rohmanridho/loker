@@ -22,14 +22,14 @@
                                         class="rounded-circle">
                                 </td>
                                 <td class="description">
-                                    <a href="{{ route('job-detail', $save->job->slug) }}" class="job-name">{{
+                                    <a href="{{ route('job-detail', ['company' => $save->job->company->name, 'slug' => $save->job->slug]) }}" class="job-name">{{
                                         $save->job->name }}</a>
                                     <div class="company">{{ $save->job->company->name }} - {{
                                         $save->job->company->province->name }}</div>
                                 </td>
                                 <td class="button">
                                     <form></form>
-                                    <form action="{{ route('save-destroy', $save->id) }}" method="POST">
+                                    <form action="{{ route('save.destroy', $save->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-outline-danger btn-block w-100">

@@ -8,104 +8,37 @@ use App\Models\Province;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CompanyRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Admin\CompanyRequest;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        if (request()->ajax()) {
-            $query = Company::with(['industry', 'province'])->where('users_id', Auth::user()->id);
-
-            return DataTables::of($query)
-                ->addColumn('action', function ($company) {
-                    return '
-                    <div class= "btn-group">
-                        <div class= "dropdown">
-                            <button class= "btn btn-primary"
-                                    type= "button"
-                                    data-toggle="dropdown">
-                                    Actions
-                                </button>
-                                <div class= "dropdown-menu">
-                                    <a href="' . route('company.show', $company->id) . '" class="dropdown-item">
-                                    Preview</a>
-                                    <a href="' . route('company.edit', $company->id) . '" class="dropdown-item">
-                                    Edit</a>
-                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $company->id . ',\'' . $company->name . '\')">Delete</button>
-                                </div>
-                        </div>
-                    </div>
-                ';
-                })
-                ->editColumn('photo', function ($company) {
-                    return $company->photo ? '<img src="' . Storage::url($company->photo) . '" style="height: 64px; aspect-ratio: 1/1; border-radius: 4px; object-fit: cover;"/>' : '';
-                })
-                ->rawColumns(['action', 'photo'])
-                ->make();
+    public function create() {
+        $companies = Company::where('users_id', Auth::user()->id)->count();
+        
+        if ($companies == 1) {
+            return redirect()->route('company.edit');
+        } else {
+            $industries = Industry::orderBy('name')->get();
+            $provinces = Province::orderBy('name')->get();
+            return view('pages.employer.company.create', [
+                'industries' => $industries,
+                'provinces' => $provinces
+            ]);
         }
-        return view('pages.employer.company.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $industries = Industry::orderBy('name')->get();
-        $provinces = Province::orderBy('name')->get();
-        return view('pages.employer.company.create', [
-            'industries' => $industries,
-            'provinces' => $provinces
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CompanyRequest $request)
-    {
+    public function store(CompanyRequest $request) {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
         $data['photo'] = $request->file('photo')->store('assets/company', 'public');
 
         Company::create($data);
-        return redirect()->route('company.index');
+        return redirect()->route('company.edit');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $company = Company::with(['industry', 'province'])->find($id);
+    public function edit() {
+        $company = Company::with(['industry', 'province', 'user'])->where('users_id', Auth::user()->id)->first();
         $industries = Industry::orderBy('name')->get();
         $provinces = Province::orderBy('name')->get();
         return view('pages.employer.company.edit', [
@@ -113,36 +46,5 @@ class CompanyController extends Controller
             'industries' => $industries,
             'provinces' => $provinces
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CompanyRequest $request, $id)
-    {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/company', 'public');
-
-        $company = Company::find($id);
-        $company->update($data);
-        return redirect()->route('company.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $company = Company::find($id);
-        $company->delete();
-        return redirect()->route('company.index');
     }
 }

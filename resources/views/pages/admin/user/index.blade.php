@@ -1,6 +1,6 @@
 @extends ('layouts.admin')
 
-@section('title', 'Users - Admin Dashboard')
+@section('title', 'Users - Admin Dashboard | Needed')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
@@ -99,8 +99,8 @@
     const deleteConfirm = (id,name) => {
         console.log(id);
         Swal.fire({
-            title: 'Tenane?',
-            text: "Menghapus user "+ name +"",
+            title: 'Warning',
+            text: "Apakah anda yakin ingin menghapus user dengan nama "+ name +"",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

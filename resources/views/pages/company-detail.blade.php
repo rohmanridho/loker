@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Company Detail')
+@section('title', 'Detail Perusahaan ' . $company->name . ' | Needed ')
 
 @section('content')
 <section class="page-company-detail mt-4">

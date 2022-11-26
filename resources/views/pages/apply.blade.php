@@ -5,70 +5,68 @@
 @section('content')
 <section class="page-apply mt-4">
     <div class="container">
-        <div class="row">
-            <div class="col-12 fw-bold fs-3 mb-3">Lamaran Pekerjaan</div>
-            <div class="col-12 col-md-10 table-responsive">
-                <table class="table table-borderless">
-                    <tr>
-                        <th>Pekerjaan</th>
-                        <th>Perusahaan</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                    @forelse ($applies as $apply)
-                    <tr>
-                        <td class="">
-                            <div class="">{{ $apply->job->name }}</div>
-                        </td>
-                        <td class="">
-                            <div class="">{{ $apply->job->company->name }}</div>
-                        </td>
-                        <td class="">
-                            <div class="">{{ $apply->status }}</div>
-                        </td>
-                        <td class="button">
-                            <form></form>
-                            @if ($apply->status == 'ditinjau')
+        <div class="row justify-content-center">
+            @if ($apply_status != 0)
+            <h1 class="col-12 col-md-10 fs-5 mb-3">
+                <span class="fw-semibold">Lamaran Pekerjaan</span><span class="text-secondary fw-light"> | Sedang
+                    Diproses</span>
+            </h1>
+            @endif
+            @foreach ($applies as $apply)
+            <div class="col-12 col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 pl-5">
+                                <div class="d-flex flex-column">
+                                    <div class="mb-3">
+                                        <div class="text-secondary">Pekerjaan</div>
+                                        <div class="">{{ $apply->job->name }}</div>
+                                    </div>
+                                    <div class="">
+                                        <div class="text-secondary">Perusahaan</div>
+                                        <div class="">{{ $apply->job->company->name }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex flex-column">
+                                    <div class="mb-3">
+                                        <div class="text-secondary">Tanggal</div>
+                                        <div class="">{{ $apply->created_at->toDateString() }}</div>
+                                    </div>
+                                    <div class="">
+                                        <div class="text-secondary">Status</div>
+                                        <div class="">Sedang Diproses</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 d-none d-md-flex pr-5 justify-content-center flex-column gap-2">
+                                <a href="{{ route('generate-pdf', $apply->id) }}" class="btn btn-outline-primary btn-block w-100 fw-medium" target="_blank" style="font-size: 14px">Cetak
+                                    Bukti</a>
                                 <form action="{{ route('apply-destroy', $apply->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-outline-danger btn-block w-50">
+                                    <button type="submit" class="btn btn-danger btn-block w-100" style="font-size: 14px;">
                                         Batal
                                     </button>
                                 </form>
-                            @elseif ($apply->status == 'diterima')
-                                <button class="btn btn-outline-primary" onclick="congratulation()">Pesan</button>
-                            @endif
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="4">
-                            <div class="h-75 w-100 text-center">
-                                <img src="{{ asset('images/no_data.png') }}" alt="" class="d-block mx-auto"
-                                    style="width: 40%;">
-                                <span class="fw-semibold d-block mb-2">Belum Melamar Pekerjaan</span>
-                                <a href="{{ route('search-job') }}" class="btn btn-primary">Cari Pekerjaan</a>
                             </div>
-                        </td>
-                    </tr>
-                    @endforelse
-                </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{ $applies->links() }}
+            @endforeach
         </div>
-
+        @if ($applies->count() <= 1) <div class="" style="height: 50vh;">
+    </div>
+    @endif
     </div>
 </section>
 @endsection
 
 @push('addon-script')
-    <script>
-    $('.congratulation').on('click', function(){
-        const status = $(this).data('id');
-        alert(id);
-    })
-
+<script>
     const congratulation = () => {
         Swal.fire(
             'Selamat',
@@ -76,7 +74,6 @@
             'success'
         )
     }
-
-console.log('hello world');
+    console.log('hello world');
 </script>
 @endpush

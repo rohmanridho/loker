@@ -1,6 +1,6 @@
 @extends ('layouts.admin')
 
-@section('title', 'Provinces - Admin Dashboard')
+@section('title', 'Provinces - Admin Dashboard | Needed')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
@@ -14,8 +14,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <button type=" button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#create-modal"
-                                data-bs-whatever="@getbootstrap">+ Create New Province</button>
+                            <button type=" button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                                data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create New
+                                Province</button>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
@@ -145,7 +146,7 @@
     const deleteConfirm = (id,name) => {
         console.log(id);
         Swal.fire({
-            title: 'Tenane?',
+            title: 'Warning',
             text: "Menghapus privinsi "+ name +"",
             icon: 'warning',
             showCancelButton: true,

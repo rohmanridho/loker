@@ -1,13 +1,13 @@
 @extends('layouts.employer')
 
-@section('title', 'Jobs Employer Dashboard')
+@section('title', 'Lowongan Pekerjaan - Employer Dashboard | Needed')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Job</h2>
-            <p class="dashboard-subtitle">Edit Job</p>
+            <h2 class="dashboard-title">Lowongan Pekerjaan</h2>
+            <p class="dashboard-subtitle">Edit Detail Lowongan Pekerjaan</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -27,30 +27,25 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+                                <input type="hidden" name="companies_id" value="{{ $company->id }}">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="fname">Job</label>
+                                            <label for="fname">Nama Pekerjaan</label>
                                             <input type="text" id="fname" name="name" class="form-control"
                                                 value="{{ $job->name }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="fcompany">Company</label>
-                                            <select name="companies_id" id="fcompany" class="form-control">
-                                                <option value="{{ $job->companies_id }}" selected>{{ $job->company->name
-                                                    }}</option>
-                                                @foreach ($companies as $company)
-                                                <option value="{{ $company->id }}">{{ $company->name }}
-                                                </option>
-                                                @endforeach
-                                            </select>
+                                            <label for="fcompanyname">Nama Perusahaan</label>
+                                            <input type="text" id="fcompanyname" class="form-control"
+                                                value="{{ $company->name }}" disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="fcategory">Category</label>
+                                            <label for="fcategory">Posisi</label>
                                             <select name="categories_id" id="fcategory" class="form-control">
                                                 <option value="{{ $job->categories_id }}">{{ $job->category->name }}
                                                 </option>
@@ -62,39 +57,40 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="fsalary">Salary</label>
+                                            <label for="fsalary">Gaji</label>
                                             <input type="number" id="fsalary" name="salary" class="form-control"
                                                 value="{{ $job->salary }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="ftype">Job Type</label>
+                                            <label for="ftype">Tipe Pekerjaan</label>
                                             <select name="type" id="ftype" class="form-control">
-                                                <option value="{{ $job->type }}" selected>{{ $job->type }}</option>
-                                                <option value="Full Time">Full Time</option>
-                                                <option value="Part Time">Part Time</option>
-                                                <option value="Contract">Contract</option>
+                                                <option value="{{ $job->type }}" selected>{{ $job->type }} (tidak ganti)</option>
+                                                <option value="Paruh Waktu">Paruh Waktu</option>
+                                                <option value="Penuh waktu">Penuh Waktu</option>
+                                                <option value="Pekerja Tetap">Pekerja Tetap</option>
+                                                <option value="Kontrak">Kontrak</option>
                                                 <option value="Remote">Remote</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="fschedule">Schedule</label>
+                                            <label for="fschedule">Jadwal</label>
                                             <select name="schedule" id="fschedule" class="form-control">
-                                                <option value="{{ $job->schedule }}" selected>{{ $job->schedule }}
+                                                <option value="{{ $job->schedule }}" selected>{{ $job->schedule }} (tidak ganti)
                                                 </option>
-                                                <option value="Monday to Friday">Monday to Friday</option>
-                                                <option value="Monday to Saturday">Monday to Saturday</option>
-                                                <option value="Day Shift">Day Shift</option>
-                                                <option value="Night Shift">Night Shift</option>
+                                                <option value="Setiap Hari">Setiap Hari</option>
+                                                <option value="Senin sampai Jum'at">Senin sampai Jum'at</option>
+                                                <option value="Senin sampai Sabtu">Senin sampai Sabtu</option>
+                                                <option value="Shift Malam">Shift Malam</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="fdescription">Description</label>
+                                            <label for="fdescription">Tentang Pekerjaan</label>
                                             <textarea name="description"
                                                 id="editor">{!! $job->description !!}</textarea>
                                         </div>
@@ -102,9 +98,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-primary px-5 mr-2">Update</button>
-                                        <button type="button" class="btn btn-outline-danger px-5"
-                                            onclick="history.back()">Cancel</button>
+                                        <button type="button" class="btn btn-outline-danger px-5 mr-2"
+                                            onclick="history.back()">Batal</button>
+                                        <button type="submit" class="btn btn-primary px-5">Simpan</button>
                                     </div>
                                 </div>
                             </form>

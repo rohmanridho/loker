@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndustryRequest extends FormRequest
+class PictureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +14,6 @@ class IndustryRequest extends FormRequest
     public function authorize()
     {
         return true;
-        // return Auth::check();
     }
 
     /**
@@ -26,8 +24,7 @@ class IndustryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'photo' => 'image|mimes:png,jpg,jpeg'
+            'profile_picture' => 'image|mimes:jpg,jpeg,png'
         ];
     }
 }

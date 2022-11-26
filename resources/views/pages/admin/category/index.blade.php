@@ -1,107 +1,108 @@
 @extends('layouts.admin')
 
-@section('title', 'Categories - Admin Dashboard')
+@section('title', 'Categories - Admin Dashboard | Needed')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
-  <div class="container-fluid">
-    <div class="dashboard-heading">
-      <h2 class="dashboard-title">Category</h2>
-      <p class="dashboard-subtitle">List of Categories</p>
-    </div>
-    <div class="dashboard-content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              @if (session()->has('success'))
-              <p class="alert alert-success" id="message"">{{ session('success') }}</p>
-                            @endif
-                            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
-                data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create New
-                Category</button>
-              <div class="table-responsive">
-                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Slug</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+    <div class="container-fluid">
+        <div class="dashboard-heading">
+            <h2 class="dashboard-title">Category</h2>
+            <p class="dashboard-subtitle">List of Categories</p>
         </div>
-      </div>
+        <div class="dashboard-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            @if (session()->has('success'))
+                            <p class="alert alert-success" id="message">{{ session('success') }}</p>
+                            @endif
+                            <button type=" button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                                data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create New
+                                Category</button>
+                            <div class="table-responsive">
+                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Slug</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 @endsection
 
 @section('modal')
 <div class="modal fade" id="create-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Create</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="{{ route('categories.store') }}" method="POST">
-        @csrf
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="fname">Category</label>
-            <input type="text" id="fname" name="name" class="form-control" required>
-          </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Create</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('categories.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="fname">Category</label>
+                        <input type="text" id="fname" name="name" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 
 @foreach ($categories as $category)
 <div class="modal fade" id="edit-modal-{{ $category->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form action="{{ route('categories.update', $category->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="fname">Category</label>
-            <input type="text" id="fname" name="name" class="form-control" value="{{ $category->name }}" required>
-          </div>
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="fname">Category</label>
+                        <input type="text" id="fname" name="name" class="form-control" value="{{ $category->name }}"
+                            required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Update</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 @endforeach
 @endsection
 
 @push('script')
 <script>
-  const deleteConfirm = (id,name) => {
+    const deleteConfirm = (id,name) => {
         console.log(id);
         Swal.fire({
-            title: 'Tenane?',
+            title: 'Warning',
             text: "Menghapus kategori "+ name +"",
             icon: 'warning',
             showCancelButton: true,
@@ -112,7 +113,7 @@
             if (result.isConfirmed) {
                 let url = '{{ route('categories.destroy', ":id") }}'
                 url = url.replace(':id', id)
-                
+
                 $.ajax({
                     type: 'POST',
                     url: url,
@@ -176,7 +177,7 @@
 
 @push('script')
 <script>
-  var t = $('#crudTable').DataTable({
+    var t = $('#crudTable').DataTable({
 						processing: true,
 						serverSide: true,
 						ordering: true,

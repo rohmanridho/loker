@@ -38,7 +38,7 @@
                         class="list-group-item list-group-item-action {{ request()->is('admin/categories*') ? 'active' : '' }}">Categories</a>
                     <a href="{{ route('province.index') }}"
                         class="list-group-item list-group-item-action {{ request()->is('admin/province*') ? 'active' : '' }}">Provinces</a>
-                    <a href="{{ route('home') }}" class="list-group-item list-group-item-action">Home</a>
+                    <a href="{{ route('home') }}" class="list-group-item list-group-item-action">Exit</a>
                 </div>
             </div>
 
@@ -59,16 +59,19 @@
                                 <li class="nav-item dropdown">
                                     <span class="nav-link d-flex align-items-center mr-3" class="nav-link"
                                         id="navbarDropdown" role="button" data-toggle="dropdown">
-                                        <div class="d-flex rounded-circle mr-2"
-                                            style="width: 40px; height: 40px; background: #0000ff10;"><span
-                                                class="m-auto" style="font-size: 24px;">{{
-                                                strtoupper(Auth::user()->name)[0] }}</span></div>
-                                        <span>Hi, {{ Auth::user()->name }}</span>
+                                        <div class="d-flex rounded-circle mr-3"
+                                            style="width: 40px; height: 40px; background: #0000ff10;">
+                                            <span class="m-auto" style="font-size: 24px;">
+                                                {{ strtoupper(Auth::user()->name)[0] }}
+                                            </span>
+                                        </div>
+                                        <span>{{ Auth::user()->name }}</span>
                                     </span>
                                     <div class="dropdown-menu">
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" {{ __('Logout') }}
-                                            class="dropdown-item text-center">Sign Out</a>
+                        document.getElementById('logout-form').submit();" class="dropdown-item text-center">
+                                            Logout
+                                        </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="d-none">
                                             @csrf
@@ -80,13 +83,15 @@
                             <!-- Mobile Menu -->
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
-                                    <a href="{{ route('profile', Auth::user()->name) }}" class="nav-link"> Hi, {{
-                                        Auth::user()->name }} </a>
+                                    <a href="{{ route('profile', Auth::user()->name) }}" class="nav-link">
+                                        {{ Auth::user()->name }}
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" {{ __('Logout') }}
-                                        class="dropdown-item text-center">Sign Out</a>
+                        document.getElementById('logout-form').submit();" class="dropdown-item text-center">
+                                        Logout
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

@@ -88,3 +88,17 @@
     </div>
 
     @endsection
+
+    @push('addon-script')
+    <script>
+        function navbarResponsive() {
+          const navbar = document.getElementById('navbarNav');
+          if (navbar.className === 'nav flex-column nav-top') {
+            navbar.className += ' responsive';
+          } else {
+            navbar.className =
+              "nav flex-column nav-top";
+          }
+        }
+    </script>
+    @endpush

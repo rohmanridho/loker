@@ -1,6 +1,6 @@
 @extends('layouts.employer')
 
-@section('title', 'Companies Employer Dashboard')
+@section('title', 'Perusahaan - Employer Dashboard | Needed')
 
 @section('content')
 <div class="section-content section-dashboard-home" data-aos="fade-up">
@@ -23,9 +23,9 @@
                     @endif
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('company.update', $company->id) }}" method="POST"
+                            <form action="" method="POST"
                                 enctype="multipart/form-data">
-                                @method('PUT')
+                                {{-- @method('PUT') --}}
                                 @csrf
                                 <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                                 <div class="row">
@@ -76,9 +76,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-primary px-5 mr-2">Update</button>
                                         <button type="button" class="btn btn-outline-danger px-5"
-                                            onclick="history.back()">Cancel</button>
+                                            onclick="history.back()">Batal</button>
+                                        <button type="submit" class="btn btn-primary px-5 mr-2">Simpan</button>
                                     </div>
                                 </div>
                             </form>

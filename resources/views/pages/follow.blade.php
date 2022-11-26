@@ -18,7 +18,7 @@
                             @forelse ($follows as $follow)
                             <tr>
                                 <td class="image">
-                                    <img src="http://placeimg.com/150/150/people" alt="" class="rounded-circle">
+                                    <img src="{{ $follow->company->photo }}" alt="" class="rounded-circle">
                                 </td>
                                 <td class="description">
                                     <div class="company-name">{{ $follow->company->name }} - {{

@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Employer;
 
-use App\Models\Job;
 use App\Models\Company;
-use App\Models\Category;
+use App\Models\Industry;
+use App\Models\Province;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CompanyRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Admin\JobRequest;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
-class JobController extends Controller
+class CompanyControllers extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,36 +23,36 @@ class JobController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Job::with(['company', 'category'])->whereHas('company', function ($product) {
-                $product->where('users_id', Auth::user()->id);
-            });
+            $query = Company::with(['industry', 'province'])->where('users_id', Auth::user()->id);
 
             return DataTables::of($query)
-                ->addColumn('action', function ($job) {
+                ->addColumn('action', function ($company) {
                     return '
                     <div class= "btn-group">
                         <div class= "dropdown">
                             <button class= "btn btn-primary"
                                     type= "button"
-                                    role="button"
-                                    data-bs-toggle="dropdown">
+                                    data-toggle="dropdown">
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
-                                    <a href="' . route('job.show', $job->id) . '" class="dropdown-item">
+                                    <a href="' . route('company.show', $company->id) . '" class="dropdown-item">
                                     Preview</a>
-                                    <a href="' . route('job.edit', $job->id) . '" class="dropdown-item">
+                                    <a href="' . route('company.edit', $company->id) . '" class="dropdown-item">
                                     Edit</a>
-                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $job->id . ',\'' . $job->name . '\')">Delete</button>
+                                    <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $company->id . ',\'' . $company->name . '\')">Delete</button>
                                 </div>
                         </div>
                     </div>
                 ';
                 })
-                ->rawColumns(['action'])
+                ->editColumn('photo', function ($company) {
+                    return $company->photo ? '<img src="' . Storage::url($company->photo) . '" style="height: 64px; aspect-ratio: 1/1; border-radius: 4px; object-fit: cover;"/>' : '';
+                })
+                ->rawColumns(['action', 'photo'])
                 ->make();
         }
-        return view('pages.employer.job.index');
+        return view('pages.employer.company.index');
     }
 
     /**
@@ -61,11 +62,11 @@ class JobController extends Controller
      */
     public function create()
     {
-        $company = Company::where('users_id', Auth::user()->id)->first();
-        $categories = Category::all();
-        return view('pages.employer.job.create', [
-            'company' => $company,
-            'categories' => $categories
+        $industries = Industry::orderBy('name')->get();
+        $provinces = Province::orderBy('name')->get();
+        return view('pages.employer.company.create', [
+            'industries' => $industries,
+            'provinces' => $provinces
         ]);
     }
 
@@ -75,13 +76,14 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(JobRequest $request)
+    public function store(CompanyRequest $request)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('photo')->store('assets/company', 'public');
 
-        Job::create($data);
-        return redirect()->route('job.index');
+        Company::create($data);
+        return redirect()->route('company.index');
     }
 
     /**
@@ -103,13 +105,13 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $job = Job::with(['company', 'category'])->find($id);
-        $company = Company::where('users_id', Auth::user()->id)->first();
-        $categories = Category::all();
-        return view('pages.employer.job.edit', [
-            'job' => $job,
+        $company = Company::with(['industry', 'province'])->find($id);
+        $industries = Industry::orderBy('name')->get();
+        $provinces = Province::orderBy('name')->get();
+        return view('pages.employer.company.edit', [
             'company' => $company,
-            'categories' => $categories
+            'industries' => $industries,
+            'provinces' => $provinces
         ]);
     }
 
@@ -120,15 +122,15 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(JobRequest $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('photo')->store('assets/company', 'public');
 
-        $job = Job::find($id);
-        $job->update($data);
-
-        return redirect()->route('job.index');
+        $company = Company::find($id);
+        $company->update($data);
+        return redirect()->route('company.index');
     }
 
     /**
@@ -139,9 +141,8 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        $job = Job::find($id);
-        $job->delete();
-
-        return redirect()->route('job.index');
+        $company = Company::find($id);
+        $company->delete();
+        return redirect()->route('company.index');
     }
 }

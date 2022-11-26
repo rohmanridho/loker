@@ -24,8 +24,8 @@ class CompanyController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($company) {
                     return '
-              <button class="btn btn-outline-danger" onclick="deleteConfirm(' . $company->id . ',\'' . $company->name . '\')">Delete</button>
-            ';
+                        <button class="btn btn-outline-danger" onclick="deleteConfirm(' . $company->id . ',\'' . $company->name . '\')">Delete</button>
+                    ';
                 })
                 ->editColumn('photo', function ($company) {
                     return $company->photo ? '<img src="' . Storage::url($company->photo) . '" style="height: 64px; width: 64px; border-radius: 4px; object-fit: cover;"/>' : '';

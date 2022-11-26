@@ -1,46 +1,47 @@
 @extends('layouts.admin')
 
-@section('title', 'Industries - Admin Dashboard')
+@section('title', 'Industries - Admin Dashboard | Needed')
 
 @section('content')
-		<div class="section-content section-dashboard-home" data-aos="fade-up">
-				<div class="container-fluid">
-						<div class="dashboard-heading">
-								<h2 class="dashboard-title">Industry</h2>
-								<p class="dashboard-subtitle">List of Industries</p>
-						</div>
-						<div class="dashboard-content">
-								<div class="row">
-										<div class="col-md-12">
-												<div class="card">
-														<div class="card-body">
-																<a href="{{ route('industry.create') }}" class="btn btn-primary mb-3">+ Create New Industry</a>
-																<div class="table-responsive">
-																		<table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
-																				<thead>
-																						<tr>
-																								<th>ID</th>
-																								<th>Name</th>
-																								<th>Photo</th>
-																								<th>Slug</th>
-																								<th>Action</th>
-																						</tr>
-																				</thead>
-																				<tbody></tbody>
-																		</table>
-																</div>
-														</div>
-												</div>
-										</div>
-								</div>
-						</div>
-				</div>
-		</div>
+<div class="section-content section-dashboard-home" data-aos="fade-up">
+    <div class="container-fluid">
+        <div class="dashboard-heading">
+            <h2 class="dashboard-title">Industry</h2>
+            <p class="dashboard-subtitle">List of Industries</p>
+        </div>
+        <div class="dashboard-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{{ route('industry.create') }}" class="btn btn-primary mb-3">+ Create New
+                                Industry</a>
+                            <div class="table-responsive">
+                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Photo</th>
+                                            <th>Slug</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('script')
-		<script>
-				var t = $('#crudTable').DataTable({
+<script>
+    var t = $('#crudTable').DataTable({
 						processing: true,
 						serverSide: true,
 						ordering: true,
@@ -92,7 +93,7 @@
 								this.data(i++);
 						});
 				}).draw();
-		</script>
+</script>
 @endpush
 
 @push('script')
@@ -100,7 +101,7 @@
     const deleteConfirm = (id,name) => {
         console.log(id);
         Swal.fire({
-            title: 'Tenane?',
+            title: 'Warning',
             text: "Menghapus industri "+ name +"",
             icon: 'warning',
             showCancelButton: true,

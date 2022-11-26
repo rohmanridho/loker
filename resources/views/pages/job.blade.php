@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Job Search')
+@section('title', 'Temukan Pekerjaan Impianmu | InfoLoker')
 
 @section('content')
 <section class="page-job mt-5">
@@ -10,8 +10,8 @@
                 <div class="col-12 col-md-7">
                     <div class="form-group job-search">
                         <i class="bi bi-search job-serach-icon"></i>
-                        <input type="search" name="search" class="form-control" placeholder="Cari Pekerjaan" value="@php if(!empty($_REQUEST)) {
-echo $_REQUEST['search'];} @endphp">
+                        <input type="search" name="search" class="form-control" placeholder="Cari Pekerjaan"
+                            value="{{ request('search') }}">
                     </div>
                 </div>
             </div>
@@ -20,64 +20,98 @@ echo $_REQUEST['search'];} @endphp">
 
     <div class="container">
         <div class="row">
-            @if ($job_count > 0)
-            <div class="col-10 offset-1 mb-2">
-                <div class=""><span class="fw-semibold">{{ $job_count }}</span> lowongan pekerjaan tersedia</div>
+            @if ($jobs->count() > 0)
+            <div class="col-12 col-md-10 offset-0 offset-md-1 mb-2">
+                <div class="" style="font-size: 14px"><span class="fw-bold">{{ $jobs->count() }}</span> lowongan
+                    pekerjaan
+                    tersedia.</div>
             </div>
             @endif
+
             @forelse ($jobs as $job)
-            <div class="col-10 offset-1 mb-4">
-                <div class="border rounded">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="px-4 pt-3">
-                                <img src="{{ Storage::url($job->company->photo) }}" class=" rounded"
-                                    style="width: 84px; height: 84px;object-fit: cover;">
+            <div class="col-12 col-md-10 offset-0 offset-md-1 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="d-flex flex-column flex-md-row gap-2 gap-md-4">
+                                    <div class="">
+                                        <img src="{{ Storage::url($job->company->photo) }}" class=" rounded"
+                                            style="width: 84px; height: 84px;object-fit: cover;">
+                                    </div>
+                                    <div class="">
+                                        <a href="{{ route('job-detail', ['company' => $job->company->slug,'slug' => $job->slug]) }}"
+                                            class="fw-bold fs-5 d-block job-name">{{
+                                            $job->name
+                                            }}</a>
+                                        <a href="{{ route('company-detail', $job->company->slug) }}"
+                                            class="text-secondary d-block company-name mb-2">{{
+                                            $job->company->name
+                                            }}</a>
+                                        <ul class="mb-0" style="list-style: disc">
+                                            <li class="" style="font-size: 13px">{{ $job->company->province->name }}
+                                            </li>
+                                            <li class="" style="font-size: 13px">{{ $job->type }}</li>
+                                            <li class="" style="font-size: 13px">IDR {{ number_format($job->salary) }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="py-2 pr-2">
-                                <a href="{{ route('job-detail', ['company' => $job->company->slug,'slug' => $job->slug]) }}"
-                                    class="fw-bold fs-4 d-block job-name ">{{
-                                    $job->name
-                                    }}</a>
-                                <a href="{{ route('company-detail', $job->company->slug) }}"
-                                    class="fw-semibold text-secondary d-block company-name ">{{ $job->company->name
-                                    }}</a>
-                                <div class="" style="font-size: 13px">{{ $job->company->province->name }}</div>
-                                <div class="" style="font-size: 13px">{{ $job->type }}</div>
-                                <div class="" style="font-size: 13px">IDR {{ number_format($job->salary) }}</div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="border-start h-100">
-                                <div class="p-4">
-                                    @auth
-                                    @php
-                                    $isNotOwner = $job->company->users_id !== Auth::user()->id;
-                                    @endphp
-                                    @if ($isNotOwner)
-                                    <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-2">
-                                        @csrf
-                                        <button type="submit" class="btn btn-block btn-primary">Apply</button>
-                                    </form>
-                                    @endif
-                                    @else
-                                    <a href="{{ route('login') }}" class="btn btn-block btn-primary">Apply</a>
-                                    @endauth
-                                    @auth
-                                    {{-- @php
-                                    $isNotSave = $job->simpan->users_id == Auth::user()->id;
-                                    // && $job->simpan->jobs_id == $job->id;
-                                    dd($isNotSave);
-                                    @endphp --}}
-                                    <form action="{{ route('save-job', $job->id) }}" method="POST" class="">
-                                        @csrf
-                                        <button type="submit" class="btn btn-block btn-outline-success">Save</button>
-                                    </form>
-                                    @else
-                                    <a href="{{ route('login') }}" class="btn btn-block btn-outline-success">Save</a>
-                                    @endauth
+
+                            <div class="col-12 col-md-3">
+                                <div class="h-100">
+                                    <div class="d-none d-md-block">
+                                        @auth
+                                        @php
+                                        $isNotOwner = $job->company->users_id !== Auth::user()->id;
+                                        @endphp
+                                        @if ($isNotOwner)
+                                        <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-2">
+                                            @csrf
+                                            <button type="submit" class="btn btn-block btn-primary">Apply</button>
+                                        </form>
+                                        @endif
+                                        @else
+                                        <a href="{{ route('login') }}" class="btn btn-block btn-primary">Apply</a>
+                                        @endauth
+                                        @auth
+                                        {{-- @php
+                                        $isNotSave = $job->simpan->users_id == Auth::user()->id;
+                                        // && $job->simpan->jobs_id == $job->id;
+                                        dd($isNotSave);
+                                        @endphp --}}
+                                        @php
+                                        $saves = App\Models\Save::where('users_id', Auth::user()->id)->where('jobs_id',
+                                        $job->id
+                                        )->count();
+                                        @endphp
+                                        @if ($saves == 0)
+                                        <form action="{{ route('save-job', $job->id) }}" method="POST" class="">
+                                            @csrf
+                                            <button type="submit"
+                                                class="btn btn-block btn-outline-success">Save</button>
+                                        </form>
+                                        @else
+                                        <button class="btn btn-block btn-success">Saved</button>
+                                        {{-- <form action="{{ route('save.destroy', $job->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-success btn-block fw-light w-100">
+                                                Saved
+                                            </button>
+                                        </form> --}}
+                                        @endif
+                                        @else
+                                        <a href="{{ route('login') }}"
+                                            class="btn btn-block btn-outline-success">Save</a>
+                                        @endauth
+                                    </div>
+                                    <div class="d-block d-md-none">
+                                        <a href="{{ route('job-detail', ['company' => $job->company->slug,'slug' => $job->slug]) }}"
+                                            class="btn btn-block btn-outline-primary">Detail</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +123,7 @@ echo $_REQUEST['search'];} @endphp">
                 <div class="text-center text-secondary" style="font-size: 32px;">Tidak ditemukan</div>
             </div>
             @endforelse
-            @if ($job_count < 3) <div style="min-height: 60vh">
+            @if ($jobs->count() < 3) <div style="min-height: 60vh">
         </div>
         @endif
     </div>

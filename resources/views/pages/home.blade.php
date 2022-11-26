@@ -1,28 +1,25 @@
 @extends('layouts.app')
 
-@section('title')
-
-JobStreet - Let's find your jobs
-@endsection
+@section('title', 'Temukan Pekerjaan Impianmu | Needed')
 
 @section('content')
-<section class="page-home mt-4 mt-lg-5">
+<section class="page-home mt-4">
     <div class="container">
-        <form action=""></form>
+        <form></form>
         <form action="{{ route('search-job') }}" method="GET">
             <div class="row d-flex justify-content-center mb-4">
                 <div class="col-12 col-md-7">
                     <div class="form-group job-search">
                         <span class="bi bi-search job-serach-icon"></span>
                         <input type="search" name="search" class="form-control"
-                            placeholder="Cari perusahaan atau pekerjaan">
+                            placeholder="Cari Pekerjaan">
                     </div>
                 </div>
             </div>
         </form>
     </div>
 
-    <ul class="nav nav-tabs justify-content-center mt-4" id="myTab" role="tablist">
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                 type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">For You</button>
@@ -85,17 +82,18 @@ JobStreet - Let's find your jobs
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-md-10 d-flex justify-content-center flex-wrap searches">
                         @foreach ($categories as $category)
-                        <form action="{{ route('search-job') }}" method="GET" id="search-job" class="d-none">
+                        {{-- <form action="{{ route('search-job') }}" method="GET" id="search-job" class="d-none">
                             <input type="search" name="search" value="{{ $category->name }}">
                         </form>
                         <a href="/job?search={{ $category->name }}" onclick="event.preventDefault();
                                                      document.getElementById('search-job').submit();"
                             class="category"><i class="bi bi-search"></i>
-                            &nbsp;{{ $category->name }}</a>
-                        @endforeach
-<a href="{{ route('search-job', ['search' => 'jisoo']) }}"
+                            &nbsp;{{ $category->name }}</a> --}}
+<a href="{{ route('search-job', ['search' => $category->name]) }}"
     class="category"><i class="bi bi-search"></i>
-    &nbsp;jisoo</a>
+    &nbsp;{{ $category->name }}</a>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
