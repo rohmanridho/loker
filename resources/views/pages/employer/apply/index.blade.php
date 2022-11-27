@@ -49,7 +49,10 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#edit-modal-{{ $apply->id }}" data-bs-whatever="@getbootstrap">Edit</button>
+                          data-bs-target="#show-modal-{{ $apply->id}}"
+                          data-bs-whatever="@getbootstrap">Contact</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                          data-bs-target="#edit-modal-{{ $apply->id }}" data-bs-whatever="@getbootstrap">Status</button>
                       </td>
                     </tr>
                     @empty
@@ -95,6 +98,30 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Update</button>
         </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endforeach
+
+@foreach ($applies as $item)
+<div class="modal fade" id="show-modal-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Contact Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class=""><span class="fw-bold">Nama: </span>{{ $item->user->name }}</div>
+        <div class=""><span class="fw-bold">Alamat: </span>{{ $item->user->address }}</div>
+        <div class=""><span class="fw-bold">Email: </span>{{ $item->user->email }}</div>
+        <div class=""><span class="fw-bold">No Telp: </span>{{ $item->user->phone_number }}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oke</button>
+      </div>
       </form>
     </div>
   </div>

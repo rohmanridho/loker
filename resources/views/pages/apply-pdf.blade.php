@@ -50,7 +50,7 @@
         <div class="right">
             <div class="">Penyedia Pekerjaan:</div>
             <div class=""><span class="fw-bold">Perusahaan: </span>{{ $data->job->company->name }}</div>
-            <div class=""><span class="fw-bold">Alamat: </span>{{ $data->job->company->province->name }}</div>
+            <div class=""><span class="fw-bold">Alamat: </span>{{ $data->job->company->address }}</div>
             <div class=""><span class="fw-bold">Email: </span>{{ $data->job->company->user->email }}</div>
             <div class=""><span class="fw-bold">Nomor Telepon: </span>{{ $data->job->company->user->phone_number }}
             </div>

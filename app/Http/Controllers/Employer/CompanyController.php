@@ -61,7 +61,7 @@ class CompanyController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
         if($request->has('photo')) {
-            $data['photo'] = $request->file('photo')->store('assets/company', 'public');
+            $data['photo'] = $request->file('photo')->store('company/logo', 'public');
         }
 
         $item = Company::where('users_id', Auth::user()->id)->first();
