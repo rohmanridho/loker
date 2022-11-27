@@ -13,10 +13,11 @@ use App\Http\Requests\Admin\CompanyRequest;
 
 class CompanyController extends Controller
 {
-    public function create() {
-        $companies = Company::where('users_id', Auth::user()->id)->count();
-        
-        if ($companies == 1) {
+    public function create()
+    {
+        $company = Company::where('users_id', Auth::user()->id)->count();
+
+        if ($company == 1) {
             return redirect()->route('company.edit');
         } else {
             $industries = Industry::orderBy('name')->get();
@@ -28,16 +29,23 @@ class CompanyController extends Controller
         }
     }
 
-    public function store(CompanyRequest $request) {
-        $data = $request->all();
-        $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/company', 'public');
+    public function store(CompanyRequest $request)
+    {
+        $company = Company::where('users_id', Auth::user()->id)->count();
+        if ($company == 0) {
+            $data = $request->all();
+            $data['slug'] = Str::slug($request->name);
+            $data['photo'] = $request->file('photo')->store('assets/company', 'public');
 
-        Company::create($data);
+            Company::create($data);
+            return redirect()->route('company.edit')->with('success', 'Perusahan Berhasil di Buat');
+        }
+
         return redirect()->route('company.edit');
     }
 
-    public function edit() {
+    public function edit()
+    {
         $company = Company::with(['industry', 'province', 'user'])->where('users_id', Auth::user()->id)->first();
         $industries = Industry::orderBy('name')->get();
         $provinces = Province::orderBy('name')->get();
@@ -46,5 +54,19 @@ class CompanyController extends Controller
             'industries' => $industries,
             'provinces' => $provinces
         ]);
+    }
+
+    public function update(CompanyRequest $request)
+    {
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        if($request->has('photo')) {
+            $data['photo'] = $request->file('photo')->store('assets/company', 'public');
+        }
+
+        $item = Company::where('users_id', Auth::user()->id)->first();
+        $company = Company::find($item->id);
+        $company->update($data);
+        return redirect()->back();
     }
 }

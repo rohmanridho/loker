@@ -14,7 +14,7 @@
     @stack('style')
 </head>
 
-<body class="overflow-hidden">
+<body>
     <div class="page-dashboard">
         <div class="d-flex" id="wrapper" data-aos="fade-right">
             <!-- Sidebar -->
@@ -47,7 +47,7 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper">
-                <nav class="navbar navbar-expand-lg navbar-light navbar-store fixed-top" data-aos="fade-down">
+                <nav class="navbar navbar-expand-lg navbar-light navbar-store fixed-top">
                     <div class="container-fluid">
                         <button class="btn btn-secondary d-md-none mr-auto ml-2" id="menu-toggle">
                             &laquo; Menu
@@ -61,7 +61,7 @@
                             <ul class="navbar-nav d-none d-lg-flex ml-auto ">
                                 <li class="nav-item dropdown">
                                     <span class="nav-link d-flex align-items-center mr-3" id="navbarDropdown"
-                                        role="button" data-toggle="dropdown">>
+                                        role="button" data-toggle="dropdown">
                                         <div class="d-flex rounded-circle mr-2"
                                             style="width: 40px; height: 40px; background: #0000ff10;">
                                             <span class="m-auto" style="font-size: 24px;">

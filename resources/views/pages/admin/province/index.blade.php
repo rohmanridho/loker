@@ -147,7 +147,7 @@
         console.log(id);
         Swal.fire({
             title: 'Warning',
-            text: "Menghapus privinsi "+ name +"",
+            text: "Menghapus provinsi "+ name +"",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

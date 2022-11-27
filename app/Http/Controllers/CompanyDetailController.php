@@ -21,15 +21,4 @@ class CompanyDetailController extends Controller
             'jobs' => $jobs
         ]);
     }
-
-    public function follow(Request $request, $id) {
-        $data = [
-            'companies_id' => $id,
-            'users_id' => Auth::user()->id
-        ];
-        
-        Follow::create($data);
-        // dd($result);
-        return redirect()->route('follow');
-    }
 }

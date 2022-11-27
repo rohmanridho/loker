@@ -8,8 +8,8 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="line-bottom mb-3">
-                    <a href="{{ route('follow') }}" class="follow active">Followed</a>
-                    <a href="{{ route('save') }}" class="save">Saved</a>
+                    <a href="{{ route('follow.index') }}" class="follow active">Followed</a>
+                    <a href="{{ route('save.index') }}" class="save">Saved</a>
                 </div>
 
                 <div class="row follow-section">
@@ -18,7 +18,7 @@
                             @forelse ($follows as $follow)
                             <tr>
                                 <td class="image">
-                                    <img src="{{ $follow->company->photo }}" alt="" class="rounded-circle">
+                                    <img src="{{ Storage::url($follow->company->photo) }}" class="rounded-circle">
                                 </td>
                                 <td class="description">
                                     <div class="company-name">{{ $follow->company->name }} - {{
@@ -27,10 +27,10 @@
                                 </td>
                                 <td class="button">
                                     <form></form>
-                                    <form action="{{ route('follow-destroy', $follow->id) }}" method="POST">
+                                    <form action="{{ route('follow.destroy', $follow->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-ouline-danger btn-block w-100">
+                                        <button type="submit" class="btn btn-outline-danger btn-block w-100">
                                             Hapus
                                         </button>
                                     </form>
@@ -50,6 +50,8 @@
                         </table>
                     </div>
                 </div>
+                @if ($follows->count() < 3) <div style="min-height: 28vh">
+                    @endif
             </div>
         </div>
     </div>

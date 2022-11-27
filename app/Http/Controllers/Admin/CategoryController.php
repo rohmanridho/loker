@@ -72,8 +72,7 @@ class CategoryController extends Controller
         $data['slug'] = Str::slug($request->name);
 
         Category::create($data);
-        $request->session()->flash('success', 'Successed');
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Create Success');
     }
 
     /**
@@ -115,8 +114,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->update($data);
-        // return redirect()->route('categories.index');
-        return redirect()->back()->with('success', 'Update Successed');
+        return redirect()->back()->with('success', 'Update Success');
     }
 
     /**

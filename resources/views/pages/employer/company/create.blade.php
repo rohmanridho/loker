@@ -29,14 +29,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="fname">Nama</label>
+                                            <label for="fname">Nama Perusahaan</label>
                                             <input type="text" id="fname" name="name" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Logo</label>
+                                            <label>Logo Perusahaan</label>
                                             <input type="file" name="photo" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Alamat Perusahaan</label>
+                                            <input type="text" name="address" class="form-control"
+                                                value="{{ Auth::user()->address }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -63,6 +70,23 @@
                                         <div class="form-group">
                                             <label for="fdescription">Tentang Perusahaan</label>
                                             <textarea name="description" id="editor"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="fw-bold">Contact Information</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" name="email" class="form-control"
+                                                value="{{ Auth::user()->email }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nomor Telepon</label>
+                                            <input type="text" name="phone" class="form-control"
+                                                value="{{ Auth::user()->phone_number }}" required>
                                         </div>
                                     </div>
                                 </div>

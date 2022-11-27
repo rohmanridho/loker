@@ -25,11 +25,11 @@ class IndustryController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($industry) {
                     return '
-                    <div class= "btn-group">
-                        <div class= "dropdown">
-                            <button class= "btn btn-primary"
-                                    type= "button"
-                                    data-toggle="dropdown">
+                    <div class="btn-group">
+                        <div class="dropdown-center">
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    data-bs-toggle="dropdown">
                                     Actions
                                 </button>
                                 <div class= "dropdown-menu">
@@ -73,7 +73,7 @@ class IndustryController extends Controller
         $data['photo'] = $request->file('photo')->store('industry', 'public');
 
         Industry::create($data);
-        return redirect()->route('industry.index');
+        return redirect()->route('industry.index')->with('success', 'Create Success');
     }
 
     /**
@@ -115,15 +115,10 @@ class IndustryController extends Controller
         if($request->has('photo')) {
             $data['photo'] = $request->file('photo')->store('industry', 'public');
         }
+
         $industry = Industry::find($id);
         $industry->update($data);
-
-        // $industry = Industry::find($id);
-        // $industry->name = $request->name;
-        // $industry->slug = Str::slug($request->name);
-        // $industry->photo = $request->photo;
-        // $industry->save();
-        return redirect()->route('industry.index');
+        return redirect()->route('industry.index')->with('success', 'Update Success');
     }
 
     /**

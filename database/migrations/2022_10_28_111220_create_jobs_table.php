@@ -25,7 +25,7 @@ class CreateJobsTable extends Migration
             $table->string('schedule')->nullable();
             $table->text('description')->nullable();
             $table->integer('slot')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->nullable()->default('Buka');
 
             $table->timestamps();
             // $table->softDeletes();

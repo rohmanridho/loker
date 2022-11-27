@@ -55,28 +55,28 @@ Route::group(
     ],
     function () {
         Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile');
-        Route::post('/profile/resume', [ProfileController::class, 'update'])->name('resume.update');
+        Route::post('/resume', [ProfileController::class, 'uploadResume'])->name('resume.update');
 
         Route::get('/account-settings', [SettingController::class, 'account'])->name('account-settings');
         Route::get('/contact-settings', [SettingController::class, 'contact'])->name('contact-settings');
         Route::get('/privacy-settings', [SettingController::class, 'privacy'])->name('privacy-settings');
         Route::post('/account-settings', [SettingController::class, 'updateAccount'])->name('account.update');
         Route::post('/contact-settings', [SettingController::class, 'updateContact'])->name('contact.update');
-        Route::post('/profile-picture', [SettingController::class, 'uploadProfilePicture'])->name('picture.update');
+        Route::post('/avatar', [SettingController::class, 'uploadAvatar'])->name('avatar.update');
 
-        Route::post('/change-role', [App\Http\Controllers\Employer\DashboardController::class, 'changerole'])->name('change-role');
+        Route::post('/role', [App\Http\Controllers\Employer\DashboardController::class, 'changeRole'])->name('role.update');
 
-        Route::get('/follow', [FollowController::class, 'index'])->name('follow');
-        Route::post('/follow-company/{id}', [CompanyDetailController::class, 'follow'])->name('follow-company');
-        Route::delete('/delete-follow/{id}', [FollowController::class, 'destroy'])->name('follow-destroy');
+        Route::get('/follow', [FollowController::class, 'index'])->name('follow.index');
+        Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow');
+        Route::delete('/follow/{id}', [FollowController::class, 'destroy'])->name('follow.destroy');
 
-        Route::get('/save', [SaveController::class, 'index'])->name('save');
-        Route::post('/save-job/{id}', [JobDetailController::class, 'save'])->name('save-job');
-        Route::delete('/delete-save/{id}', [SaveController::class, 'destroy'])->name('save.destroy');
+        Route::get('/save', [SaveController::class, 'index'])->name('save.index');
+        Route::post('/save/{id}', [SaveController::class, 'save'])->name('save');
+        Route::delete('/save/{id}', [SaveController::class, 'destroy'])->name('save.destroy');
 
-        Route::get('/apply', [ApplyController::class, 'index'])->name('apply');
-        Route::post('/apply-job/{id}', [JobDetailController::class, 'apply'])->name('apply-job');
-        Route::delete('/delete-apply/{id}', [ApplyController::class, 'destroy'])->name('apply-destroy');
+        Route::get('/apply', [ApplyController::class, 'index'])->name('apply.index');
+        Route::post('/apply/{id}', [ApplyController::class, 'apply'])->name('apply');
+        Route::delete('/apply/{id}', [ApplyController::class, 'destroy'])->name('apply.destroy');
         Route::get('/apply/cetak-bukti-pendaftaran/{id}', [ApplyController::class, 'generatePDF'])->name('generate-pdf');
 
 
@@ -92,6 +92,7 @@ Route::group(
                 Route::get('company/create', [EmployerCompanyController::class, 'create'])->name('company.create');
                 Route::post('company-create', [EmployerCompanyController::class, 'store'])->name('company.store');
                 Route::get('company', [EmployerCompanyController::class, 'edit'])->name('company.edit');
+                Route::post('company', [EmployerCompanyController::class, 'update'])->name('company.update');
 
                 // Route::resource('company', EmployerCompanyController::class);
                 Route::resource('job', EmployerJobController::class);

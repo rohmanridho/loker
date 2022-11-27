@@ -43,14 +43,14 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="fsalary">Salary</label>
                                             <input type="number" id="fsalary" name="salary" class="form-control"
                                                 required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="ftype">Tipe Pekerjaan</label>
                                             <select name="type" id="ftype" class="form-control">
@@ -62,7 +62,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="fschedule">Jadwal</label>
                                             <select name="schedule" id="fschedule" class="form-control">

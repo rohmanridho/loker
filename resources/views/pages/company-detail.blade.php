@@ -8,30 +8,40 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="row sticky-top justify-content-between align-items-center py-3 header">
-                    <div class="col-9 col-lg-10">
+                    <div class="col-8 col-lg-10">
                         <div class="d-flex align-items-center gap-3">
                             <img src="{{ Storage::url($company->photo) }}" class="d-inline-block rounded-1"
                                 alt="Traveloka">
                             <h1>{{ $company->name }}</h1>
                         </div>
                     </div>
-                    <div class="col-3 col-lg-2">
+                    <div class="col-4 col-lg-2">
                         <form></form>
                         @auth
-                        <form action="{{ route('follow-company', $company->id) }}" method="POST">
+                        @php
+                        $followed = App\Models\Follow::where([
+                        'users_id' => Auth::user()->id,
+                        'companies_id' => $company->id
+                        ])->count();
+                        @endphp
+                        @if ($followed == 0)
+                        <form action="{{ route('follow', $company->id) }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                            <button type="submit" class="btn btn-success btn-block">
                                 Ikuti
                             </button>
                         </form>
                         @else
-                        <a class="btn btn-block btn-primary fw-semibold w-100" href="{{ route('login') }}">Follow</a>
+                        <a href="{{ route('follow.index') }}" class="btn btn-block btn-success">Diikuti</a>
+                        @endif
+                        @else
+                        <a class="btn btn-block btn-primary fw-semibold w-100" href="{{ route('login') }}">Ikuti</a>
                         @endauth
                     </div>
                 </div>
                 <div class="row mt-4 company-description">
                     <div class="col-12">
-                        <h2 class="mb-2">Tentang Perusahaan</h2>
+                        <h2 class="fs-5 fw-bold mb-2">Tentang Perusahaan</h2>
                         <div class="about">
                             {!! $company->description !!}
                         </div>
@@ -50,23 +60,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="">{{ $company->id }}</div>
-                <h3 class="mt-4">Pekerjaan Lainnya</h3>
-                <div class="row mb-5">
-                    @forelse ($jobs as $job)
-                    <div class="col-12 col-sm-6 col-md-3">
-                        <a href="{{ route('job-detail', $job->slug) }}" class="card mb-3">
-                            <div class="card-body">
-                                <div class="fw-semibold">
-                                    {{ $job->name }}
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @empty
-                    tolol
-                    @endforelse
                 </div>
             </div>
         </div>

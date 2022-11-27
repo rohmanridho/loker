@@ -14,9 +14,6 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            @if (session()->has('success'))
-                            <p class="alert alert-success" id="message">{{ session('success') }}</p>
-                            @endif
                             <button type=" button" class="btn btn-primary mb-3" data-bs-toggle="modal"
                                 data-bs-target="#create-modal" data-bs-whatever="@getbootstrap">+ Create New
                                 Category</button>

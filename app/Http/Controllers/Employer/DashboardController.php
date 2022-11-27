@@ -32,11 +32,10 @@ class DashboardController extends Controller
 
     public function changeRole(Request $request) {
         $user = Auth::user();
-        // $user->name = $request['name'];
-        $user->roles_id = 2;
-
-        $user->save();
-
+        $user->update([
+            'roles_id' => 2
+        ]);
+        
         return redirect()->route('employer-dashboard');
     }
 }

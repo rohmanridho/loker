@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
-use App\Http\Requests\PictureRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PictureRequest;
+use Illuminate\Validation\Rules\Password;
 
 class SettingController extends Controller
 {
@@ -31,43 +32,61 @@ class SettingController extends Controller
         return view('pages.settings-privacy');
     }
 
-    public function updateAccount(UserRequest $request)
+    public function updateAccount(Request $request)
     {
-        // if($request->has('name') && $request->has('email'))
-        $user = User::find(Auth::user()->id);
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['nullable', 'confirmed', 'min:8', Password::default()],
+        ]);
+
+        $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;
+        $password = $request->password ? Hash::make($request->password) : $user->password;
+        $user->password = $password;
         $user->save();
-        // $data = $request->all();
-
-        // $user = Auth::user();
-        // $user->update($data);
         return redirect()->back()->with('success', 'Data Berhasil di Simpan');
     }
 
-    public function uploadProfilePicture(PictureRequest $request) {
+    public function uploadAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'mimes:png,jpg,jpeg|max:2048'
+        ]);
+
         $user = Auth::user();
-        if($request->has('profile_picture')) {
-            $file = $request->file('profile_picture')->store('user/profile_picture', 'public');
+        if ($user->avatar == NULL) {
+            if ($request->has('avatar')) {
+                $file = $request->file('avatar')->store('user/avatar', 'public');
+                $user->avatar = $file;
+            }
+            $user->save();
+            return redirect()->back()->with('success', 'Avatar Berhasil di Upload');
+        }
+        if ($request->has('avatar')) {
+            $file = $request->file('avatar')->store('user/avatar', 'public');
             $user->profile_picture = $file;
         }
         $user->save();
-        return redirect()->back()->with('success', 'Foto Profile berhasil di Ubah');
+        return redirect()->back()->with('success', 'Avatar Berhasil di Ubah');
     }
-    
-    public function updateContact(UserRequest $request)
+
+    public function updateContact(Request $request)
     {
-        // if($request->has('name') && $request->has('email'))
+        $request->validate([
+            'address' => 'string|max:255',
+            'city' => 'string|max:255',
+            'zip_code' => 'integer',
+            'phone_number' => 'integer'
+        ]);
+
         $user = Auth::user();
         $user->address = $request->address;
         $user->city = $request->city;
         $user->zip_code = $request->zip_code;
         $user->phone_number = $request->phone_number;
         $user->save();
-        // $data = $request->all();
-
-        // $user = Auth::user();
-        // $user->update($data);
         return redirect()->back()->with('success', 'Data Berhasil di Simpan');
     }
 }

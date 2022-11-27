@@ -11,9 +11,15 @@
                     <div class="col-12 justify-content-sm-between align-items-center d-flex gap-3 gap-sm-0">
                         <div class="order-2 order-sm-1">
                             <div class="name">{{ Auth::user()->name }}</div>
+                            <div class="text-secondary" style="font-size: 14px;">Menyimpan <span class="fw-bold">{{
+                                    $saves }}</span> lowongan
+                                pekerjaan</div>
                         </div>
-                        <img src="{{ Storage::url(Auth::user()->profile_picture) }}" alt=""
-                            class="profile-picture rounded-circle order-1 order-sm-2">
+                        <img src="@if (Auth::user()->avatar)
+                            {{ Storage::url(Auth::user()->avatar) }}
+                        @else
+                            {{ asset('image/dummy-avatar.jpg') }}
+                        @endif" alt="" class="profile-picture rounded-circle order-1 order-sm-2">
                     </div>
                 </div>
 
@@ -26,17 +32,26 @@
                             </div>
                             <div class="phone-number mb-1 mb-sm-2">
                                 <i class="bi bi-telephone-fill"></i> <span>&nbsp;</span>
+                                @if (Auth::user()->phone_number)
                                 {{ Auth::user()->phone_number }}
+                                @else
+                                <a href="{{ route('contact-settings') }}" class="">belum diisi</a>
+                                @endif
                             </div>
                             <div class="location">
                                 <i class="bi bi-geo-alt-fill"></i> <span>&nbsp;</span>
+                                @if (Auth::user()->city)
                                 {{ Auth::user()->city }}
+                                @else
+                                <a href="{{ route('contact-settings') }}" class="">belum diisi</a>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 d-flex justify-content-between align-items-center mb-2">
-                    <h2 class="mb-1 fs-4 fw-semibold" style="color: #555;">Resume</h2>
+                    <h2 class="mb-1 fs-5 fw-semibold" style="color: #555;">Resume</h2>
                     @if (Auth::user()->resume != NULL)
                     <form action="{{ route('resume.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -48,6 +63,7 @@
                     </form>
                     @endif
                 </div>
+
                 <div class="col-12">
                     @if (Auth::user()->resume == NULL)
                     <div class="">
@@ -69,74 +85,9 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div style="height: 23vh"></div>
     </div>
 </section>
-{{-- <div class="profile">
-    <div class="container">
-        <div class="row d-flex justify-content-center title">
-            <div class="col-12 col-md-6">
-                <div class="account d-flex justify-content-between align-items-center mb-4">
-                    <div>
-                        <h2>{{ $user->name }}</h2>
-                    </div>
-                    <div class="gambar">
-                        <img src="{{ Storage::url(Auth::user()->profile_picture) }}" alt="">
-                    </div>
-                </div>
-                <a href="{{ route('contact-settings') }}" class="card edit-profile text-decoration-none">
-                    <div class="card-body">
-                        <div class="email">
-                            <div class="account-name"><i class="bi bi-envelope-fill" style="padding-right: 6px;"></i> {{
-                                $user->email }}</div>
-                        </div>
-                        <div class="phone d-flex justify-content-between align-items-center">
-                            <div class="phone_number"><i class="bi bi-telephone-fill" style="padding-right: 6px;"></i>
-                                {{ $user->phone_number }}</div>
-                            <div><i class="bi bi-chevron-right" style="color: black;"></i></div>
-                        </div>
-                        <div class="location">
-                            <div class="user-location"><i class="bi bi-geo-alt-fill" style="padding-right: 6px;"></i> {{
-                                $user->address }}</div>
-                        </div>
-                    </div>
-                </a>
-                <div class="col-12 d-flex justify-content-between align-items-center mb-2">
-                    <h2 class="mb-1 fs-4 fw-semibold" style="color: #555;">Resume</h2>
-                    @if (Auth::user()->resume != NULL)
-                    <form action="{{ route('resume.update') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="file" name="resume" class="d-none" onchange="form.submit()" id="resume-edit">
-                        <button type="button" class="d-inline-block" id="edit"
-                            onclick="document.getElementById('resume-edit').click()">
-                            <i class="bi bi-pencil-square" title="Ganti Resume"></i>
-                        </button>
-                    </form>
-                    @endif
-                </div>
-                <div class="col-12">
-                    @if (Auth::user()->resume == NULL)
-                    <div class="">
-                        <form action="{{ route('resume.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="file" name="resume" class="d-none" onchange="form.submit()" id="resume-create">
-                            <button type="button" class="btn btn-primary btn-block fw-bold"
-                                onclick="document.getElementById('resume-create').click()">
-                                Upload Resume
-                            </button>
-                        </form>
-                    </div>
-                    @else
-                    <div class="">
-                        <a href="{{ Storage::url(Auth::user()->resume) }}" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-primary">Lihat Resume</a>
-                    </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection
 
 @push('addon-style')
@@ -194,13 +145,6 @@
 
     #edit i {
         font-size: 20px;
-    }
-
-    #toast-container>.toast-success {
-        background-image:
-            url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==") !important;
-        background-color: #51a351;
-        top: 70px;
     }
 </style>
 @endpush

@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-5 pl-5">
+                            <div class="col-6 col-md-5 pl-md-5">
                                 <div class="d-flex flex-column">
                                     <div class="mb-3">
                                         <div class="text-secondary">Pekerjaan</div>
@@ -29,7 +29,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6 col-md-4">
                                 <div class="d-flex flex-column">
                                     <div class="mb-3">
                                         <div class="text-secondary">Tanggal</div>
@@ -37,17 +37,34 @@
                                     </div>
                                     <div class="">
                                         <div class="text-secondary">Status</div>
-                                        <div class="">Sedang Diproses</div>
+                                        <div class="">{{ $apply->status }}</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3 d-none d-md-flex pr-5 justify-content-center flex-column gap-2">
-                                <a href="{{ route('generate-pdf', $apply->id) }}" class="btn btn-outline-primary btn-block w-100 fw-medium" target="_blank" style="font-size: 14px">Cetak
+                            <div class="col-md-3 d-none d-md-flex pr-5 justify-content-center flex-column gap-2">
+                                <a href="{{ route('generate-pdf', $apply->id) }}"
+                                    class="btn btn-outline-primary btn-block w-100 fw-medium" target="_blank"
+                                    style="font-size: 14px;">Cetak
                                     Bukti</a>
-                                <form action="{{ route('apply-destroy', $apply->id) }}" method="POST">
+                                <form action="{{ route('apply.destroy', $apply->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-danger btn-block w-100" style="font-size: 14px;">
+                                    <button type="submit" class="btn btn-danger btn-block w-100"
+                                        style="font-size: 14px;">
+                                        Batal
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-12 d-md-none mt-4">
+                                <a href="{{ route('generate-pdf', $apply->id) }}"
+                                    class="btn btn-outline-primary btn-block w-100 fw-medium mb-2" target="_blank"
+                                    style="font-size: 14px;">Cetak
+                                    Bukti</a>
+                                <form action="{{ route('apply.destroy', $apply->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-block w-100"
+                                        style="font-size: 14px;">
                                         Batal
                                     </button>
                                 </form>

@@ -87,8 +87,8 @@
         <div class="modal-body">
           <label for="fstatus">Status</label>
           <select name="status" id="fstatus" class="form-control">
-            <option value="diterima">Terima</option>
-            <option value="ditolak">Tolak</option>
+            <option value="Diterima">Terima</option>
+            <option value="Ditolak">Tolak</option>
           </select>
         </div>
         <div class="modal-footer">

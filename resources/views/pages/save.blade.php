@@ -8,8 +8,8 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
                 <div class="line-bottom mb-3">
-                    <a href="{{ route('follow') }}" class="follow">Followed</a>
-                    <a href="{{ route('save') }}" class="save active">Saved</a>
+                    <a href="{{ route('follow.index') }}" class="follow">Followed</a>
+                    <a href="{{ route('save.index') }}" class="save active">Saved</a>
                 </div>
 
                 <div class="row save-section">
@@ -18,7 +18,7 @@
                             @forelse ($saves as $save)
                             <tr>
                                 <td class="image">
-                                    <img src="{{ Storage::url($save->job->company->photo) }}" alt=""
+                                    <img src="{{ Storage::url($save->job->company->photo) }}"
                                         class="rounded-circle">
                                 </td>
                                 <td class="description">
@@ -53,7 +53,7 @@
                         </table>
                     </div>
                 </div>
-                @if ($save_count < 3) <div style="min-height: 50vh">
+                @if ($saves->count() < 3) <div style="min-height: 24vh">
             </div>
             @endif
         </div>

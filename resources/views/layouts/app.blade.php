@@ -10,7 +10,6 @@
     <title>@yield('title')</title>
 
     {{-- styles --}}
-    @stack('prepend-style')
     @include('includes.style')
     @stack('addon-style')
 </head>
@@ -29,18 +28,18 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Employer</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('change-role') }}" method="POST">
+                <form action="{{ route('role.update') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <div class="fw-semibold">Apakah anda yakin?</div>
-                        <p class="">Dengan menjadi employer anda dapat melakukan hal-hal berikut ini:</p>
-                        <ul style="list-style: initial">
+                        <div class="fw-semibold">Apakah anda yakin ingin menjadi employer?</div>
+                        <p class="">Keuntungan menjadi employer:</p>
+                        <ul style="list-style: disc">
                             <li>membuat perusahaan,</li>
                             <li>membuat lowongan pekerjaan.</li>
                         </ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Keluar</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Yakin</button>
                     </div>
                 </form>
@@ -48,13 +47,12 @@
         </div>
     </div>
 
-    <hr style="background-color: #333;">
+    <hr style="background-color: #555;">
 
     {{-- footer --}}
     @include('includes.footer')
 
     {{-- scripts --}}
-    @stack('prepend-script')
     @include('includes.script')
     @stack('addon-script')
 </body>

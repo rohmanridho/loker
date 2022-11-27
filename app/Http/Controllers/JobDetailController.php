@@ -35,28 +35,4 @@ class JobDetailController extends Controller
 
         return view('pages.job-detail', $data);
     }
-
-    public function save(Request $request, $id)
-    {
-        $data = [
-            'jobs_id' => $id,
-            'users_id' => Auth::user()->id
-        ];
-
-        Save::create($data);
-        // dd($result);
-        return redirect()->back();
-    }
-
-    public function apply(Request $request, $id)
-    {
-        $data = [
-            'jobs_id' => $id,
-            'users_id' => Auth::user()->id
-        ];
-
-        Apply::create($data);
-        // dd($result);
-        return redirect()->route('apply');
-    }
 }

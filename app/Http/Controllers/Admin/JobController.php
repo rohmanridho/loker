@@ -96,7 +96,6 @@ class JobController extends Controller
     {
         $job = Job::find($id);
         $job->delete();
-
         return redirect()->route('jobs.index');
     }
 }

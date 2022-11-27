@@ -100,7 +100,6 @@ class CompanyController extends Controller
     {
         $company = Company::find($id);
         $company->delete();
-
         return redirect()->route('companies.index');
     }
 }

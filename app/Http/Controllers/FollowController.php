@@ -10,18 +10,33 @@ class FollowController extends Controller
 {
     public function index() {
         $follows = Follow::with(['user', 'company.province', 'company.industry'])->where('users_id', Auth::user()->id)->get();
-        
-        // dd($follows);
         return view('pages.follow', [
             'follows' => $follows
         ]);
     }
 
+    public function follow(Request $request, $id)
+    {
+        $follow = Follow::where([
+            'users_id' => Auth::user()->id,
+            'companies_id' => $id
+        ])->count();
+
+        if ($follow == 0) {
+            $data = [
+                'companies_id' => $id,
+                'users_id' => Auth::user()->id
+            ];
+            Follow::create($data);
+            return redirect()->back();
+        }
+        return redirect()->back()->with('error', 'Anda telah mengikuti');
+    }
+
     public function destroy($id)
     {
-        $save = Follow::find($id);
-        $save->delete();
-
-        return redirect()->route('follow');
+        $follow = Follow::find($id);
+        $follow->delete();
+        return redirect()->back();
     }
 }

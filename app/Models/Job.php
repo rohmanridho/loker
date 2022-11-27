@@ -14,7 +14,7 @@ class Job extends Model
     // use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'companies_id', 'categories_id', 'slug', 'type', 'salary', 'schedule', 'description'
+        'name', 'companies_id', 'categories_id', 'slug', 'type', 'salary', 'schedule', 'description', 'status'
     ];
 
     public function scopeFilter($query, array $filters) {
@@ -23,6 +23,9 @@ class Job extends Model
             ->orWhere('description', '%', '%' . $search . '%')
             ->orWhereHas('company', function($query) use ($search){
                 $query->where('name', 'LIKE', '%'. $search . '%');
+            })
+            ->orWhereHas('category', function($query) use ($search){
+                $query->where('name', $search);
             });
         });
     }

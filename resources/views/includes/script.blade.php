@@ -8,10 +8,10 @@
 <script src="https://kit.fontawesome.com/40c495c7a8.js" crossorigin="anonymous"></script>
 <script src="/vendor/jquery/jquery.slim.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
-</script>
+</script> --}}
 <script>
     function navbarResponsive() {
       const navbar = document.getElementById('navbarNav');
@@ -23,3 +23,4 @@
       }
     }
 </script>
+f

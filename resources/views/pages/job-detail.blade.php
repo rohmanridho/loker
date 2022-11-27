@@ -18,26 +18,26 @@
                         @auth
                         @if ($job->company->users_id !== Auth::user()->id)
                         @if ($applyCount == 0)
-                        <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-2">
+                        <form action="{{ route('apply', $job->id) }}" method="POST" class="mb-2">
                             @csrf
                             <button type="submit" class="btn btn-block btn-primary">Apply</button>
                         </form>
                         @else
-                        <a href="{{ route('apply') }}" class="btn btn-block btn-primary mb-2">Reviewed</a>
+                        <a href="{{ route('apply.index') }}" class="btn btn-block btn-primary mb-2">Reviewed</a>
                         @endif
                         @endif
                         @endauth
 
                         @auth
                         @if ($saveCount == 0)
-                        <form action="{{ route('save-job', $job->id) }}" method="POST">
+                        <form action="{{ route('save', $job->id) }}" method="POST">
                             @csrf
                             <button class="btn btn-outline-success btn-block fw-light w-100">
                                 Save
                             </button>
                         </form>
                         @else
-                        <form action="{{ route('save-destroy', $save->id) }}" method="POST">
+                        <form action="{{ route('save.destroy', $save->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-success btn-block fw-light w-100">
@@ -58,7 +58,7 @@
 
                 <div class="row mt-4 job-details">
                     <div class="col-12">
-                        <h2 class="mb-3">Detail Pekerjaan</h2>
+                        <h2 class="mb-3 fs-5">Detail Pekerjaan</h2>
                         <div>
                             <h3><i class="bi bi-cash"></i> &nbsp; <span> &nbsp;</span>Gaji</h3>
                             <i class="bi bi-cash"></i><span> &nbsp; </span><span> &nbsp;</span>
@@ -124,12 +124,12 @@
                         @auth
                         @if ($job->company->users_id !== Auth::user()->id)
                         @if ($applyCount == 0)
-                        <form action="{{ route('apply-job', $job->id) }}" method="POST" class="mb-2">
+                        <form action="{{ route('apply', $job->id) }}" method="POST" class="mb-2">
                             @csrf
                             <button type="submit" class="btn btn-block btn-primary py-2">Lamar Pekerjaan</button>
                         </form>
                         @else
-                        <a href="{{ route('apply') }}" class="btn btn-block btn-primary mb-2">Melamar Pekerjaan</a>
+                        <a href="{{ route('apply.index') }}" class="btn btn-block btn-primary mb-2">Sedang Diproses</a>
                         @endif
                         @endif
 
@@ -143,14 +143,14 @@
                     <div class="col-12">
                         @auth
                         @if ($saveCount == 0)
-                        <form action="{{ route('save-job', $job->id) }}" method="POST">
+                        <form action="{{ route('save', $job->id) }}" method="POST">
                             @csrf
                             <button class="btn btn-outline-success btn-block fw-light w-100 py-2">
                                 Simpan
                             </button>
                         </form>
                         @else
-                        <form action="{{ route('save-destroy', $save->id) }}" method="POST">
+                        <form action="{{ route('save.destroy', $save->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-success btn-block fw-light w-100 py-2">

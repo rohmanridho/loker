@@ -25,7 +25,6 @@ class ProvinceRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'photo' => 'required|image'
         ];
     }
 }

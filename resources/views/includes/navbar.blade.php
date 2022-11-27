@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top bg-light navbar-custom py-2 py-sm-0">
-    <div class="container-fluid px-2 px-sm-0">
+    <div class="container-fluid px-3 px-sm-0">
         <a class="navbar-brand" href="{{ route('home') }}">
             <div class="fs-3 fw-bold" style="color: #1e3a9b">Needed</div>
         </a>
@@ -14,10 +14,11 @@
             @endif
             @endguest
             @auth
-            <a href="{{ route('save') }}" class="nav-link bookmark-icon">
+            <a href="{{ route('save.index') }}" class="nav-link bookmark-icon">
                 <i class="bi bi-bookmarks-fill" style="font-size: 22px; color: #1e3a9b;"></i>
             </a>
-            <div style="width: 20px; height: 20px; background-color: transparent"></div>
+            <div class="d-none d-md-block" style="width: 20px; height: 20px; background-color: transparent"></div>
+            <div class="d-block d-md-none" style="width: 10px; height: 10px; background-color: transparent"></div>
             @endauth
             <span style="cursor: pointer;" onclick="navbarResponsive()">
                 <i class="fas fa-bars bar"></i>
@@ -31,19 +32,19 @@
             <li class="nav-item">
                 <a href="{{ route('search-job') }}" class="nav-link">Find Jobs</a>
             </li>
-            <li class="nav-item">
-                <a href="{{ route('apply') }}" class="nav-link">Apply</a>
-            </li>
             @auth
+            <li class="nav-item">
+                <a href="{{ route('apply.index') }}" class="nav-link">Apply</a>
+            </li>
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
                 <a href="{{ route('profile', Auth::user()->name) }}" class="nav-link">Profile</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('follow') }}" class="nav-link">Followed</a>
+                <a href="{{ route('follow.index') }}" class="nav-link">Followed</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('save') }}" class="nav-link">Saved</a>
+                <a href="{{ route('save.index') }}" class="nav-link">Saved</a>
             </li>
             <li style="height: 15px; background-color: #eee; border: none;"></li>
             <li class="nav-item">
@@ -75,10 +76,11 @@
                         href="{{ route('search-job') }}">Find Jobs</a>
                 </li>
                 @auth
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}"
-                        href="{{ route('apply') }}">Apply</a>
-                </li>
+                @if (App\Models\Apply::where('users_id', Auth::user()->id)->count())
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('apply*') ? 'active' : '' }}" href="{{ route('apply.index') }}">Apply</a>
+                    </li>
+                @endif
                 @endauth
             </ul>
             <ul class="navbar-nav d-flex align-items-center">
@@ -96,7 +98,7 @@
 
                 @auth
                 <li class="nav-item">
-                    <a href="{{ route('save') }}" class="nav-link bookmark-icon">
+                    <a href="{{ route('save.index') }}" class="nav-link bookmark-icon">
                         <i class="bi bi-bookmarks-fill"></i>
                     </a>
                 </li>
@@ -116,7 +118,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item py-2" href="{{ route('follow') }}"><i class="bi bi-heart-fill"></i>
+                            <a class="dropdown-item py-2" href="{{ route('follow.index') }}"><i
+                                    class="bi bi-heart-fill"></i>
                                 &nbsp;
                                 Follow</a>
                         </li>

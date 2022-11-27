@@ -19,3 +19,8 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
+@if (Session::has('success'))
+<script>
+    toastr.success("{{ Session::get('success') }}", {"iconClass": 'toast-success'});
+</script>
+@endif

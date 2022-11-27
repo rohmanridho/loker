@@ -11,7 +11,7 @@ class ApplyController extends Controller
 {
     public function index()
     {
-        $apply_status = Apply::where(['users_id' => Auth::user()->id, 'status' => 'ditinjau'])->count();
+        $apply_status = Apply::where(['users_id' => Auth::user()->id, 'status' => 'Sedang Diproses'])->count();
         $applies = Apply::with(['user', 'job.company.province'])->where('users_id', Auth::user()->id)->latest()->get();
 
         return view('pages.apply', [
@@ -20,7 +20,26 @@ class ApplyController extends Controller
         ]);
     }
 
-    public function generatePDF($id) {
+    public function apply(Request $request, $id)
+    {
+        $apply = Apply::where([
+            'users_id' => Auth::user()->id,
+            'jobs_id' => $id
+        ])->count();
+
+        if ($apply == 0) {
+            $data = [
+                'jobs_id' => $id,
+                'users_id' => Auth::user()->id
+            ];
+            Apply::create($data);
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
+
+    public function generatePDF($id)
+    {
         $data = Apply::with(['user', 'job.company.province', 'job.company.user'])->where('id', $id)->first();
 
         $pdf = PDF::loadView('pages.apply-pdf', [
@@ -34,8 +53,7 @@ class ApplyController extends Controller
     public function destroy($id)
     {
         $apply = Apply::find($id);
-
         $apply->delete();
-        return redirect()->route('apply');
+        return redirect()->back();
     }
 }

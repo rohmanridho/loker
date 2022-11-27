@@ -25,7 +25,7 @@ class CompanyRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'photo' => 'required|image',
+            'photo' => 'image|mimes:png,jpg,jpeg',
             'users_id' => 'required|exists:users,id',
             'industries_id' => 'required|exists:industries,id',
             'provinces_id' => 'required|exists:provinces,id',

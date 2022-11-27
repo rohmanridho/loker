@@ -6,7 +6,6 @@ use App\Models\Province;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\ProvinceRequest;
 
@@ -69,11 +68,11 @@ class ProvinceController extends Controller
     public function store(ProvinceRequest $request)
     {
         $data = $request->all();
-        // $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->name);
         // $data['photo'] = $request->file('photo')->store('assets/province', 'public');
 
         Province::create($data);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Create Success');
     }
 
     /**
@@ -111,12 +110,12 @@ class ProvinceController extends Controller
     public function update(ProvinceRequest $request, $id)
     {
         $data = $request->all();
-        // $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->name);
         // $data['photo'] = $request->file('photo')->store('assets/province', 'public');
 
         $province = Province::find($id);
         $province->update($data);
-        return redirect()->route('province.index');
+        return redirect()->route('province.index')->with('success', 'Update Success');
     }
 
     /**
