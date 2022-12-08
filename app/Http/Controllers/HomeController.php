@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
-        $jobs = Job::with(['company.province', 'category'])->take(8)->inRandomOrder()->get();
+        $jobs = Job::with(['company.province', 'category'])->whereHas('company', function($company) {
+            $company->where('status', 'Sudah Disetujui');
+        })->take(8)->inRandomOrder()->get();
         // $companies = Company::query();
         $companies = Company::take(4)->get();
         $categories = Category::take(10)->inRandomOrder()->get();

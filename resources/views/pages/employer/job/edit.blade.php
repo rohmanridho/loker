@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Lowongan Pekerjaan</h2>
-            <p class="dashboard-subtitle">Edit Detail Lowongan Pekerjaan</p>
+            <p class="dashboard-subtitle">Status: {{ $job->status }}</p>
         </div>
         <div class="dashboard-content">
             <div class="row">

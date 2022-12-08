@@ -12,13 +12,28 @@ class JobDetailController extends Controller
 {
     public function index(Request $request, $company, $slug)
     {
-        $job = Job::with(['company.province', 'category'])->where('slug', $slug)->first();
-        if (Auth::check()) {
-            $saveCount = Save::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->count();
-            $save = Save::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->first();
+        $job = Job::with(['company.province', 'category'])->where(['slug' => $slug])->whereHas('company', function ($company) {
+            $company->where('status', 'Sudah Disetujui');
+        })->first();
 
-            $applyCount = Apply::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->count();
-            $apply = Apply::with(['job', 'user'])->where('users_id', Auth::user()->id)->where('jobs_id', $job->id)->first();
+        if (Auth::check()) {
+            $saveCount = Save::with(['job', 'user'])->where([
+                'users_id' => Auth::user()->id,
+                'jobs_id' => $job->id,
+            ])->count();
+            $save = Save::with(['job', 'user'])->where([
+                'users_id' => Auth::user()->id,
+                'jobs_id' => $job->id,
+            ])->first();
+
+            $applyCount = Apply::with(['job', 'user'])->where([
+                'users_id' => Auth::user()->id,
+                'jobs_id' => $job->id,
+            ])->count();
+            $apply = Apply::with(['job', 'user'])->where([
+                'users_id' => Auth::user()->id,
+                'jobs_id' => $job->id,
+            ])->first();
 
             $data = [
                 'job' => $job,
@@ -33,6 +48,13 @@ class JobDetailController extends Controller
             ];
         }
 
-        return view('pages.job-detail', $data);
+        if ($job) {
+            return view('pages.job-detail', $data);
+        } else {
+            if (Auth::user()->roles_id == 1) {
+                return view('pages.job-detail', $data);
+            }
+            return redirect()->back();
+        }
     }
 }

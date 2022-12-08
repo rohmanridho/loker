@@ -14,7 +14,7 @@ class Company extends Model
     // use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'slug', 'photo', 'users_id', 'industries_id', 'provinces_id', 'description', 'phone', 'address', 'email'
+        'name', 'slug', 'photo', 'users_id', 'industries_id', 'provinces_id', 'description', 'phone', 'address', 'email', 'document', 'status'
     ];
 
     public function user()

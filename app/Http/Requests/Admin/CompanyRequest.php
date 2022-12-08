@@ -29,7 +29,8 @@ class CompanyRequest extends FormRequest
             'users_id' => 'required|exists:users,id',
             'industries_id' => 'required|exists:industries,id',
             'provinces_id' => 'required|exists:provinces,id',
-            'description' => 'required'
+            'description' => 'required',
+            'document' => 'file|mimes:png,jpg,jpeg,pdf,doc,docx|max:4096'
         ];
     }
 }

@@ -18,11 +18,11 @@
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <th>#</th>
                                             <th>Name</th>
-                                            <th>Photo</th>
-                                            <th>Industry</th>
-                                            <th>Province</th>
+                                            <th>Logo</th>
+                                            <th>Document</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -36,6 +36,37 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('modal')
+@foreach ($companies as $item)
+<div class="modal fade" id="edit-modal-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tinjau perusahaan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('companies.update', $item->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <label for="fstatus">Status</label>
+                    <select name="status" id="fstatus" class="form-control">
+                        <option value="Sudah Disetujui">Setuju</option>
+                        <option value="Tidak Disetujui">Tidak Setuju</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 @endsection
 
 @push('script')
@@ -68,12 +99,12 @@
 										name: 'photo'
 								},
 								{
-										data: 'industry.name',
-										name: 'industry.name'
+										data: 'document',
+										name: 'document'
 								},
 								{
-										data: 'province.name',
-										name: 'province.name'
+										data: 'status',
+										name: 'status'
 								},
 								{
 										data: 'action',

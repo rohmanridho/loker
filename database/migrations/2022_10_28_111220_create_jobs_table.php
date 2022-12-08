@@ -18,14 +18,16 @@ class CreateJobsTable extends Migration
 
             $table->string('name');
             $table->string('slug');
+
             $table->foreignId('categories_id')->nullable()->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('companies_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->string('type')->nullable();
             $table->integer('salary')->nullable();
             $table->string('schedule')->nullable();
             $table->text('description')->nullable();
             $table->integer('slot')->nullable();
-            $table->string('status')->nullable()->default('Buka');
+            $table->string('status')->default('Tersedia'); // Tidak tersedia
 
             $table->timestamps();
             // $table->softDeletes();

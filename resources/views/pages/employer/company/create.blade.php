@@ -9,7 +9,7 @@
             <h2 class="dashboard-title">Company</h2>
             <p class="dashboard-subtitle">Create Company</p>
         </div>
-        <div class="dashboard-content">
+        <div class="dashboard-content mb-4">
             <div class="row">
                 <div class="col-12">
                     @if ($errors->any())
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Email</label>
+                                            <label>Alamat Email</label>
                                             <input type="email" name="email" class="form-control"
                                                 value="{{ Auth::user()->email }}" required>
                                         </div>
@@ -89,11 +89,17 @@
                                                 value="{{ Auth::user()->phone_number }}" required>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Dokumen Perusahaan</label>
+                                            <input type="file" name="document" class="form-control" required>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
                                         <button type="button" class="btn btn-outline-danger px-5"
-                                            onclick="history.back()">Batal</button>
+                                            onclick="history.back();">Batal</button>
                                         <button type="submit" class="btn btn-success px-5 mr-2">Buat</button>
                                     </div>
                                 </div>

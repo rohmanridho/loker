@@ -6,10 +6,10 @@
 <div class="section-content section-dashboard-home" data-aos="fade-up">
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Company</h2>
-      <p class="dashboard-subtitle">Edit Company</p>
+      <h2 class="dashboard-title">Perushaan Saya</h2>
+      <p class="dashboard-subtitle">Status: {{ $company->status }}</p>
     </div>
-    <div class="dashboard-content">
+    <div class="dashboard-content mb-4">
       <div class="row">
         <div class="col-md-12">
           @if ($errors->any())
@@ -37,20 +37,21 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Photo</label>
-                      <input type="file" name="photo" class="form-control">
+                      <label>Logo Perusahaan</label>
+                      <input type="file" name="photo" class="form-control mb-1">
+                      &nbsp;<a href="{{ Storage::url($company->photo) }}" class="text-decoration-none" target="_blank"
+                        style="font-size: 14px;">logo saat ini</a>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Alamat Perusahaan</label>
-                      <input type="text" name="address" class="form-control" value="{{ Auth::user()->address }}"
-                        required>
+                      <input type="text" name="address" class="form-control" value="{{ $company->address }}" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="findustry">Industry</label>
+                      <label for="findustry">Industri</label>
                       <select name="industries_id" id="findustry" class="form-control">
                         <option value="{{ $company->industries_id }}" selected>{{
                           $company->industry->name }} (Tidak ganti)</option>
@@ -62,7 +63,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="fprovince">Province</label>
+                      <label for="fprovince">Provinsi</label>
                       <select name="provinces_id" id="fprovince" class="form-control">
                         <option value="{{ $company->provinces_id }}" selected>{{
                           $company->province->name }} (Tidak ganti)</option>
@@ -83,15 +84,22 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>Email</label>
+                      <label>Alamat Email</label>
                       <input type="email" name="email" class="form-control" value="{{ $company->email }}" required>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Nomor Telepon</label>
-                      <input type="text" name="phone" class="form-control" value="{{$company->phone }}"
-                        required>
+                      <input type="text" name="phone" class="form-control" value="{{$company->phone }}" required>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Dokumen Perusahaan</label>
+                      <input type="file" name="document" class="form-control mb-1">
+                      &nbsp;<a href="{{ Storage::url($company->document) }}" class="text-decoration-none" target="_blank"
+                        style="font-size: 14px;">dokumen saat ini</a>
                     </div>
                   </div>
                 </div>

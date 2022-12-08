@@ -110,7 +110,7 @@
             confirmButtonText: 'Delete'
         }).then((result) => {
             if (result.isConfirmed) {
-                let url = '{{ route('province.destroy', ":id") }}'
+                let url = '{{ route('industry.destroy', ":id") }}'
                 url = url.replace(':id', id)
                 
                 $.ajax({

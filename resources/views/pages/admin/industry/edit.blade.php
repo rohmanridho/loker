@@ -38,7 +38,10 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Photo</label>
-                                            <input type="file" name="photo" class="form-control">
+                                            <input type="file" name="photo" class="form-control mb-1">
+                                            &nbsp;<a href="{{ Storage::url($industry->photo) }}"
+                                                class="text-decoration-none" target="_blank"
+                                                style="font-size: 14px;">photo saat ini</a>
                                         </div>
                                     </div>
                                 </div>

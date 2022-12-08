@@ -20,12 +20,16 @@ class CreateCompaniesTable extends Migration
             $table->string('slug');
             $table->string('photo')->nullable();
             $table->string('address')->nullable();
+
             $table->foreignId('users_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('industries_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->foreignId('provinces_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
+
             $table->string('email')->unique()->nullable();
             $table->string('phone')->nullable();
             $table->text('description')->nullable();
+            $table->string('document')->nullable();
+            $table->string('status')->default('Belum Disetujui');
 
             $table->timestamps();
             // $table->softDeletes();

@@ -34,11 +34,12 @@ class JobController extends Controller
         //     $job_count = Job::count();
         // }
 
-        $jobs = Job::with(['company.province'])->latest()->filter(request(['search']))->get();
+        $jobs = Job::with(['company.province'])->whereHas('company', function($company) {
+            $company->where('status', 'Sudah Disetujui');
+        })->latest()->filter(request(['search']))->get();
 
         return view('pages.job', [
-            'jobs' => $jobs,
-            // 'job_count' => $job_count,
+            'jobs' => $jobs
         ]);
     }
 }

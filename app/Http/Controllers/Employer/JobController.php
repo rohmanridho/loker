@@ -30,16 +30,17 @@ class JobController extends Controller
                 ->addColumn('action', function ($job) {
                     return '
                     <div class= "btn-group">
-                        <div class= "dropdown">
+                        <div class= "dropdown-center">
                             <button class= "btn btn-primary"
                                     type= "button"
                                     role="button"
                                     data-bs-toggle="dropdown">
                                     Actions
                                 </button>
-                                <div class= "dropdown-menu">
-                                    <a href="' . route('job.show', $job->id) . '" class="dropdown-item">
+                                <div class="dropdown-menu">
+                                    <a href="' . route('job-detail', ['company' => $job->company->slug, 'slug' => $job->slug]) . '" target="_blank" class="dropdown-item">
                                     Preview</a>
+                                    
                                     <a href="' . route('job.edit', $job->id) . '" class="dropdown-item">
                                     Edit</a>
                                     <button class="dropdown-item text-danger" onclick="deleteConfirm(' . $job->id . ',\'' . $job->name . '\')">Delete</button>
@@ -63,6 +64,11 @@ class JobController extends Controller
     {
         $company = Company::where('users_id', Auth::user()->id)->first();
         $categories = Category::all();
+
+        if(!$company) {
+            return redirect()->route('company.create');
+        }
+
         return view('pages.employer.job.create', [
             'company' => $company,
             'categories' => $categories
@@ -92,7 +98,10 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        //
+        $job = Job::with(['company.province', 'category'])->find($id);
+        return view('pages.employer.job.preview', [
+            'job' => $job
+        ]);
     }
 
     /**

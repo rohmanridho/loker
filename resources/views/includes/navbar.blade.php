@@ -149,11 +149,10 @@
                     <form></form>
                     @if (Auth::user()->roles_id == 3)
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#change-role"
-                        data-bs-whatever="@getbootstrap">Employers / Post Jobs</button>
+                        data-bs-whatever="@getbootstrap">Pemilik Perushaan</button>
                     @else
                     @if (Auth::user()->roles_id == 2)
-                    <a class="nav-link" href="{{ route('job.index') }}">Employers / Post
-                        Jobs</a>
+                    <a class="nav-link" href="{{ route('job.index') }}">Posting Loker</a>
                     @endif
                     @if (Auth::user()->roles_id == 1)
                     <a class="nav-link" href="{{ route('admin-dashboard') }}">Admin Dashboard</a>

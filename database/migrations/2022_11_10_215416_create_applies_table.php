@@ -18,7 +18,7 @@ class CreateAppliesTable extends Migration
 
             $table->foreignId('users_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('jobs_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('status')->default('Sedang Diproses'); //Diterima, Ditolak
+            $table->string('status')->default('Sedang Diproses'); // Diterima, Ditolak
             $table->text('message')->nullable();
 
             $table->timestamps();

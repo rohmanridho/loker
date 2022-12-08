@@ -125,7 +125,7 @@
 
 @media (max-width: 576px) {
   .page-home .industries-title,
-.page-home .companies-title {
+  .page-home .companies-title {
     font-size: 1.5rem;
     font-weight: 700;
   }

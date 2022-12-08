@@ -28,7 +28,7 @@ class ProfileController extends Controller
         if($request->has('resume')) {
             $file = $request->file('resume')->storeAs(
                 'user/resume',
-                Auth::user()->name . '_' . Auth::user()->id . '.' . $request->file('resume')->getClientOriginalExtension(),
+                $user->name . '_' . $user->id . '.' . $request->file('resume')->getClientOriginalExtension(),
                 'public'
             );
             $user->resume = $file;

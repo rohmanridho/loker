@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <a href="{{ route('job.create') }}" class="btn btn-primary mb-3">+ Buat Lowongan Pekerjaan Baru</a>
                             <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                <table class="table table-hover scrollbox w-100 pb-5" id="crudTable">
                                     <thead>
                                         <tr>
                                             <th>#</th>

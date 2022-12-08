@@ -15,27 +15,35 @@ class CompanyController extends Controller
 {
     public function create()
     {
-        $company = Company::where('users_id', Auth::user()->id)->count();
+        $haveCompany = Company::where('users_id', Auth::user()->id)->count();
 
-        if ($company == 1) {
-            return redirect()->route('company.edit');
-        } else {
+        if (!$haveCompany) {
             $industries = Industry::orderBy('name')->get();
             $provinces = Province::orderBy('name')->get();
             return view('pages.employer.company.create', [
                 'industries' => $industries,
                 'provinces' => $provinces
             ]);
+        } else {
+            return redirect()->route('company.edit');
         }
     }
 
     public function store(CompanyRequest $request)
     {
-        $company = Company::where('users_id', Auth::user()->id)->count();
-        if ($company == 0) {
+        $haveCompany = Company::where('users_id', Auth::user()->id)->count();
+
+        if (!$haveCompany) {
+            $companies = Company::count() + 1;
             $data = $request->all();
             $data['slug'] = Str::slug($request->name);
-            $data['photo'] = $request->file('photo')->store('assets/company', 'public');
+            $data['photo'] = $request->file('photo')->store('company/logo', 'public');
+            $data['document'] =
+                $request->file('document')->storeAs(
+                    'company/document',
+                    $data['slug'] . '-' . $companies . '.' . $request->file('document')->getClientOriginalExtension(),
+                    'public'
+                );
 
             Company::create($data);
             return redirect()->route('company.edit')->with('success', 'Perusahan Berhasil di Buat');
@@ -46,27 +54,42 @@ class CompanyController extends Controller
 
     public function edit()
     {
-        $company = Company::with(['industry', 'province', 'user'])->where('users_id', Auth::user()->id)->first();
-        $industries = Industry::orderBy('name')->get();
-        $provinces = Province::orderBy('name')->get();
-        return view('pages.employer.company.edit', [
-            'company' => $company,
-            'industries' => $industries,
-            'provinces' => $provinces
-        ]);
+        $haveCompany = Company::where('users_id', Auth::user()->id)->count();
+        if($haveCompany) {
+            $company = Company::with(['industry', 'province', 'user'])->where('users_id', Auth::user()->id)->first();
+            $industries = Industry::orderBy('name')->get();
+            $provinces = Province::orderBy('name')->get();
+            return view('pages.employer.company.edit', [
+                'company' => $company,
+                'industries' => $industries,
+                'provinces' => $provinces
+            ]);
+        } else {
+            return redirect()->route('company.create');
+        }
     }
 
     public function update(CompanyRequest $request)
     {
+        $item = Company::where('users_id', Auth::user()->id)->first();
+
         $data = $request->all();
         $data['slug'] = Str::slug($request->name);
-        if($request->has('photo')) {
+        if ($request->has('photo')) {
             $data['photo'] = $request->file('photo')->store('company/logo', 'public');
         }
+        if ($request->has('document')) {
+            $companies = Company::count() + 1;
+            $file = $request->file('document')->storeAs(
+                'company/document',
+                $data['slug'] . '-' . $companies . '.' . $request->file('document')->getClientOriginalExtension(),
+                'public'
+            );
+            $data['document'] = $file;
+        }
 
-        $item = Company::where('users_id', Auth::user()->id)->first();
         $company = Company::find($item->id);
         $company->update($data);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Perusahan Berhasil di Update');
     }
 }
